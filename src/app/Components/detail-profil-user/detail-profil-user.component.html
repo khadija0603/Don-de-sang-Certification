@@ -1,0 +1,78 @@
+<nav>
+    <div class="logo-name">
+        <div class="logo-image">
+            <img src="../../../assets/Image/logo-offi.png" alt=""routerLink="/accueil">
+        </div>
+
+        <span class="logo_name"></span>
+    </div>
+
+    <div class="menu-items py-10 mb-10">
+        <ul class="nav-links mt-30">
+            <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Tableau de bord</span>
+                </a></li>
+            <li><a href="#">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name"routerLink="/detail-profil-user">Profil</span>
+                </a></li>
+            <li><a href="#">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name"routerLink="/annonces">Annonces</span>
+                </a></li>
+
+        </ul>
+
+        <ul class="logout-mode">
+            <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name"routerLink="/auth">Deconnexion</span>
+                </a></li>
+
+            <li class="mode">
+
+        </ul>
+    </div>
+</nav>
+
+<section class="dashboard">
+    <div class="top navbar">
+        <i class="uil uil-bars sidebar-toggle" style="color: black;"></i>
+        <div class="">
+            <span class="text-dark">Khadija Mbengue</span>
+            <img src="https://img.freepik.com/photos-gratuite/incroyable-fille-europeenne-beret-rouge-rire-jeune-femme-francaise-positive-faisant-selfie_197531-11772.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=sph"
+                alt="">
+        </div>
+    </div>
+
+    <div class="dash-content">
+        <div class="overview">
+        </div>
+
+        <div class="test"></div>
+        <section id="section">
+            <div class="container conteneur mb-0" width="100" height="70">
+                <h4 class="text-center titre py-0 mt-2 pt-2 mb-0">Information du profil</h4>
+                <div class="contain-contenu mt-0 mb-1 pt-2">
+                    <div class="col-image">
+                        <div class="cercle-image">
+                            <img src="https://img.freepik.com/photos-gratuite/incroyable-fille-europeenne-beret-rouge-rire-jeune-femme-francaise-positive-faisant-selfie_197531-11772.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=sph"
+                                alt="" width="100" height="90">
+                        </div>
+                    </div>
+                    <div class="col-info mt-5">
+                        <p>Nom :</p>
+                        <p>Prenom : </p>
+                        <p>Adresse :</p>
+                        <p>Email :</p>
+                        <p>Contact :</p>
+                        <p>Ville :</p>
+                        <p>Groupe sanguin :</p>
+                    </div>
+                </div>
+                <div class="contain-button">
+                    <button class="btn btn-profil fw-bold mb-5" routerLink="/modification-profil">Modifier</button>
+                </div>
+            </div>
+        </section>
