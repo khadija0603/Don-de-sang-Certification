@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-accueil-admin',
+  templateUrl: './accueil-admin.component.html',
+  styleUrls: ['./accueil-admin.component.css']
 })
-export class AdminComponent {
-
+export class AccueilAdminComponent {
   dtOptions: DataTables.Settings = {};
-
-  ngOnInit(): void {
+   ngOnInit(): void {
     const script = document.createElement('script');
     script.src = '../../../assets/script/sidebar.js';
     document.body.appendChild(script);
@@ -18,12 +16,10 @@ export class AdminComponent {
       lengthChange: false,
       paging: true,
       info: false,
+      pageLength:5,
       language: {
         url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
       }
     };
  }
-  // Sidebare/
-
-  
 }

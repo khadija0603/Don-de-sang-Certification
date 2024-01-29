@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AProposComponent } from './a-propos.component';
+import { SidebareComponent } from './sidebare.component';
 
-describe('AProposComponent', () => {
-  let component: AProposComponent;
-  let fixture: ComponentFixture<AProposComponent>;
+describe('SidebareComponent', () => {
+  let component: SidebareComponent;
+  let fixture: ComponentFixture<SidebareComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AProposComponent]
+      declarations: [SidebareComponent]
     });
-    fixture = TestBed.createComponent(AProposComponent);
+    fixture = TestBed.createComponent(SidebareComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
