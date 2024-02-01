@@ -9,7 +9,6 @@ import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { ProfilComponent } from './Components/profil/profil.component';
-// import { AdminComponent } from './Components/admin/admin.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ConditionComponent } from './Components/condition/condition.component';
 import { PolitiqueComponent } from './Components/politique/politique.component';
@@ -20,7 +19,11 @@ import { ProfilAdminComponent } from './admin/profil-admin/profil-admin.componen
 import { StructureDeSanteAdminComponent } from './admin/structure-de-sante-admin/structure-de-sante-admin.component';
 import { InscritsAdminComponent } from './admin/inscrits-admin/inscrits-admin.component';
 import { DonneursAdminComponent } from './admin/donneurs-admin/donneurs-admin.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthServiceService } from 'src/service/auth-service.service';
+// import { AuthInterceptor } from './interceptors/interceptors';
+import { AuthInterceptor } from './interceptors/interceptors';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +50,15 @@ import { HttpClientModule } from '@angular/common/http';
     DataTablesModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthServiceService,
+    {
+      
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

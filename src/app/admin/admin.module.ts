@@ -7,6 +7,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { SidebareComponent } from './layout/sidebare/sidebare.component';
 import { AccueilAdminComponent } from './accueil-admin/accueil-admin.component';
 import { DataTablesModule } from 'angular-datatables';
+import { DetailAnnonceAdminComponent } from './detail-annonce-admin/detail-annonce-admin.component';
 // import { AnnonceAdminComponent } from './annonce-admin/annonce-admin.component';
 
 
@@ -16,6 +17,7 @@ import { DataTablesModule } from 'angular-datatables';
     HeaderComponent,
     SidebareComponent,
     AccueilAdminComponent,
+    DetailAnnonceAdminComponent,
     // AnnonceAdminComponent,
   ],
   imports: [

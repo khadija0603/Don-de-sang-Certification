@@ -11,7 +11,7 @@ export class ServiceService {
 
   constructor(private http: HttpClient) { }
 
-  addEmploye(data: string): Observable<any> {
+  addStructureSante(data: string): Observable<any> {
     return this.http.post<any>(`${api}/register`, data);
   }
 
@@ -20,29 +20,28 @@ export class ServiceService {
     return this.http.post<any>(`${api}/login`, data);
   }
 
-  updateEmploye(data: any, id: number): Observable<any> {
-    return this.http.put<any>(`${api}/client/edit/${id}`, data);
+  updateStructureSante(data: any, id: number): Observable<any> {
+    return this.http.put<any>(`${api}/structure-de-sante/edit/${id}`, data);
   }
 
-  getAllEmploye(): Observable<any[]> {
-    return this.http.get<any[]>(`${api}/employe/lister`);
+  getAllDonateur(): Observable<any[]> {
+    return this.http.get<any[]>(`${api}/structure-de-sante/lister`);
   }
 
-  getEmployeById(id: number): Observable<any> {
-    return this.http.get<any>(`${api}/employe/detail/${id}`);
+  getDonateurById(id: number): Observable<any> {
+    return this.http.get<any>(`${api}/structure-de-sante/detail/${id}`);
   }
 
-  activeDeactiveEmploye(id: number): Observable<any> {
+  activeDeactiveDonateur(id: number): Observable<any> {
     const accessToken = localStorage.getItem('access_token');
     return accessToken ? this.http.put<any>(
-      `${api}/employe/archive/${id}`,
+      `${api}/structure-de-sante${id}`,
       {},
       {
         headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
       }
     ) : of(null);
   }
-
   logout(): Observable<any> {
     // Implement your logout logic here
     // For example, clearing the access token from localStorage

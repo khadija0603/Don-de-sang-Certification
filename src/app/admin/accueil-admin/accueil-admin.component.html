@@ -24,7 +24,7 @@
     </div>
     <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table">
         <thead>
-            <tr>
+            <tr >
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Prenom</th>
@@ -34,15 +34,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Oumy</td>
-                <td>Ba</td>
-                <td>Baby@gmail.com</td>
-                <td>764354433</td>
-                <td>0+</td>
+            <tr *ngFor="let item of donateurList">
+                <td>{{item.index}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.prenom}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.telephone}}</td>
+                <td>{{item.groupe_sanguin}}</td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>2</td>
                 <td>Souleymane</td>
                 <td>Ngom</td>
@@ -153,7 +153,7 @@
                 <td>hopitalmbour@gmail.com</td>
                 <td>764354433</td>
                 <td>Tout</td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 </div>

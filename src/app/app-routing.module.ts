@@ -23,6 +23,7 @@ const routes: Routes = [
     {path:'', redirectTo: 'accueil', pathMatch: 'full'},
   { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)},
   { path: 'donneur',loadChildren:()=>import('./donneur/donneur.module').then(m=>m.DonneurModule)},
+  { path: 'structure-de-sante',loadChildren:()=>import('./structure-de-sante/structure-de-sante.module').then(m=>m.StructureDeSanteModule)},
   
   
   

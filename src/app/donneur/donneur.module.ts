@@ -7,6 +7,7 @@ import { AnnonceDonneurComponent } from './annonce-donneur/annonce-donneur.compo
 import { SidebareComponent } from './layout/sidebare/sidebare.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MainComponent } from './main/main.component';
+import { DetailAnnonceDonneurComponent } from './detail-annonce-donneur/detail-annonce-donneur.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MainComponent } from './main/main.component';
     AnnonceDonneurComponent,
     SidebareComponent,
     HeaderComponent,
-    MainComponent
+    MainComponent,
+    DetailAnnonceDonneurComponent
   ],
   imports: [
     CommonModule,
