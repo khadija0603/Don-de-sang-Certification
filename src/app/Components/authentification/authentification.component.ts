@@ -5,8 +5,6 @@ import { AuthServiceService } from 'src/service/auth-service.service';
 import { Observable, of } from 'rxjs';
 import { url } from 'src/app/models/apiUrl';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-
 @Component({
   selector: 'app-authentification',
   templateUrl: './authentification.component.html',
@@ -15,7 +13,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   
 export class AuthentificationComponent implements OnInit{
 onChangeFile() {
-throw new Error('Method not implemented.');
 }
 passwordCon: any;
 emailCon: any;
@@ -36,34 +33,26 @@ authDonateur: any;
   sexe:string="";
   image: File | undefined;
 
-  
-
  //méthodes
   afficherBloc1: boolean = true;
 
   basculerBlocs() {
     this.afficherBloc1 = !this.afficherBloc1;
   }
-
   ngOnInit(): void {
-
   }
-
     login() {
     let user = {
       "email": this.email,
       "password": this.password
     };
-
     if (this.email === 'khadijambengue96@gmail.com' && this.password === 'password') {
       // Connexion en tant qu'admin
       // alert('Ok');
       this.authservice.login(user).subscribe(
         (response:any) => {
           console.log(response.token);
-
           this.authservice.isAuthenticated = true;
-
           localStorage.setItem('userOnline', JSON.stringify(response));
           localStorage.setItem('token', JSON.stringify(response.token));
           this.route.navigate(['/admin']);
@@ -81,9 +70,7 @@ authDonateur: any;
       this.authservice.loginStructureDeSante(user).subscribe(
         (response:any) => {
           console.log(response);
-
           this.authservice.isAuthenticated = true;
-
           localStorage.setItem('userOnline', JSON.stringify(response));
           this.route.navigate(['/structure-de-sante']);
         },
@@ -94,15 +81,15 @@ authDonateur: any;
         }
       );
       }
+      
       else {
         
          this.authservice.loginDonateur({ email:user.email,password:user.password}).subscribe(
         (response: any) => {
           console.log(response);
-          // this.authservice.isAuthenticated = true;
-          
+          this.authservice.isAuthenticated = true;
+          localStorage.setItem('userOnline', JSON.stringify(response));
            this.route.navigate(['/donneur/annonce-donneur']);
-          // localStorage.setItem('userOnline', JSON.stringify(response));
           // if (response.original.statusCode == 200) {
           // } else {
           //   console.log(response.orignal.statusCode);
@@ -114,7 +101,6 @@ authDonateur: any;
       }
     }
   }
-
 
 
   // INSCRIPTION
@@ -139,18 +125,6 @@ authDonateur: any;
       showConfirmButton: true,
     });
   } else {
-    // let user = {
-    //   name:this.nom,
-    //   prenom:this.prenom,
-    //   telephone: this.telephone,
-    //   adresse: this.adresse,
-    //   email: this.email,
-    //   password: this.password,
-    //   cni: this.cni,
-    //   groupe_sanguin: this.groupe_sanguin,
-    //   sexe: this.sexe,
-    //   image:this.image ,
-    // };
    const formData = new FormData();
 
 formData.append("image", this.image as unknown as Blob);
@@ -163,14 +137,11 @@ formData.append("password", this.password);
 formData.append("groupe_sanguin", this.groupe_sanguin);
 formData.append("sexe", this.sexe);
     formData.append("cni", this.cni);
-    
-    
 
     console.log(formData);
 this.authservice.register(formData).subscribe(
   (rep: any) => {
     console.log(rep);
-
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -178,10 +149,8 @@ this.authservice.register(formData).subscribe(
       text: 'Félicitations',
       showConfirmButton: true,
     });
-
     this.route.navigate(['/auth']); // Redirection vers l'auth concerné
   },
-  
   (error: any) => {
     console.log(error);
     Swal.fire({
@@ -200,13 +169,9 @@ this.authservice.register(formData).subscribe(
   //     text: text,
   //   });
   }
-
   }
-  
  getFile(event: any) {
   console.warn(event.target.files[0]);
   this.image = event.target.files[0] as File;
  }
-  
- 
 }

@@ -90,7 +90,7 @@
                                     
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="ajoutStructureSante"> Ajouter </button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="ajoutStructureSante()"> Ajouter </button>
                                     </div>
                                 </form>
                             </div>
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Card structure de sante -->
+            <!-- Card structure de sante
             <div class="hopital">
                 <div class="card">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU"
@@ -110,56 +110,146 @@
                         </p>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Hopital Dalal Diam</p>
-                        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Hopital Dalal Diam</p>
-                        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Hopital Dalal Diam</p>
-                        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Hopital Dalal Diam</p>
-                        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Hopital Dalal Diam</p>
-                        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </p>
-                    </div>
+               
+            </div> -->
+
+<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <!-- <th>image</th> -->
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Adresse</th>
+            <th>Telephone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of structureList">
+            <td>{{item.index}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.image}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.telephone}}</td>
+            <td>{{item.password}}</td>
+        </tr>
+
+<!-- <div class="row mt-4 row-gap-4">
+    <div class="col-lg-3 col-sm-6 " *ngFor=" let element of dataProfession.data ">
+        <div class="card shadow-lg" style="width: 18.5rem;">
+            <div>
+                <img src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8="
+                    class="card-img-top" alt="..." style="height: 12rem;">
+                <div class="titleService">
+                    <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
                 </div>
             </div>
+            <div class="card-body ">
+                <p class="card-text"> {{element.description}} </p>
+            </div>
+            <div class="iconegestion d-flex justify-content-around w-50 mb-1 ">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail"
+                    (click)="chargerDetailProfession (element)"><i class="bi bi-eye"></i></a>
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"
+                    (click)="chargerProfession(element)"><span class="lnr lnr-pencil"></span></a>
+                <button class="bg-white" (click)="supprimerProfession(element.id)"> <span
+                        class="lnr lnr-trash"></span></button>
+            </div>
+            <div class="cardfooter"></div>
+        </div>
+    </div>
+
+
+
+</div> -->
+
+        <!-- <tr >
+            <td>1</td>
+            <td>Hopital Principal</td>
+            <td>principal@gmail.com</td>
+            <td>Dakar</td>
+            <td>339870102</td> -->
+            <!-- <td></td> -->
+            <!-- <td class="d-flex">
+                <span><i class="fa-solid fa-pen-to-square" style="color: #820f0f;"></i></span>
+                <i class="fa-solid fa-trash-can" style="color: #820f0f;"></i>
+            </td>
+        </tr>
+        <tr >
+            <td>1</td>
+            <td>Hopital Principal</td>
+            <td>principal@gmail.com</td>
+            <td>Dakar</td>
+            <td>339870102</td>
+            <td class="d-flex">
+                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
+                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
+            </td> -->
+            <!-- <td>{{item.password}}</td> -->
+        <!-- </tr>
+        <tr >
+            <td>1</td>
+            <td>Hopital Principal</td>
+            <td>principal@gmail.com</td>
+            <td>Dakar</td>
+            <td>339870102</td>
+            <td class="d-flex">
+                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
+                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
+            </td> -->
+            <!-- <td>{{item.password}}</td> -->
+        <!-- </tr>
+        <tr >
+            <td>1</td>
+            <td>Hopital Principal</td>
+            <td>principal@gmail.com</td>
+            <td>Dakar</td>
+            <td>339870102</td>
+            <td class="d-flex">
+                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
+                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
+            </td> -->
+            <!-- <td>{{item.password}}</td> -->
+        <!-- </tr>
+        <tr >
+            <td>1</td>
+            <td>Hopital Principal</td>
+            <td>principal@gmail.com</td>
+            <td>Dakar</td>
+            <td>339870102</td>
+        <td class="d-flex">
+            <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
+            <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
+        </td> -->
+            <!-- <td>{{item.password}}</td> -->
+        <!-- </tr>
+        <tr >
+            <td>1</td>
+            <td>Hopital Principal</td>
+            <td>principal@gmail.com</td>
+            <td>Dakar</td>
+            <td>339870102</td>
+            <td class="d-flex">
+                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
+                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
+            </td> -->
+            <!-- <td>{{item.password}}</td> -->
+        <!-- </tr>
+        <tr >
+            <td>1</td>
+            <td>Hopital Principal</td>
+            <td>principal@gmail.com</td>
+            <td>Dakar</td>
+            <td>339870102</td>
+            <td class="d-flex">
+                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
+                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
+            </td> -->
+            <!-- <td>{{item.password}}</td> -->
+        <!-- </tr> -->
+    </tbody>
+</table>
            
 

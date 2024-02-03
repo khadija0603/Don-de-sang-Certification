@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { AnnonceService } from 'src/service/annonce.service';
 import Swal from "sweetalert2";
 
@@ -7,85 +8,105 @@ import Swal from "sweetalert2";
   templateUrl: './annonce-admin.component.html',
   styleUrls: ['./annonce-admin.component.css']
 })
-export class AnnonceAdminComponent {
+export class AnnonceAdminComponent implements OnInit {
+pages: any;
+totalPages: any;
+  listeAnnonces: any;
+  updateAnnonce() {
+  }
+  // annonce: any;
+  annonce: any[] = [];
+  jour: string = "";
+  heure: string = "";
+  lieu: string = "";
+  statut: string = '';
+  id: any = [];
+  annonceList: any[] = [];
+  dtOptions: DataTables.Settings = {};
+  updatedData: any;
 
-//  constructor(
-//     private annonceService : AnnonceService
-//   ) {}
-//   annonce :Annonce = new Annonce;
-
-
-//   //declaration des tableaux
-//   tabAnnonce: Annonce [] = [];
-
-
-//   ngOnInit() {
-//     this.afficherAnnonce();
-//   }
-
-
-//   verifierChamps(title: any, text: any, icon: any) {
-//     Swal.fire({
-//       title: title,
-//       text: text,
-//       icon: icon
-//     });
-//   }
+  constructor(
+    private annonceService: AnnonceService, private http: HttpClient) { }
 
 
+  ngOnInit() {
+  
+    this.updateAnnonce();
+    const script = document.createElement('script');
+    script.src = '../../../assets/script/sidebar.js';
+    document.body.appendChild(script);
+    this.dtOptions = {
+      searching: true,
+      lengthChange: false,
+      paging: true,
+      info: false,
+      pageLength: 4,
+      language: {
+        url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
+      }
+    };
+  
 
-//   //afficher annonce
+    // liste annonce
+    // this.annonceService.getAnnonces().subscribe(
+    //   (annonce) => {
+    // Afficher la liste des annonce
+    //   console.log(annonce);
+    //   this.annonce = annonce.data;
 
-//   afficherAnnonce(){
-//     this.annonceService.getAlls().subscribe(data =>{
-//       console.log(data);
-//       this.tabAnnonce = data;
-//       console.log(this.tabAnnonce);
-//     })
-//   }
+    //   console.log('la liste des annonces', this.annonce);
+    // },
 
+    // (error) => {
+    // Traiter l'erreur de liste
+    //     }
+    //   );
+    //  }
+    
+    this.annonceService.getAnnonces().subscribe(
+      (response) => {
+        console.log('la réponse est :', response);
+        // Vérifiez si response.data est un tableau
+        if (Array.isArray(response.data.data)) {
+          this.annonce = response.data.data;
+          console.log('la liste des annonces', this.annonce);
+        } else {
+          console.error('Erreur: response.data n\'est pas un tableau');
+        }
+      },
+      (error) => {
+        // Traiter l'erreur de liste
+      }
+    );
 
-//   /**Methode pour soumettre un projet */
-//   ajouterAnnonce(){
-//     // On vérifie s les informations ne sont pas vides
-
-//   if(!this.annonce.titre){
-//       this.verifierChamps("Impossible!", "Donnez une déscription", "Erreur")
-//     }
-//     else if(!this.annonce.image){
-//       this.verifierChamps("Impossible!", "Le titre est obligatoire", "Erreur")
-//     }
-//     else if(!this.annonce.description){
-//       this.verifierChamps("Impossible!", "Donnez une déscription", "Erreur")
-//     }
-
-//     else {
-//       let objetAnnonce:Annonce = new Annonce;
-//        // @ts-ignore
-//         objetAnnonce.titre = this.annonce.titre;
-//         objetAnnonce.description= this.annonce.description;
-//         objetAnnonce.image= this.annonce.image;
-//         objetAnnonce.etat= true;
-//         objetAnnonce.idUser= 1;
-//           objetAnnonce.createdAt= new Date();
-//         objetAnnonce.createdBy= "gdgdggd";
-//         objetAnnonce.updatedAt= new Date();
-//         objetAnnonce.updatedBy= "gdgdgdg";
+  }
 
 
-//       this.annonceService.add(objetAnnonce).subscribe(data =>{
-//         // @ts-ignore
-//         document.getElementById("close-btn").click();
-//         console.log(data);
-//         console.log("Ajouter")
-//         this.verifierChamps("Felicitation!", "Projet ajouté avec success", "success")
-//       })
-//     }
+      annoncesParPage = 8; // Nombre d'articles par page
+     pageActuelle = 1; // Page actuelle
 
-//     this.afficherAnnonce();
-
-//   }
-
+  
+  // / pagination
+  
+  getAnnoncesPage(): any[] {
+    const indexDebut = (this.pageActuelle - 1) * this.annoncesParPage;
+    const indexFin = indexDebut + this.annoncesParPage;
+    return this.listeAnnonces.slice(indexDebut, indexFin);
+  }
+     // Méthode pour générer la liste des pages
+     getPages(): number[] {
+      const totalPages = Math.ceil(this. listeAnnonces.length / this.annoncesParPage);
+      return Array(totalPages).fill(0).map((_, index) => index + 1);
+    }
+  
+    // Méthode pour obtenir le nombre total de pages
+    getTotalPages(): number {
+      return Math.ceil(this. listeAnnonces.length / this.annoncesParPage);
+    }
 
 
 }
+function getArticlesPage() {
+  throw new Error('Function not implemented.');
+}
+

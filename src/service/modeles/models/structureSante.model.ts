@@ -6,4 +6,5 @@ export class StructureSante {
     adresse?: string;
     image?: string;
   password?: string;
+  static data: any[];
 }

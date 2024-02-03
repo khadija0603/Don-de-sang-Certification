@@ -8,6 +8,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MainComponent } from './main/main.component';
 import { AnnonceStructureDeSanteComponent } from './annonce-structure-de-sante/annonce-structure-de-sante.component';
 import { DetailAnnonceStructureSanteComponent } from './detail-annonce-structure-sante/detail-annonce-structure-sante.component';
+import { FormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { DetailAnnonceStructureSanteComponent } from './detail-annonce-structure
   ],
   imports: [
     CommonModule,
-    StructureDeSanteRoutingModule
+    StructureDeSanteRoutingModule,
+    FormsModule,
+     DataTablesModule,
   ]
 })
 export class StructureDeSanteModule { }

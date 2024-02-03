@@ -43,10 +43,10 @@ import { AuthInterceptor } from './interceptors/interceptors';
     InscritsAdminComponent,
     DonneursAdminComponent,
   ],
-  imports: [
+  imports: [FormsModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    
     DataTablesModule,
     HttpClientModule
   ],

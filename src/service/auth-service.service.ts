@@ -32,7 +32,7 @@ export class AuthServiceService {
     return this.http.post(`${url}/loginDonateur`, user);
   }
   loginStructureDeSante(user: any) {
-    return this.http.post(`${url}/loginStructureDeSante`, user);
+    return this.http.post(`${url}/loginStructure`, user);
   }
   isAuthenticated: boolean = false;
 
