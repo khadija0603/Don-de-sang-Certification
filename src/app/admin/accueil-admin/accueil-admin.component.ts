@@ -12,6 +12,7 @@ export class AccueilAdminComponent implements OnInit{
   dtOptions: DataTables.Settings = {};
   donateurList:any [] =[]
   item: any;
+annonce: any;
 constructor(private authservice: AuthServiceService, private route: Router,private http:HttpClient){}
    ngOnInit(): void {
     const script = document.createElement('script');

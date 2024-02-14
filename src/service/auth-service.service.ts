@@ -9,9 +9,10 @@ import { register } from './modeles/models/inscriptionDonateur';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  getUserInfo(): any {
+  }
   image: File | undefined;
   loginAdmin(user: { email: string; password: string; }) {
-    throw new Error('Method not implemented.');
   }
 
   isAdmin$ = new BehaviorSubject<boolean>(false);
@@ -24,6 +25,7 @@ export class AuthServiceService {
     // return this.http.post(${url}/login, user).subscribe((reponse:any) => onSuccess(reponse))
  }
   login(user: any) {
+    
     return this.http.post(`${url}/loginAdmin`, user);
     // return this.http.post(${url}/login, user).subscribe((reponse:any) => onSuccess(reponse))
   }

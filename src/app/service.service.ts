@@ -48,4 +48,7 @@ export class ServiceService {
     localStorage.removeItem('access_token');
     return of(null);
   }
+  getToken() {
+    return JSON.parse(localStorage.getItem('userOnline') || '') ;
+  }
 }

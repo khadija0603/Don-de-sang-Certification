@@ -16,7 +16,7 @@ export class AnnonceService {
   constructor(private http: HttpClient, private route:Router ) {}
 
   // Créer une annonce
- createAnnonce(annonce: any): Observable<any> {
+ createAnnonce(formData: FormData): Observable<any> {
   // Assurez-vous que vous avez le jeton d'authentification valide
   const token = localStorage.getItem('token');
   
@@ -24,27 +24,28 @@ export class AnnonceService {
   const headers = { 'Authorization': `Bearer ${token}` };
 
   // Effectuez la requête en incluant les en-têtes
-  return this.http.post<any>(`${this.apiUrl}/publier`, annonce, { headers });
+  return this.http.post<any>(`${this.apiUrl}/publier`, formData, { headers });
 }
 
   // Lister toutes les annonces
   getAnnonces(): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('userOnline.token');
     const headers = { 'Authorization': `Bearer ${token}` };
     return this.http.get<any>(`${this.apiUrl}/listeAnnonces`, { headers });
   }
 
-
   // Mettre à jour une annonce
   updateAnnonce(id: number, updatedData: any): Observable<any> {
-     const token = localStorage.getItem('token');
+     const token = localStorage.getItem('userOnline.token');
     const headers = { 'Authorization': `Bearer ${token}` };
     return this.http.put<any>(`${this.apiUrl}/ModifierAnnonce/${id}`, updatedData, { headers});
   }
 
   // Supprimer une annonce
   deleteAnnonce(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/supprimerAnnonce/${id}`);
+    const token = localStorage.getItem('userOnline.token');
+    const headers = { 'Authorization': `Bearer ${token}` };
+    return this.http.delete<any>(`${this.apiUrl}/supprimerAnnonce/${id}`,{ headers});
   }
 }
 

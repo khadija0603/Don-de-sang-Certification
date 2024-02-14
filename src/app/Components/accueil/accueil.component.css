@@ -79,6 +79,7 @@
      top: -42px;
      z-index: -1;
      display: flex;
+    border: 1px solid !important;
      align-items: center;
      justify-content: center;
 
@@ -90,6 +91,7 @@
      padding: 10px;
      border-radius: 50%;
      background-color: #BA0D19;
+     border: 1px solid !important;
      margin: 0 auto;
      position: relative;
      top: -42px;
@@ -12952,8 +12954,8 @@ margin-left: -70px;
 
 .heading-section .subheading {
     font-size: 12px;
-    display: block;
-    margin-bottom: 5px;
+    /* display: block; */
+    /* margin-bottom: 5px; */
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.3);
     color: #207dff;

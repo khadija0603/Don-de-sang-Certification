@@ -12,7 +12,6 @@ const httpOptions = {
   })
 };
 
-
 @Component({
   selector: 'app-structure-de-sante-admin',
   templateUrl: './structure-de-sante-admin.component.html',
@@ -20,8 +19,6 @@ const httpOptions = {
 })
 export class StructureDeSanteAdminComponent implements OnInit{
 
-getFile($event: Event) {
-}
 onChangeFile() {
 }
   // Attributs:
@@ -29,7 +26,7 @@ onChangeFile() {
   email:string = "";
   telephone: string = '';
   adresse:string="";
-  image: string = "";
+  image!: File;
   password: any;
 
   constructor(private structureService : StructureSanteService, private route: Router,private http:HttpClient) { }
@@ -50,24 +47,22 @@ onChangeFile() {
         url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
       }
     };
-      
-    //   // liste annonce
-    //   this.structureService.listerStructure().subscribe(
-    //     (structureSante:any) => {
-       // Afficher la liste des donateur
-        console.log(StructureSante);
-       this.structureList = StructureSante.data;
+      this.getStructure()
+    }
+  
+    getStructure(): void {
+    this.structureService.listerstructures().subscribe((data :any)=>{
+        this.structureList = data.data;
+        console.log("les structures sont là :", this.structureList);
+    });
+    }
+    getFile(event: any) {
+      console.warn(event.target.files[0]);
+      this.image= event.target.files[0] as File ;
+    }
 
-    //     console.log(this.structureList);
-    //   },
-
-    //  (error) => {
-    //     // Traiter l'erreur de liste
-    //   }
-    // );
-  }
   ajoutStructureSante(){
-     if( this.name=='' || this.email=='' || this.telephone=='' || this.image=='' || this.adresse=='' ){
+     if( this.name=='' || this.email=='' || this.telephone=='' || !this.image || this.adresse=='' ){
     ("Veuillez renseigner tous les champs");
     }else{
       const structureSante={
@@ -89,6 +84,8 @@ onChangeFile() {
       console.log(formData);
       this.structureService.ajoutStructureSante(formData).subscribe((response:any) => {
         // console.log(response);
+        this.getStructure();
+        
       });
     
     

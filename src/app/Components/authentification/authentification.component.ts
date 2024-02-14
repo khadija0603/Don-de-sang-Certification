@@ -5,6 +5,7 @@ import { AuthServiceService } from 'src/service/auth-service.service';
 import { Observable, of } from 'rxjs';
 import { url } from 'src/app/models/apiUrl';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TokenService } from 'src/service/token.service';
 @Component({
   selector: 'app-authentification',
   templateUrl: './authentification.component.html',
@@ -12,6 +13,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
   
 export class AuthentificationComponent implements OnInit{
+   ngOnInit(): void {
+  }
 onChangeFile() {
 }
 passwordCon: any;
@@ -19,11 +22,13 @@ emailCon: any;
 passwordConf: any;
 nom: any;
 authDonateur: any;
- 
-  constructor(private authservice: AuthServiceService, private route: Router,private http:HttpClient) { }
+
+email!: any;
+password!: any;
+  
+  constructor(private authservice: AuthServiceService, private route: Router, private http: HttpClient,
+  private tS: TokenService) { }
   //variable
-  email:string = "";
-  password:string="";
   name:string="";
   telephone: string = '';
   prenom:string="";
@@ -39,70 +44,114 @@ authDonateur: any;
   basculerBlocs() {
     this.afficherBloc1 = !this.afficherBloc1;
   }
-  ngOnInit(): void {
-  }
-    login() {
-    let user = {
-      "email": this.email,
-      "password": this.password
-    };
-    if (this.email === 'khadijambengue96@gmail.com' && this.password === 'password') {
-      // Connexion en tant qu'admin
-      // alert('Ok');
-      this.authservice.login(user).subscribe(
-        (response:any) => {
-          console.log(response.token);
-          this.authservice.isAuthenticated = true;
-          localStorage.setItem('userOnline', JSON.stringify(response));
-          localStorage.setItem('token', JSON.stringify(response.token));
-          this.route.navigate(['/admin']);
-        },
-        (err:any) => {
-          let message = err.error.error;
-          console.warn(err);
-          // this.alertMessage("error", "Oops...", message);
-        }
-      );
-    } else {
-      if(this.email===user.email && this.password===user.password){
-        // Connexion en tant que structure de sante
-      // alert('Ok');
+ 
+login() {
+  let user = {
+    email: this.email,
+    password: this.password
+  };
+
+  if (this.email === 'khadijambengue96@gmail.com' && this.password === 'password') {
+    this.authservice.login(user).subscribe(
+      (response: any) => {
+        console.log(response.token);
+        this.authservice.isAuthenticated = true;
+        localStorage.setItem('userOnline', JSON.stringify(response));
+        // localStorage.setItem('token', response.token);
+        this.tS.saveToken(response.token);
+        this.route.navigate(['/admin']);
+      },
+      (err: any) => {
+        console.warn(err);
+      }
+    );
+  } else {
+    if (this.email === 'structure-sante@gmail.com' && this.password === user.password) {
       this.authservice.loginStructureDeSante(user).subscribe(
-        (response:any) => {
+        (response) => {
           console.log(response);
-          this.authservice.isAuthenticated = true;
           localStorage.setItem('userOnline', JSON.stringify(response));
           this.route.navigate(['/structure-de-sante']);
         },
-        (err:any) => {
-          let message = err.error.error;
+        (err: any) => {
           console.warn(err);
-          // this.alertMessage("error", "Oops...", message);
         }
       );
-      }
-      
-      else {
-        
-         this.authservice.loginDonateur({ email:user.email,password:user.password}).subscribe(
+    } else if (this.email === user.email && this.password === user.password) { // Utilisez "else if" ici
+      this.authservice.loginDonateur(user).subscribe(
         (response: any) => {
           console.log(response);
           this.authservice.isAuthenticated = true;
           localStorage.setItem('userOnline', JSON.stringify(response));
-           this.route.navigate(['/donneur/annonce-donneur']);
-          // if (response.original.statusCode == 200) {
-          // } else {
-          //   console.log(response.orignal.statusCode);
-          // }
+          this.route.navigate(['/donneur/annonce-donneur']);
         },
-      
+        (err: any) => {
+          console.warn(err);
+        }
       );
-
-      }
     }
   }
+}
 
 
+//   login(){
+//   const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
+
+//   if (this.email == "" || this.password == "") {
+//     this.verifierChamps("Desole", "Veuillez remplir tous les champs", "error");
+//   } else if (!this.email.match(emailPattern)) {
+//     this.verifierChamps("desole", "l'email n'est pas valide", "error");
+//   } else if (this.password.length < 5) {
+//     this.verifierChamps("desole", "Le mot de passe doit être supérieur ou égal à 5", "error");
+//   } else {
+//     // console.log(this.email),
+//     //   console.log(this.password);
+ 
+//     const user = new FormData();
+//     user.append('email', this.email);
+//     user.append('password', this.password);
+
+//     this.authservice.login(user).subscribe(
+//       (response:any) => {
+//         // Stockez le token dans un service ou dans le stockage local (localStorage).
+//         console.log("la reponse est ",response)
+//         console.log("user est ",response.user)
+//         console.log("ma reponse", response);
+//         console.log(response.user.role_id)
+//         localStorage.setItem('token', response.token)
+//         localStorage.setItem('userOnline', JSON.stringify(response.user));
+//         if(response.token){
+          
+//           this.verifierChamps("success", "", `${response.message}`);
+          
+//           if (response.user.role_id ==1) {
+            
+//             this.route.navigate(['/admin']);
+            
+//           }else if(this.email === 'structure-sante@gmail.com' ){
+//             this.route.navigate(['/structure-de-sante'])
+//           }
+//           else if (response.user.role_id==2) {
+//                this.route.navigate(['/donneur/annonce-donneur']);
+//             }
+//           else{
+//             this.verifierChamps('error','Oops', 'Ce compte n\'existe pas')
+//           }
+//           }
+//         // this.route.navigate(['/accueil'])
+//       },
+     
+//     );
+//   }
+// }
+  
+  verifierChamps(title: any, text: any, icon: any) {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: icon,
+    });
+  }
   // INSCRIPTION
   register() {
     console.log(this.groupe_sanguin)
@@ -174,4 +223,10 @@ this.authservice.register(formData).subscribe(
   console.warn(event.target.files[0]);
   this.image = event.target.files[0] as File;
  }
+}
+
+class Login {
+  constructor(
+    email: any, password: any
+  ) {}
 }

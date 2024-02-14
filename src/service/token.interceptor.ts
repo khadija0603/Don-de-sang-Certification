@@ -1,30 +1,45 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpInterceptor,
   HttpRequest,
   HttpHandler,
   HttpEvent,
+  HttpInterceptor,
+  HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { TokenService } from './token.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    const userOnline = JSON.parse(localStorage.getItem('userOnline') || '');
 
-    // Assurez-vous que userOnline et userOnline.authorization sont définis
-    if ( userOnline && userOnline.token) {
-      const token = userOnline.authorization.token;
-      request = request.clone({
+  constructor(
+    private tokenService: TokenService
+  ) {}
+
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log(request);
+    // Récupérer le token JWT depuis le service d'authentification
+    const token = this.tokenService.getToken();
+
+    // Cloner la requête et ajouter le token JWT aux en-têtes de la requête clonée
+    if (token) {
+      const clonedRequest = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`  // Utilisation des backticks pour incorporer la variable
+        }
       });
-    }
+      console.log(clonedRequest);
 
-    return next.handle(request);
+      return next.handle(clonedRequest);
+    } else {
+      // Si aucun token n'est disponible, simplement poursuivre la requête d'origine
+      return next.handle(request);
+    }
   }
 }
+
+export const TokenInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: TokenInterceptor,
+  multi: true
+};

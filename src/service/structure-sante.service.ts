@@ -1,17 +1,13 @@
-// structure-sante.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { url } from './modeles/models/apiUrls';
-
 @Injectable({
   providedIn: 'root'
 })
 export class StructureSanteService {
   image: File | undefined;
   listerStructure() {
-    throw new Error('Method not implemented.');
   }
 
   private apiUrl = 'http://127.0.0.1:8000/api';  // Remplacez cela par l'URL réelle de votre API
@@ -26,13 +22,11 @@ export class StructureSanteService {
     this.image = event.target.files[0] as File;
   }
     // methode pour lister
-  listerstructure(): Observable<any> {
+  listerstructures(): Observable<any> {
     const accessToken = localStorage.getItem('token');
-
     return accessToken
-      ? this.http.get<any>(`${url}/listeDonateur`, {
+      ? this.http.get<any>(`${url}/listeStructure`, {
           headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
-        })
-      : of(null);
+        }): of(null);
   }
 }

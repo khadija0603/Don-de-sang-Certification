@@ -1,7 +1,3 @@
-
-
-            <!-- Modal ajout struture de sante -->
-            
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Ajouter structure de santé
@@ -21,11 +17,11 @@
                                 </div>
                                 <form class="form_container">
                                     <div class="title_container">
-                                        <h5 class="title">Ajout structure de santé</h5>
+                                        <h5 class="title">Ajouter structure de santé</h5>
                                     </div>
                                     <div class="input_container">
                                         <label class="input_label" for="name">Nom:</label>
-                                        <input placeholder="name" type="text" name="name" class="form-control" id="Nom" [(ngModel)]="name">
+                                        <input placeholder="name" type="text" name="name" class="form-control" id="name" [(ngModel)]="name">
                                     </div>
                                     <!-- <div class="input_container">
                                         <label class="input_label" for="email_field">Image</label>
@@ -35,10 +31,10 @@
                                     </div> -->
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Default file input example</label>
-                                    <input type="file" (change)="getFile($event)" />
+                                    <input type="file" (change)="getFile($event)"  [(ngModel)]="image" >
                                     </div>
                                     <div class="input_container">
-                                        <label class="input_label" for="email">Adresse email</label>
+                                        <label class="input_label" for="email">Adresse email:</label>
                                         <svg fill="none" viewBox="0 0 24 24" height="24" width="24"
                                             xmlns="http://www.w3.org/2000/svg" class="icon">
                                             <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#141B34"
@@ -74,7 +70,7 @@
                                             class="input_field" id="telephone" [(ngModel)]="telephone"/>
                                     </div>
                                     <div class="input_container">
-                                        <label class="input_label" for="password">Mot de passe</label>
+                                        <label class="input_label" for="password">Mot de passe:</label>
                                         <svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg" class="icon">
                                             <path stroke-linecap="round" stroke-width="1.5" stroke="#141B34"
                                                 d="M18 11.0041C17.4166 9.91704 16.273 9.15775 14.9519 9.0993C13.477 9.03404 11.9788 9 10.329 9C8.67911 9 7.18091 9.03404 5.70604 9.0993C3.95328 9.17685 2.51295 10.4881 2.27882 12.1618C2.12602 13.2541 2 14.3734 2 15.5134C2 16.6534 2.12602 17.7727 2.27882 18.865C2.51295 20.5387 3.95328 21.8499 5.70604 21.9275C6.42013 21.9591 7.26041 21.9834 8 22">
@@ -98,158 +94,22 @@
                     </div>
                 </div>
             </div>
-            <!-- Card structure de sante
+            <!-- Card structure de sante -->
             <div class="hopital">
-                <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU"
-                        alt="">
+                <div class="card" *ngFor="let item of structureList">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg5lQejXAkVICr7gaF1zivt_7pLHZQ5rhVg&usqp=CAU" alt="">
                     <div class="card__content">
-                        <p class="card__title">Hopital Dalal Diam</p>
-                        <p class="card__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-                        </p>
+                        <div class="card__description" >
+                            <p>Nom:{{item.name}}</p>
+                            <p>Adresse:{{item.adresse}}</p>
+                            <p>Telephone:{{item.telephone}}</p>
+                            <p>Email:{{item.email}}</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                          <button class="btn btn-danger">Bloquer</button>
+                          <button class="btn btn-primary">Modifier</button>
+                        </div>
                     </div>
                 </div>
-               
-            </div> -->
-
-<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <!-- <th>image</th> -->
-            <th>Nom</th>
-            <th>Email</th>
-            <th>Adresse</th>
-            <th>Telephone</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of structureList">
-            <td>{{item.index}}</td>
-            <td>{{item.id}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.image}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.telephone}}</td>
-            <td>{{item.password}}</td>
-        </tr>
-
-<!-- <div class="row mt-4 row-gap-4">
-    <div class="col-lg-3 col-sm-6 " *ngFor=" let element of dataProfession.data ">
-        <div class="card shadow-lg" style="width: 18.5rem;">
-            <div>
-                <img src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8="
-                    class="card-img-top" alt="..." style="height: 12rem;">
-                <div class="titleService">
-                    <h5 class="text-center mt-2"> {{element.nom_prof}} </h5>
-                </div>
             </div>
-            <div class="card-body ">
-                <p class="card-text"> {{element.description}} </p>
-            </div>
-            <div class="iconegestion d-flex justify-content-around w-50 mb-1 ">
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal-detail"
-                    (click)="chargerDetailProfession (element)"><i class="bi bi-eye"></i></a>
-                <a data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"
-                    (click)="chargerProfession(element)"><span class="lnr lnr-pencil"></span></a>
-                <button class="bg-white" (click)="supprimerProfession(element.id)"> <span
-                        class="lnr lnr-trash"></span></button>
-            </div>
-            <div class="cardfooter"></div>
-        </div>
-    </div>
-
-
-
-</div> -->
-
-        <!-- <tr >
-            <td>1</td>
-            <td>Hopital Principal</td>
-            <td>principal@gmail.com</td>
-            <td>Dakar</td>
-            <td>339870102</td> -->
-            <!-- <td></td> -->
-            <!-- <td class="d-flex">
-                <span><i class="fa-solid fa-pen-to-square" style="color: #820f0f;"></i></span>
-                <i class="fa-solid fa-trash-can" style="color: #820f0f;"></i>
-            </td>
-        </tr>
-        <tr >
-            <td>1</td>
-            <td>Hopital Principal</td>
-            <td>principal@gmail.com</td>
-            <td>Dakar</td>
-            <td>339870102</td>
-            <td class="d-flex">
-                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
-                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
-            </td> -->
-            <!-- <td>{{item.password}}</td> -->
-        <!-- </tr>
-        <tr >
-            <td>1</td>
-            <td>Hopital Principal</td>
-            <td>principal@gmail.com</td>
-            <td>Dakar</td>
-            <td>339870102</td>
-            <td class="d-flex">
-                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
-                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
-            </td> -->
-            <!-- <td>{{item.password}}</td> -->
-        <!-- </tr>
-        <tr >
-            <td>1</td>
-            <td>Hopital Principal</td>
-            <td>principal@gmail.com</td>
-            <td>Dakar</td>
-            <td>339870102</td>
-            <td class="d-flex">
-                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
-                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
-            </td> -->
-            <!-- <td>{{item.password}}</td> -->
-        <!-- </tr>
-        <tr >
-            <td>1</td>
-            <td>Hopital Principal</td>
-            <td>principal@gmail.com</td>
-            <td>Dakar</td>
-            <td>339870102</td>
-        <td class="d-flex">
-            <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
-            <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
-        </td> -->
-            <!-- <td>{{item.password}}</td> -->
-        <!-- </tr>
-        <tr >
-            <td>1</td>
-            <td>Hopital Principal</td>
-            <td>principal@gmail.com</td>
-            <td>Dakar</td>
-            <td>339870102</td>
-            <td class="d-flex">
-                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
-                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
-            </td> -->
-            <!-- <td>{{item.password}}</td> -->
-        <!-- </tr>
-        <tr >
-            <td>1</td>
-            <td>Hopital Principal</td>
-            <td>principal@gmail.com</td>
-            <td>Dakar</td>
-            <td>339870102</td>
-            <td class="d-flex">
-                <i class="fa-solid fa-pen-to-square" style="color: #ac1b1b;"></i>
-                <i class="fa-solid fa-trash-can" style="color: #a20606;"></i>
-            </td> -->
-            <!-- <td>{{item.password}}</td> -->
-        <!-- </tr> -->
-    </tbody>
-</table>
-           
 

@@ -1,82 +1,63 @@
-<section class="dashboard">
-    <div class="dash-content">
-        <div class="overview">
-        </div>
-        <div class="test"></div>
-        <div class="row justify-content-center">
-            <div class="col-md-10 heading-section text-center mt-3 mb-0 ">
-                <h3 class="mb-4">Annonces</h3>
-            </div>
-        </div>
-        <div class="annonces">
-            <div class="card shadow-lg row" style="width: 18.5rem;" *ngFor="let item of annonce">
-                <div class="annonce">
-                    <!-- <p class="card-text"> {{item.index}} </p> -->
-                    <p class="card-text"> <strong class="text-danger">JOUR:</strong> {{item.jour}} </p>
-                    <p class="card-text"><strong class="text-danger">HEURE:</strong> {{item.heure}} </p>
-                    <p class="card-text"> <strong class="text-danger">LIEU:</strong> {{item.lieu}} </p>
-                    <p class="card-text"> <strong class="text-danger">STATUT:</strong> {{item.statut}} </p>
+ <section class="dashboard">
 
+            <div class="annonces">
+                <div class="card shadow-lg row"  *ngFor="let item of annonce">
+                    <!-- <div class=" " style="width: 20px; height:20px ;">
+                        <img src="../../../assets/Image/sang.png" alt="">
+                    </div> -->
+                   
+                    <article class="card">
+                        <div class="temporary_text">
+                        <img src="https://img.freepik.com/photos-premium/femme-afro-americaine-professionnelle-costume-affaires-pointant-joyeusement-vers-bas-vers-vide_116547-91719.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais" alt="">
+                        </div>
+                        <div class="card_content">
+                            <span class="card_title">Annonce</span>
+                            <!-- <span class="card_subtitle">Thsi is a subtitle of this page. Let us see how it looks on the Web.</span> -->
+                            <div class="annonce">
+                                <div class="card_description">
+                                    <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
+                                    <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
+                                    <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
+                                    <p class="card-text"> <strong class="text-black">Participant:</strong></p>
+                                    <!-- <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button> -->
+                                    <!-- <button class="btn btn-primary" (click)="modifierAnnonce()"> Modifier</button> -->
+                        
+                                </div>
+                                </div>
+                               
+                    
+                        </div>
+                    </article>
+                </div>
+            </div>
+    
+        <div class="container-corbeille" *ngIf="!listChoice">
+            <!-- Button trigger modal pour ajouter un annonce-->
+            <!-- <button type="button" class="btn btn-primary me-5" (click)="viderCorbeille()"> Vider la corbeille </button> -->
+            <!-- <button type="button" class="btn btn-secondary" (click)="listeChoiceFunction()"> Liste des annonces </button> -->
+            <!-- <h4 class="fw-bold mt-5">Liste des annonces de la corbeille</h4> -->
+            <!-- Liste des annonce  -->
+            <div class="liste-annonce mt-5" *ngFor=" let Annonce of filteredElement">
+                <div class="card mb-3" >
+                    <div class="row g-0" *ngFor="let item of annonce" >
+                        <div class="col-md-6">
+                            <!-- <img [src]="" class="img-fluid rounded-start" alt="..."> -->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                            <!-- <h5 class="card-title">Annonce</h5> -->
+                            <p class="card-text">Date: {{item.date}}</p>
+                            <p class="card-text">Lieu: {{item.lieu}}</p>
+                            <p class="card-text">Statut: {{item.statut}}</p>
+                                <button class="btn btn-primary me-5" (click)="restaurerAnnonce(annonce)"> Restaurer</button>
+                                <button class="btn btn-secondary" (click)="supprimerAnnonceDefinitif(annonce)"> Supprimer
+                                    definitivement</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </section>
-    <div class="d-flex flex-wrap justify-content-center my-5">
-        <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
-            Précédent
-        </button>
-        <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
-            {{ page }}
-        </button>
-        <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages"
-            (click)="pageActuelle = pageActuelle + 1">
-            Suivant
-        </button>
-    </div>
-    
+    <!-- </div> -->
+</section> 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    

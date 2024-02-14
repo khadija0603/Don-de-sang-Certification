@@ -14,13 +14,10 @@ export class AccueilComponent implements OnInit, AfterViewInit{
 chargerInfosAlerte: any;
 ajouterAlerte: any;
 supprimerAlerte(_t148: any) {
-throw new Error('Method not implemented.');
 }
 viderChapmsAlerte() {
-throw new Error('Method not implemented.');
 }
 modifierAlerte() {
-throw new Error('Method not implemented.');
 }
 
 // telephone:String="+221 33 900 11 22";

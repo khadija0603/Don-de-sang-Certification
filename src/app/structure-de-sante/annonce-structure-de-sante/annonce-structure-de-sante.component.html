@@ -1,6 +1,7 @@
 <!-- Modal ajout struture de sante -->
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Ajouter annonce
+ 
 </button>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -9,50 +10,44 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="connection">
-                    <div class="logo ">
-                        <img src="../../../assets/Image/logo-offi.png" alt="" routerLink="/accueil">
-                    </div>
-                    <form class="form_container">
-                        <div class="title_container">
-                            <h5 class="title">Ajout annonce</h5>
-                        </div>
-                        <div class="input_container">
-                            <label class="input_label" for="jour">Jour:</label>
-                            <input placeholder="jour" type="text" name="jour" class="form-control" id="jour"
-                                [(ngModel)]="jour">
-                        </div>
-                        <div class="input_container">
-                            <label class="input_label" for="heure">Heure:</label>
-                            <input placeholder="heure" title="Inpit title" name="heure" type="heure"
-                                class="input_field" id="heure" [(ngModel)]="heure" />
-                        </div>
-                        <div class="input_container">
-                            <label class="input_label" for="lieu">Lieu:</label>
-                            <svg fill="none" viewBox="0 0 24 24" height="24" width="24"
-                                xmlns="http://www.w3.org/2000/svg" class="icon">
-                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#141B34"
-                                    d="M7 8.5L9.94202 10.2394C11.6572 11.2535 12.3428 11.2535 14.058 10.2394L17 8.5">
-                                </path>
-                                <path stroke-linejoin="round" stroke-width="1.5" stroke="#141B34"
-                                    d="M2.01577 13.4756C2.08114 16.5412 2.11383 18.0739 3.24496 19.2094C4.37608 20.3448 5.95033 20.3843 9.09883 20.4634C11.0393 20.5122 12.9607 20.5122 14.9012 20.4634C18.0497 20.3843 19.6239 20.3448 20.7551 19.2094C21.8862 18.0739 21.9189 16.5412 21.9842 13.4756C22.0053 12.4899 22.0053 11.5101 21.9842 10.5244C21.9189 7.45886 21.8862 5.92609 20.7551 4.79066C19.6239 3.65523 18.0497 3.61568 14.9012 3.53657C12.9607 3.48781 11.0393 3.48781 9.09882 3.53656C5.95033 3.61566 4.37608 3.65521 3.24495 4.79065C2.11382 5.92608 2.08114 7.45885 2.01576 10.5244C1.99474 11.5101 1.99475 12.4899 2.01577 13.4756Z">
-                                </path>
-                            </svg>
-                            <input placeholder="lieu" title="Inpit title" name="lieu" type="lieu"
-                                class="input_field" id="lieu" [(ngModel)]="lieu" />
-                        </div>
-                        <div class="input_container">
-                            <label class="input_label" for="statut">Statut:</label>
-                            <input placeholder="statut" title="Inpit title" name="statut" type="statut"
-                                class="input_field" id="statut" [(ngModel)]="statut" />
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                                (click)=" addAnnonce()"> Ajouter </button>
-                        </div>
-                    </form>
+            <div class="connection">
+                <div class="logo ">
+                    <img src="../../../assets/Image/logo-offi.png" alt="">
                 </div>
+                <form class="form_container"> -
+                    <!-- <div class="logo_container"></div> -->
+                    <div class="title_container">
+                        <p class="title">Ajouter annonce</p>
+                        <!-- <span class="subtitle">Get started with our app, just create an account and enjoy the experience.</span> -->
+                    </div>
+                    <br>
+                    <div class="input_container">
+                        <label class="input_label" for="date">Date:</label>
+                        <input placeholder="date" title="Inpit title" name="date" type="date" class="input_field" id="date"
+                            [(ngModel)]="date" />
+                    </div>
+                    <div class="input_container">
+                        <label class="input_label" for="lieu">Lieu:</label>
+                        <svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg" class="icon">
+                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#141B34"
+                                d="M7 8.5L9.94202 10.2394C11.6572 11.2535 12.3428 11.2535 14.058 10.2394L17 8.5">
+                            </path>
+                            <path stroke-linejoin="round" stroke-width="1.5" stroke="#141B34"
+                                d="M2.01577 13.4756C2.08114 16.5412 2.11383 18.0739 3.24496 19.2094C4.37608 20.3448 5.95033 20.3843 9.09883 20.4634C11.0393 20.5122 12.9607 20.5122 14.9012 20.4634C18.0497 20.3843 19.6239 20.3448 20.7551 19.2094C21.8862 18.0739 21.9189 16.5412 21.9842 13.4756C22.0053 12.4899 22.0053 11.5101 21.9842 10.5244C21.9189 7.45886 21.8862 5.92609 20.7551 4.79066C19.6239 3.65523 18.0497 3.61568 14.9012 3.53657C12.9607 3.48781 11.0393 3.48781 9.09882 3.53656C5.95033 3.61566 4.37608 3.65521 3.24495 4.79065C2.11382 5.92608 2.08114 7.45885 2.01576 10.5244C1.99474 11.5101 1.99475 12.4899 2.01577 13.4756Z">
+                            </path>
+                        </svg>
+                        <input placeholder="lieu" title="Inpit title" name="lieu" type="lieu" class="input_field" id="lieu"
+                            [(ngModel)]="lieu" />
+                    </div>
+                   <div class="input_container">
+                    <label class="input_label" for="statut">Statut:</label>
+                    <input placeholder="statut" title="Inpit title" name="statut" type="statut" class="input_field" id="statut"
+                        [(ngModel)]="statut" />
+                   </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="addAnnonce()"> Ajouter </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -76,14 +71,9 @@
                             <h5 class="title">Modifier annonce</h5>
                         </div>
                         <div class="input_container">
-                            <label class="input_label" for="jour">Jour:</label>
-                            <input placeholder="jour" type="text" name="jour" class="form-control" id="jour"
-                                [(ngModel)]="jour">
-                        </div>
-                        <div class="input_container">
-                            <label class="input_label" for="heure">Heure:</label>
-                            <input placeholder="heure" title="Inpit title" name="heure" type="heure"
-                                class="input_field" id="heure" [(ngModel)]="heure" />
+                            <label class="input_label" for="date">Date:</label>
+                            <input placeholder="date" type="text" name="date" class="form-control" id="date"
+                                [(ngModel)]="date">
                         </div>
                         <div class="input_container">
                             <label class="input_label" for="lieu">Lieu:</label>
@@ -115,67 +105,230 @@
     </div>
 </div>
 <div >
-    <!-- Affichez les détails de chaque annonce ici -->
-    <!-- <tbody>
-        <tr *ngFor="let item of annonce">
-            <td>{{item.index}}</td>
-            <td>{{item.jour}}</td>
-            <td>{{item.heure}}</td>
-            <td>{{item.lieu}}</td>
-            <td>{{item.statut}}</td>
-        </tr>
-    </tbody> -->
+<!-- <section class="dashboard">
+    <div class="dash-content">
+        <div class="overview">
+        </div>
+        <div class="test"></div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 heading-section text-center mt-3 mb-0 ">
+                <h3 class="mb-4">Annonces</h3>
+            </div>
+        </div>
+        <div class="annonces">
+            <div class="card shadow-lg row" style="width: 18.5rem;" *ngFor="let item of annonce">
+                <div class="annonce">
+                    <p class="card-text"> <strong class="text-danger">DATE:</strong> {{item.date}} </p>
+                    <p class="card-text"><strong class="text-danger">HEURE:</strong> {{item.heure}} </p>
+                    <p class="card-text"> <strong class="text-danger">LIEU:</strong> {{item.lieu}} </p>
+                    <p class="card-text"> <strong class="text-danger">STATUT:</strong> {{item.statut}} </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <div class="d-flex flex-wrap justify-content-center my-5">
+        <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+            Précédent
+        </button>
+        <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
+            {{ page }}
+        </button>
+        <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages"
+            (click)="pageActuelle = pageActuelle + 1">
+            Suivant
+        </button>
+    </div> -->
+
+
+<div class="container">
+    <div class="input-group ">
+        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
+            (input)="onSearch()">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+    </div>
+
+    <div class="" *ngIf="listChoice">
+        <button type="button" class="btn btn-secondary" (click)="listeChoiceFunction()"> Corbeille </button>
+
+
+        <h4 class="fw-bold mt-5">Liste des annonces</h4>
+
+        <!-- Liste des contact  -->
+        <!-- <div class="" *ngFor="let item of annonce" >
+                <div class="annonces" >
+                    <div class="annonces">
+                        <div class="">
+                        </div>
+                        <div class=" " >
+                            <div class="annonces ">
+                                <p class="card-text">Date: {{item.date}}</p>
+                                <p class="card-text">Lieu: {{item.lieu}}</p>
+                                <p class="card-text">Statut: {{item.statut}}</p>
+                                <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        <div class="annonces">
+            <div class="card shadow-lg row" *ngFor="let item of annonce">
+                <!-- <div class=" " style="width: 20px; height:20px ;">
+                        <img src="../../../assets/Image/sang.png" alt="">
+                    </div> -->
+
+                <article class="card">
+                    <div class="temporary_text">
+                        <img src="https://img.freepik.com/photos-premium/femme-afro-americaine-professionnelle-costume-affaires-pointant-joyeusement-vers-bas-vers-vide_116547-91719.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
+                            alt="">
+                    </div>
+                    <div class="card_content">
+                        <span class="card_title">Annonce</span>
+                        <!-- <span class="card_subtitle">Thsi is a subtitle of this page. Let us see how it looks on the Web.</span> -->
+                        <div class="annonce">
+                            <div class="card_description">
+                                <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
+                                <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
+                                <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
+                                <p class="card-text"> <strong class="text-black">Participant:</strong>  05</p>
+                                <div class="d-flex gap-5 justity-content-space-between">
+                                    <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button>
+                                    <button class="btn btn-primary" (click)="chargerInfosAnnonce(annonce)"> Modifier</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-corbeille" *ngIf="!listChoice">
+        <!-- Button trigger modal pour ajouter un annonce-->
+        <button type="button" class="btn btn-primary me-5" (click)="viderCorbeille()"> Vider la corbeille </button>
+        <button type="button" class="btn btn-secondary" (click)="listeChoiceFunction()"> Liste des annonces </button>
+        <h4 class="fw-bold mt-5">Liste des annonces de la corbeille</h4>
+        <!-- Liste des annonce  -->
+        <div class="liste-annonce mt-5" *ngFor=" let Annonce of filteredElement">
+            <div class="card mb-3">
+                <div class="row g-0" *ngFor="let item of annonce">
+                    <div class="col-md-6">
+                        <!-- <img [src]="" class="img-fluid rounded-start" alt="..."> -->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <!-- <h5 class="card-title">Annonce</h5> -->
+                            <p class="card-text">Date: {{item.date}}</p>
+                            <p class="card-text">Lieu: {{item.lieu}}</p>
+                            <p class="card-text">Statut: {{item.statut}}</p>
+                            <button class="btn btn-primary me-5" (click)="restaurerAnnonce(annonce)"> Restaurer</button>
+                            <button class="btn btn-secondary" (click)="supprimerAnnonceDefinitif(annonce)"> Supprimer
+                                definitivement</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<table datatable [dtOptions]="dtOptions"  class="row-border hover w-100 table" *ngIf="annonce.length>0">
-   
-    <thead>
-        <tr>
-        <th>Jour</th>
-        <th>Heure</th>
-        <th>Lieu</th>
-        <th>Statut</th>
-        <th>Action</th>
-        </tr>
-    </thead>
-    <tbody >
-      
-        <tr *ngFor="let item of annonce">
-            <td>{{item.jour}}</td>
-            <td>{{item.heure}}</td>
-            <td>{{item.lieu}}</td>
-            <td>{{item.statut}}</td>
-            <td>
-                <button class="btn btn-primary">Modifier</button>
-                <button class="btn btn-danger m-2">Supprimer</button>
-                
-            </td>
-        </tr>
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un annonce</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="mb-3">
+                            <label for="nameInput" class="form-label">Nom: </label>
+                            <input type="text" name="name" class="form-control" id="nameInput" [(ngModel)]="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="prenomInput" class="form-label">Prenom: </label>
+                            <input type="text" name="prenom" class="form-control" id="prenomInput" [(ngModel)]="prenom">
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Adresse email:</label>
+                            <input type="email" name="email" class="form-control" id="emailInput" [(ngModel)]="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="telephoneInput" class="form-label">Numero de téléphone: </label>
+                            <input type="tel" name="telephone" class="form-control" id="telephoneInput"
+                                [(ngModel)]="telephone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descriptionInput" class="form-label">Description: </label>
+                            <textarea class="form-control" name="description" id="descriptionInput" rows="3"
+                                [(ngModel)]="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imageInput" class="form-label">Url de l'image: </label>
+                            <input type="text" name="image" class="form-control" id="imageInput" [(ngModel)]="imageUrl">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        (click)="viderChapmsContact()">Annuler</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="ajouterContact()">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
-        <!-- <img src="https://media.istockphoto.com/id/1326544964/photo/portrait-of-smiling-african-american-woman-cleaning-in-kitchen-with-rubber-gloves-cloth-and.jpg?s=612x612&w=0&k=20&c=2KHQAOpfKwM-NP9CLU1WDVzzGbmIUZdxTuXjAR5f-P8="class="card-img-top" alt="..." style="height: 8rem;"> -->
-        <!-- <div class="card shadow-lg" style="width: 18.5rem;" *ngFor="let item of annonce">
-            <p class="card-text"> {{item.index}} </p>
-            <p class="card-text"> <strong class="text-danger">JOUR:</strong> {{item.jour}} </p>
-            <p class="card-text"><strong class="text-danger">HEURE:</strong> {{item.heure}} </p>
-            <p class="card-text"> <strong class="text-danger">LIEU:</strong> {{item.lieu}} </p>
-            <p class="card-text"> <strong class="text-danger">STATUT:</strong> {{item.statut}} </p>
-                <button class="bg-danger" (click)=" updateAnnonce()">Modifier</button>
-           
-        </div> -->
-    </tbody>
-</table>
-<table *ngIf="annonce.length<0">
-    <thead>
-        <tr>
-            <th>Jour</th>
-            <th>Heure</th>
-            <th>Lieu</th>
-            <th>Statut</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Aucune données disponible au niveau du tableau</td>
-        </tr>
-    </tbody>
-</table>
+<!-- Modal modifier annonce  -->
+<!-- <div class="modal fade" id="modalMofierContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier ce contact</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="mb-3">
+                            <label for="nameInput" class="form-label">Nom: </label>
+                            <input type="text" name="name" class="form-control" id="nameInput" [(ngModel)]="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="prenomInput" class="form-label">Prenom: </label>
+                            <input type="text" name="prenom" class="form-control" id="prenomInput" [(ngModel)]="prenom">
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Adresse email:</label>
+                            <input type="email" name="email" class="form-control" id="emailInput" [(ngModel)]="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="telephoneInput" class="form-label">Numero de telephone: </label>
+                            <input type="tel" name="telephone" class="form-control" id="telephoneInput"
+                                [(ngModel)]="telephone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descriptionInput" class="form-label">Description: </label>
+                            <textarea class="form-control" name="description" id="descriptionInput" rows="3"
+                                [(ngModel)]="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imageInput" class="form-label">Url de l'image: </label>
+                            <input type="text" name="image" class="form-control" id="imageInput" [(ngModel)]="imageUrl">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        (click)="viderChampsContact()">Annuler</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        (click)="modifierContact()">Modifier</button>
+                </div>
+            </div>
+        </div>
+    </div> -->

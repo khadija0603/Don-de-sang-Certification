@@ -1,10 +1,7 @@
-<!-- <p>profil-admin works!</p> -->
 <section class="dashboard">
-
     <div class="dash-content">
         <div class="overview">
         </div>
-
         <div class="test"></div>
         <section id="section">
             <div class="container conteneur mb-0" width="100" height="70">
@@ -17,13 +14,23 @@
                         </div>
                     </div>
                     <div class="col-info mt-5">
-                        <p>Nom :</p>
+                        <h2>Profil Utilisateur</h2>
+                        <p><strong>Nom:</strong> {{ userProfile.name }}</p>
+                        <p><strong>Prenom:</strong> {{ userProfile.prenom }}</p>
+                         <p><strong>Email:</strong> {{ userProfile.email }}</p>
+                         <p><strong>Telephone:</strong> {{ userProfile.telephone }}</p>
+                         <p><strong>Adresse:</strong> {{ userProfile.adresse }}</p>
+                         <p><strong>Image:</strong> {{ userProfile.image }}</p>
+                         <p><strong>Sexe:</strong> {{ userProfile.sexe }}</p>
+                         <p><strong>cni:</strong> {{ userProfile.cni }}</p>
+                         <p><strong>Groupe_sanguin:</strong> {{ userProfile.groupe_sanguin }}</p>
+                        <!-- <p>Nom :</p>
                         <p>Prenom : </p>
                         <p>Adresse :</p>
                         <p>Email :</p>
                         <p>Contact :</p>
                         <p>Ville :</p>
-                        <p>Groupe sanguin :</p>
+                        <p>Groupe sanguin :</p> -->
                     </div>
                 </div>
                 <div class="contain-button">

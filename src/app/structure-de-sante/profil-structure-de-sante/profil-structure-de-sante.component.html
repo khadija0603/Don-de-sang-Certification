@@ -1,1 +1,28 @@
-<p>profil-structure-de-sante works!</p>
+<section class="dashboard">
+    <div class="dash-content">
+        <div class="overview">
+        </div>
+
+        <div class="test"></div>
+        <section id="section">
+            <div class="container conteneur mb-0" width="100" height="70">
+                <h4 class="text-center titre py-0 mt-2 pt-2 mb-0">Information du profil</h4>
+                <div class="contain-contenu mt-0 mb-1 pt-2">
+                    <div class="col-image">
+                        <div class="cercle-image">
+                            <img src="https://img.freepik.com/photos-gratuite/incroyable-fille-europeenne-beret-rouge-rire-jeune-femme-francaise-positive-faisant-selfie_197531-11772.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=sph"
+                                alt="" width="100" height="90">
+                        </div>
+                    </div>
+                    <div class="col-info mt-5 ">
+                        <p class="text-black">Nom :{{name}}</p>
+                        <p class="text-black">Email :{{email}}</p>
+                        <p class="text-black">Telephone :{{telephone}}</p>
+                    </div>
+                </div>
+                <div class="contain-button">
+                    <button class="btn btn-profil fw-bold mb-5" routerLink="/modification-profil">Modifier</button>
+                </div>
+            </div>
+        </section>
+

@@ -9,6 +9,7 @@ import { AnnoncesComponent } from './Components/annonces/annonces.component';
 import { DetailProfilUserComponent } from './Components/detail-profil-user/detail-profil-user.component';
 import { DetailAnnonceComponent } from './Components/detail-annonce/detail-annonce.component';
 import { DonneurComponent } from './Components/donneur/donneur.component';
+import { MaintenanceComponent } from './Components/maintenance/maintenance.component';
 
 const routes: Routes = [
   {path:'auth', component:AuthentificationComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)},
   { path: 'donneur',loadChildren:()=>import('./donneur/donneur.module').then(m=>m.DonneurModule)},
   { path: 'structure-de-sante',loadChildren:()=>import('./structure-de-sante/structure-de-sante.module').then(m=>m.StructureDeSanteModule)},
+  { path: '**', component: MaintenanceComponent },
   
   
   
@@ -31,6 +33,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  
 })
+  
 export class AppRoutingModule { }

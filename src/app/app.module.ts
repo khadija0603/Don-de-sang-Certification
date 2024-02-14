@@ -22,7 +22,10 @@ import { DonneursAdminComponent } from './admin/donneurs-admin/donneurs-admin.co
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthServiceService } from 'src/service/auth-service.service';
 // import { AuthInterceptor } from './interceptors/interceptors';
-import { AuthInterceptor } from './interceptors/interceptors';
+// import { AuthInterceptor } from './interceptors/interceptors';
+import { ProfilService } from 'src/service/profil.service';
+import { TokenInterceptorProvider } from 'src/service/token.interceptor';
+import { MaintenanceComponent } from './Components/maintenance/maintenance.component';
 
 
 @NgModule({
@@ -42,6 +45,7 @@ import { AuthInterceptor } from './interceptors/interceptors';
     StructureDeSanteAdminComponent,
     InscritsAdminComponent,
     DonneursAdminComponent,
+    MaintenanceComponent,
   ],
   imports: [FormsModule,
     BrowserModule,
@@ -52,12 +56,14 @@ import { AuthInterceptor } from './interceptors/interceptors';
   ],
   providers: [
     AuthServiceService,
-    {
+    TokenInterceptorProvider
+    // ProfilService,
+    // {
       
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent]
 })

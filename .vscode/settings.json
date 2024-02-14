@@ -5,10 +5,12 @@
         "donateur",
         "Donneur",
         "Donneurs",
+        "etat",
         "Prenom",
         "propos",
         "Traiter",
         "userlog",
+        "vider",
         "ville"
     ]
 }

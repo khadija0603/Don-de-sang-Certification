@@ -7,6 +7,81 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+.card {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    color: #2e2d31;
+    background: #131313;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.temporary_text img {
+    font-weight: bold;
+    font-size: 24px;
+    padding: 6px 12px;
+    color: #f8f8f8;
+    width: 300px;
+    height: 300px;
+}
+
+.card_title {
+    font-weight: bold;
+}
+
+.card_content {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /* edit the width to fit card */
+    width: 100%;
+    padding: 20px;
+    background: #f2f2f2;
+    border-top-left-radius: 20px;
+    /* edit here to change the height of the content box */
+    transform: translateY(150px);
+    transition: transform .25s;
+}
+
+.card_content::before {
+    content: '';
+    position: absolute;
+    top: -47px;
+    right: -45px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(-175deg);
+    border-radius: 50%;
+    box-shadow: inset 48px 48px #f2f2f2;
+}
+
+.card_title {
+    color: #131313;
+    line-height: 15px;
+}
+
+.card_subtitle {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.card_description {
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.card:hover .card_content {
+    transform: translateY(0);
+}
+
+.card:hover .card_description {
+    opacity: 1;
+    transition-delay: .25s;
+}
 .annonce{
     /* background-color: red; */
     margin: 0 auto;
@@ -41,19 +116,19 @@
 
 body {
     min-height: 100vh;
-    background-color: var(--primary-color);
+    /* background-color: var(--primary-color); */
 }
 
 body.dark {
-    --primary-color: #3A3B3C;
+    /* --primary-color: #3A3B3C; */
     --panel-color: #242526;
-    --text-color: #CCC;
-    --black-light-color: #CCC;
-    --border-color: #4D4C4C;
+    /* --text-color: #CCC; */
+    /* --black-light-color: #CCC; */
+    /* --border-color: #4D4C4C; */
     --toggle-color: #FFF;
-    --box1-color: #3A3B3C;
-    --box2-color: #3A3B3C;
-    --box3-color: #3A3B3C;
+    /* --box1-color: #3A3B3C; */
+    /* --box2-color: #3A3B3C; */
+    /* --box3-color: #3A3B3C; */
     --title-icon-color: #CCC;
 }
 
@@ -78,7 +153,7 @@ body.dark {
 
 body.dark::-webkit-scrollbar-thumb:hover,
 body.dark .activity-data::-webkit-scrollbar-thumb:hover {
-    background: #3A3B3C;
+    /* background: #3A3B3C; */
 }
 
 nav {
@@ -236,7 +311,7 @@ body.dark .nav-links li a:hover .link-name {
     height: 22px;
     width: 40px;
     border-radius: 25px;
-    background-color: grey;
+    /* background-color: grey; */
 }
 
 .switch:before {
@@ -490,7 +565,7 @@ body.dark .switch:before {
 
 .blog-entry {
     width: 90%;
-    box-shadow: 4px 4px 4px #CCC;
+    /* box-shadow: 4px 4px 4px #CCC; */
     margin-bottom: 20px;
     font-size: 14px;
 
