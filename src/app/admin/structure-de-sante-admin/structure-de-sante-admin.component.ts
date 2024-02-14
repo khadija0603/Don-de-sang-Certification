@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { StructureSante } from 'src/service/modeles/models/structureSante.model';
 import { StructureSanteService } from 'src/service/structure-sante.service';
 import { HttpHeaders } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { structureSante } from 'src/app/models/structure-sante';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -48,6 +50,7 @@ onChangeFile() {
       }
     };
       this.getStructure()
+  
     }
   
     getStructure(): void {
@@ -56,13 +59,13 @@ onChangeFile() {
         console.log("les structures sont là :", this.structureList);
     });
     }
-    getFile(event: any) {
-      console.warn(event.target.files[0]);
-      this.image= event.target.files[0] as File ;
-    }
+  getFile(event: any) {
+  console.warn(event.target.files[0]);
+  this.image= event.target.files[0] as File ;
+}
 
   ajoutStructureSante(){
-     if( this.name=='' || this.email=='' || this.telephone=='' || !this.image || this.adresse=='' ){
+     if( this.name=='' || this.email=='' || this.telephone=='' || this.image || this.adresse=='' ){
     ("Veuillez renseigner tous les champs");
     }else{
       const structureSante={
@@ -83,13 +86,83 @@ onChangeFile() {
       formData.append("password", this.password);
       console.log(formData);
       this.structureService.ajoutStructureSante(formData).subscribe((response:any) => {
-        // console.log(response);
-        this.getStructure();
-        
+        console.log(response);
       });
     
     
    }
+
+
+  // annonceObejt: any;
+  structureSelectionner:any;
+  chargerInfosTest(structureSante: any) {
+    this.structureSelectionner = structureSante.id;
+    console.log('esxrcdftygu', this.structureSelectionner);
+    this.name = structureSante.name;
+    this.adresse = structureSante.adresse;
+    this.telephone = structureSante.telephone;
+    this.email = structureSante.email;
+  }
+  // fonction pour modifier
+  modifierAnnonce() {
+    let formData = new FormData();
+    formData.append('name', this.name);
+    formData.append('image', this.image);
+    formData.append('password', this.password);
+    formData.append('adresse', this.adresse);
+    formData.append('telephone', this.telephone);
+    formData.append('email', this.email);
+    console.log(FormData);
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: 'Vous ne pourrez pas revenir en arrière après cette action!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#017D03',
+      cancelButtonColor: '#FF9C00',
+      confirmButtonText: 'Oui, modifie!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.structureService
+          .updateStructure(this.structureSelectionner, formData).subscribe((response:any) => {
+            console.log('je suis response', response);
+            this.structureService.verifierChamp(
+              '!!!!',
+              response.status_message,
+              'success'
+            );
+              if (response.status_code == 200) {
+                this.viderChamp();
+                this.getAllStructure();
+                this.ngOnInit();
+                // const modalElement: HTMLElement | null =
+                //   document.getElementById('modifie');
+                // modalElement!.style.display = 'none';
+              } else {
+                this.structureService.verifierChamp(
+                  '!!!!',
+                  response.status_message,
+                  'success'
+                );
+              }
+              // this.getAllAnnonce();
+            });
+            this.ngOnInit();
+            // window.location.reload();
+      }
+      console.log('je suis data', formData);
+    });
+
+
+  }
+  getAllStructure() {}
+  viderChamp() { }
+  bloquerStructure(id: number): void{
+    this.structureService.bloquerStructure(id).subscribe((respons) => {
+      console.log("bloquer  naa", respons);
+    })
+  }
+
 
     
  }

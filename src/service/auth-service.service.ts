@@ -52,6 +52,27 @@ export class AuthServiceService {
         })
       : of(null);
   }
+  // bloque(id: number): Observable<any> {
+  //   const accessToken = localStorage.getItem('access_token');
+  //   return accessToken ? this.http.put<any>(`${url}/bloquerDonateur/${id}`, {}, {
+  //     headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
+  //   }) : of(null);
+  // }
+   bloquerDonneur(id: number): Observable<any> {
+    const accessToken = localStorage.getItem('token');
+    return accessToken
+      ? this.http.put<any>(`${url}/bloquerDonateur/${id}`,{
+      headers: new HttpHeaders({ Authorization : `Bearer ${accessToken}`})
+    }) : of(null)
+
+  }
+  debloque(id: number): Observable<any> {
+    const accessToken = localStorage.getItem('access_token');
+    return accessToken ? this.http.put<any>('${api}/{id}', {}, {
+      headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
+    }) : of(null);
+  }
+  
 
 
 }

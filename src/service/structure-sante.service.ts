@@ -5,10 +5,12 @@ import { url } from './modeles/models/apiUrls';
 @Injectable({
   providedIn: 'root'
 })
+  
 export class StructureSanteService {
-  image: File | undefined;
-  listerStructure() {
-  }
+  verifierChamp(arg0: string, status_message: any, arg2: string) { }
+  // updateStructure(structureSelectionner: any, formData: FormData) { }
+  image!: File ;
+  listerStructure() {}
 
   private apiUrl = 'http://127.0.0.1:8000/api';  // Remplacez cela par l'URL réelle de votre API
   constructor(private http: HttpClient) { }
@@ -29,4 +31,24 @@ export class StructureSanteService {
           headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
         }): of(null);
   }
+
+ updateStructure(id : number, structure: any): Observable<any> {
+    const accessToken = localStorage.getItem('token');
+
+     return accessToken
+      ? this.http.post<any>(`${url}/modifierComptestructure/${id}`, structure, {
+        headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
+        }): of(null);
+ }
+  bloquerStructure(id: number): Observable<any> {
+    const accessToken = localStorage.getItem('token');
+    return accessToken
+      ? this.http.put<any>(`${url}/bloquerStructure/${id}`,{
+      headers: new HttpHeaders({ Authorization : `Bearer ${accessToken}`})
+    }) : of(null)
+
+  }
+
+
+
 }

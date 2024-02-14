@@ -66,7 +66,7 @@ login() {
       }
     );
   } else {
-    if (this.email === 'structure-sante@gmail.com' && this.password === user.password) {
+    if (this.email === 'structureS@gmail.com' && this.password === user.password) {
       this.authservice.loginStructureDeSante(user).subscribe(
         (response) => {
           console.log(response);

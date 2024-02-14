@@ -54,18 +54,42 @@
 </div>
 
 <!-- -----Modal modifier--- -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> -->
 <div class="modal fade" id="exampleModal-modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content modal-xl ">
+        <div class="modal-content  ">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="connection">
-                    <div class="logo ">
+                    <!-- <div class="logo ">
                         <img src="../../../assets/Image/logo-offi.png" alt="" routerLink="/accueil">
-                    </div>
+                    </div> -->
                     <form class="form_container">
                         <div class="title_container">
                             <h5 class="title">Modifier annonce</h5>
@@ -95,8 +119,9 @@
                                 class="input_field" id="statut" [(ngModel)]="statut" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"
-                                (click)=" updateAnnonce()"> Modifier </button>
+                            <button type="button" class="btn btn-primary" (click)=" updateAnnonce()"> 
+                                Modifier
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -105,41 +130,7 @@
     </div>
 </div>
 <div >
-<!-- <section class="dashboard">
-    <div class="dash-content">
-        <div class="overview">
-        </div>
-        <div class="test"></div>
-        <div class="row justify-content-center">
-            <div class="col-md-10 heading-section text-center mt-3 mb-0 ">
-                <h3 class="mb-4">Annonces</h3>
-            </div>
-        </div>
-        <div class="annonces">
-            <div class="card shadow-lg row" style="width: 18.5rem;" *ngFor="let item of annonce">
-                <div class="annonce">
-                    <p class="card-text"> <strong class="text-danger">DATE:</strong> {{item.date}} </p>
-                    <p class="card-text"><strong class="text-danger">HEURE:</strong> {{item.heure}} </p>
-                    <p class="card-text"> <strong class="text-danger">LIEU:</strong> {{item.lieu}} </p>
-                    <p class="card-text"> <strong class="text-danger">STATUT:</strong> {{item.statut}} </p>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    </section>
-    <div class="d-flex flex-wrap justify-content-center my-5">
-        <button class="btn pagiColor me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
-            Précédent
-        </button>
-        <button class="btn pagiColor  ms-2 " *ngFor="let page of pages" (click)="pageActuelle = page">
-            {{ page }}
-        </button>
-        <button class="btn pagiColor  ms-2 " [disabled]="pageActuelle === totalPages"
-            (click)="pageActuelle = pageActuelle + 1">
-            Suivant
-        </button>
-    </div> -->
 
 
 <div class="container">
@@ -151,34 +142,12 @@
 
     <div class="" *ngIf="listChoice">
         <button type="button" class="btn btn-secondary" (click)="listeChoiceFunction()"> Corbeille </button>
-
-
         <h4 class="fw-bold mt-5">Liste des annonces</h4>
-
-        <!-- Liste des contact  -->
-        <!-- <div class="" *ngFor="let item of annonce" >
-                <div class="annonces" >
-                    <div class="annonces">
-                        <div class="">
-                        </div>
-                        <div class=" " >
-                            <div class="annonces ">
-                                <p class="card-text">Date: {{item.date}}</p>
-                                <p class="card-text">Lieu: {{item.lieu}}</p>
-                                <p class="card-text">Statut: {{item.statut}}</p>
-                                <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
         <div class="annonces">
             <div class="card shadow-lg row" *ngFor="let item of annonce">
                 <!-- <div class=" " style="width: 20px; height:20px ;">
                         <img src="../../../assets/Image/sang.png" alt="">
                     </div> -->
-
                 <article class="card">
                     <div class="temporary_text">
                         <img src="https://img.freepik.com/photos-premium/femme-afro-americaine-professionnelle-costume-affaires-pointant-joyeusement-vers-bas-vers-vide_116547-91719.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
@@ -195,7 +164,9 @@
                                 <p class="card-text"> <strong class="text-black">Participant:</strong>  05</p>
                                 <div class="d-flex gap-5 justity-content-space-between">
                                     <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button>
-                                    <button class="btn btn-primary" (click)="chargerInfosAnnonce(annonce)"> Modifier</button>
+                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerInfosAnnonce(item)"> 
+                                        Modifier
+                                    </button>
                                 </div>
 
                             </div>
@@ -236,99 +207,3 @@
         </div>
     </div>
 </div>
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un annonce</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        <div class="mb-3">
-                            <label for="nameInput" class="form-label">Nom: </label>
-                            <input type="text" name="name" class="form-control" id="nameInput" [(ngModel)]="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="prenomInput" class="form-label">Prenom: </label>
-                            <input type="text" name="prenom" class="form-control" id="prenomInput" [(ngModel)]="prenom">
-                        </div>
-                        <div class="mb-3">
-                            <label for="emailInput" class="form-label">Adresse email:</label>
-                            <input type="email" name="email" class="form-control" id="emailInput" [(ngModel)]="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="telephoneInput" class="form-label">Numero de téléphone: </label>
-                            <input type="tel" name="telephone" class="form-control" id="telephoneInput"
-                                [(ngModel)]="telephone">
-                        </div>
-                        <div class="mb-3">
-                            <label for="descriptionInput" class="form-label">Description: </label>
-                            <textarea class="form-control" name="description" id="descriptionInput" rows="3"
-                                [(ngModel)]="description"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="imageInput" class="form-label">Url de l'image: </label>
-                            <input type="text" name="image" class="form-control" id="imageInput" [(ngModel)]="imageUrl">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        (click)="viderChapmsContact()">Annuler</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                        (click)="ajouterContact()">Confirmer</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-<!-- Modal modifier annonce  -->
-<!-- <div class="modal fade" id="modalMofierContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier ce contact</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        <div class="mb-3">
-                            <label for="nameInput" class="form-label">Nom: </label>
-                            <input type="text" name="name" class="form-control" id="nameInput" [(ngModel)]="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="prenomInput" class="form-label">Prenom: </label>
-                            <input type="text" name="prenom" class="form-control" id="prenomInput" [(ngModel)]="prenom">
-                        </div>
-                        <div class="mb-3">
-                            <label for="emailInput" class="form-label">Adresse email:</label>
-                            <input type="email" name="email" class="form-control" id="emailInput" [(ngModel)]="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="telephoneInput" class="form-label">Numero de telephone: </label>
-                            <input type="tel" name="telephone" class="form-control" id="telephoneInput"
-                                [(ngModel)]="telephone">
-                        </div>
-                        <div class="mb-3">
-                            <label for="descriptionInput" class="form-label">Description: </label>
-                            <textarea class="form-control" name="description" id="descriptionInput" rows="3"
-                                [(ngModel)]="description"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="imageInput" class="form-label">Url de l'image: </label>
-                            <input type="text" name="image" class="form-control" id="imageInput" [(ngModel)]="imageUrl">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        (click)="viderChampsContact()">Annuler</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                        (click)="modifierContact()">Modifier</button>
-                </div>
-            </div>
-        </div>
-    </div> -->

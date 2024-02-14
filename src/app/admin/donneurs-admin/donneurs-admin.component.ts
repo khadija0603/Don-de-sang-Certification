@@ -9,9 +9,12 @@ import { AuthServiceService } from 'src/service/auth-service.service';
   styleUrls: ['./donneurs-admin.component.css']
 })
 export class DonneursAdminComponent implements OnInit {
+// bloquerUser(arg0: any) {}
+// debloquerUser(arg0: any) {}
   dtOptions: DataTables.Settings = {};
    donateurList:any [] =[]
   item: any;
+  user: any;
 constructor(private authservice: AuthServiceService, private route: Router,private http:HttpClient){}
    ngOnInit(): void {
     const script = document.createElement('script');
@@ -27,6 +30,9 @@ constructor(private authservice: AuthServiceService, private route: Router,priva
         url: 'https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json'
       }
     };
+     this.listDonateur();
+   }
+  listDonateur() {
      
      // liste annonce
     this.authservice.listerdonateur().subscribe(
@@ -42,7 +48,32 @@ constructor(private authservice: AuthServiceService, private route: Router,priva
         // Traiter l'erreur de liste
       }
     );
-   }
+  }
   
+ bloquerDonneur(id: number): void{
+    this.authservice.bloquerDonneur(id).subscribe((respons) => {
+      console.log("bloquer  naa", respons);
+    })
+  }
+
+
+  // bloqueUser(id: number) {
+  //   this.authservice.bloque(id).subscribe(
+  //     (data) => {
+  //       console.log(data);
+        
+  //     }
+  //   )
+  //   this.listDonateur();
+  // }
+  // debloqueUser(id: number) {
+  //   this.authservice.debloque(id).subscribe(
+  //     (data) => {
+  //       console.log(data);
+        
+  //     }
+  //   )
+  //   this.listDonateur();
+  // }
     
 }

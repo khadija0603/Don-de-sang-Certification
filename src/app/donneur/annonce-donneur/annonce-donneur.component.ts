@@ -8,9 +8,17 @@ import { AnnonceService } from 'src/service/annonce.service';
   styleUrls: ['./annonce-donneur.component.css']
 })
 export class AnnonceDonneurComponent implements OnInit{
+listChoice: any;
+supprimerAnnonceDefinitif(arg0: any[]) {
+throw new Error('Method not implemented.');
+}
+restaurerAnnonce(arg0: any[]) {
+throw new Error('Method not implemented.');
+}
   pages: any;
 totalPages: any;
   listeAnnonces: any;
+filteredElement: any;
   updateAnnonce() {
   }
   // annonce: any;
@@ -45,6 +53,30 @@ totalPages: any;
     );
 
   }
+
+
+      annonceParPage = 8; // Nombre d'articles par page
+     pageActuelle = 1; // Page actuelle
+
+  
+  // / pagination
+  
+  getAnnoncePage(): any[] {
+    const indexDebut = (this.pageActuelle - 1) * this.annonceParPage;
+    const indexFin = indexDebut + this.annonceParPage;
+    return this.listeAnnonces.slice(indexDebut, indexFin);
+  }
+     // Méthode pour générer la liste des pages
+     getPages(): number[] {
+      const totalPages = Math.ceil(this. listeAnnonces.length / this.annonceParPage);
+      return Array(totalPages).fill(0).map((_, index) => index + 1);
+    }
+  
+    // Méthode pour obtenir le nombre total de pages
+    getTotalPages(): number {
+      return Math.ceil(this. listeAnnonces.length / this.annonceParPage);
+    }
+
 
 }
 function getAnnoncePage() {

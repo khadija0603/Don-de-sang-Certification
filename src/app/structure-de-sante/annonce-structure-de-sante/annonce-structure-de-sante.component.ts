@@ -17,7 +17,12 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
  date:string="";
   lieu:string="";
   statut: string = '';
-  id: any = [];
+  newAnnonce : any = {
+    date: "",
+    lieu: "",
+    stat : ""
+  }
+  selectedAnnonce: any = [];
   annonceList:any[] = [];
   annonceData: any = {
   };
@@ -287,13 +292,14 @@ loadAnnonces(): void {
 
 
   addAnnonce(): void {
-     let formData = new FormData();
-      formData.append('date', this.date);
-      formData.append('lieu', this.lieu);
-      formData.append('statut', this.statut);
-      console.log(formData);
+    this.newAnnonce ={
+      lieu: this.lieu,
+      statut: this.statut,
+      date : this.date
 
-    this.annonceService.createAnnonce(formData).subscribe((response:any) => {
+   }
+
+    this.annonceService.createAnnonce(this.newAnnonce).subscribe((response:any) => {
         console.log('Annonce ajoutée avec succès :', response);
         this.loadAnnonces(); // Rechargez la liste après l'ajout
       },
@@ -305,27 +311,30 @@ loadAnnonces(): void {
   }
 
 
-   chargerInfosAnnonce(annonce: any) {
-    console.log(annonce);
-    this.id = annonce.id;
-    console.warn('lid de vv', this.id);
+   
+
+  updateAnnonce() {
+    if (this.selectedAnnonce) {
+      this.annonceService.updateAnnonce(this.selectedAnnonce,{
+        date: this.date,
+        lieu: this.lieu,
+        statut : this.statut
+      }).subscribe((respons)=>{
+        console.log("modifionnss reussi", respons);
+      })
+   }
+  }
+
+  chargerInfosAnnonce(annonce: any) {
+    // console.log(annonce);
+    this.selectedAnnonce = annonce.id;
+    // console.warn('lid de vv', this.id);
     this.date = annonce.date;
     this.lieu = annonce.lieu;
     this.statut = annonce.statut;
-    console.log('changer', this.chargerInfosAnnonce);
+    console.log('changer', this.date, this.lieu, this.statut);
   }
 
-  updateAnnonce(): void {
-    this.annonceService.updateAnnonce(this.id, this.updatedData).subscribe(
-      (response:any) => {
-        console.log('Annonce mise à jour avec succès :', response);
-        this.loadAnnonces(); 
-      },
-      (error:any) => {
-        console.error('Erreur lors de la mise à jour de l\'annonce :', error);
-      }
-    );
-  }
 
   deleteAnnonce(id: number): void {
     this.annonceService.deleteAnnonce(id).subscribe(

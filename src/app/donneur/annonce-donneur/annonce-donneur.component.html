@@ -1,7 +1,5 @@
 <section class="dashboard">
 
-
-
     <div class="annonces">
         <div class="card shadow-lg row" *ngFor="let item of annonce">
             <!-- <div class=" " style="width: 20px; height:20px ;">
@@ -21,7 +19,7 @@
                             <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
                             <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
                             <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
-                            <p class="card-text"> <strong class="text-black">Participant:</strong>  05</p>
+                            <p class="card-text"> <strong class="text-black">Participant:</strong></p>
                             <!-- <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button> -->
                             <!-- <button class="btn btn-primary" (click)="modifierAnnonce()"> Modifier</button> -->
 
@@ -34,14 +32,13 @@
         </div>
     </div>
 
-
-    <!-- <div class="container-corbeille" *ngIf="!listChoice"> -->
+    <div class="container-corbeille" *ngIf="!listChoice">
         <!-- Button trigger modal pour ajouter un annonce-->
         <!-- <button type="button" class="btn btn-primary me-5" (click)="viderCorbeille()"> Vider la corbeille </button> -->
         <!-- <button type="button" class="btn btn-secondary" (click)="listeChoiceFunction()"> Liste des annonces </button> -->
         <!-- <h4 class="fw-bold mt-5">Liste des annonces de la corbeille</h4> -->
         <!-- Liste des annonce  -->
-        <!-- <div class="liste-annonce mt-5" *ngFor=" let Annonce of filteredElement"> -->
+        <div class="liste-annonce mt-5" *ngFor=" let Annonce of filteredElement">
             <div class="card mb-3">
                 <div class="row g-0" *ngFor="let item of annonce">
                     <div class="col-md-6">
@@ -53,16 +50,14 @@
                             <p class="card-text">Date: {{item.date}}</p>
                             <p class="card-text">Lieu: {{item.lieu}}</p>
                             <p class="card-text">Statut: {{item.statut}}</p>
-                            <!-- <button class="btn btn-primary me-5" (click)="restaurerAnnonce(annonce)"> Restaurer</button> -->
-                            <!-- <button class="btn btn-secondary" (click)="supprimerAnnonceDefinitif(annonce)"> Supprimer -->
-                                <!-- definitivement</button> -->
+                            <button class="btn btn-primary me-5" (click)="restaurerAnnonce(annonce)"> Restaurer</button>
+                            <button class="btn btn-secondary" (click)="supprimerAnnonceDefinitif(annonce)"> Supprimer
+                                definitivement</button>
                         </div>
                     </div>
                 </div>
             </div>
-        <!-- </div> -->
+        </div>
+    </div>
     <!-- </div> -->
-    <!-- </div> -->
-
-
 </section>
