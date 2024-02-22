@@ -1,36 +1,35 @@
  <section class="dashboard">
+    <h3>Annonces:</h3>
 
             <div class="annonces">
-                <div class="card shadow-lg row"  *ngFor="let item of annonce">
-                    <!-- <div class=" " style="width: 20px; height:20px ;">
-                        <img src="../../../assets/Image/sang.png" alt="">
-                    </div> -->
-                   
-                    <article class="card">
-                        <div class="temporary_text">
-                        <img src="https://img.freepik.com/photos-premium/femme-afro-americaine-professionnelle-costume-affaires-pointant-joyeusement-vers-bas-vers-vide_116547-91719.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais" alt="">
-                        </div>
-                        <div class="card_content">
-                            <span class="card_title">Annonce</span>
-                            <!-- <span class="card_subtitle">Thsi is a subtitle of this page. Let us see how it looks on the Web.</span> -->
-                            <div class="annonce">
-                                <div class="card_description">
-                                    <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
-                                    <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
-                                    <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
-                                    <p class="card-text"> <strong class="text-black">Participant:</strong></p>
-                                    <!-- <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button> -->
-                                    <!-- <button class="btn btn-primary" (click)="modifierAnnonce()"> Modifier</button> -->
-                        
-                                </div>
-                                </div>
-                               
-                    
-                        </div>
-                    </article>
+                <!-- <div class="card shadow-ms row"  *ngFor="let item of getArticlesPage() "> -->
+                  
+                <div class="card" style="width: 18rem;" *ngFor="let item of getArticlesPage() ">
+                    <img src="https://img.freepik.com/photos-gratuite/portrait-jeune-femme-fond-rupture-dechiree-rose_155003-7011.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
+                            <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
+                            <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
+                            <!-- Some quick example text to build on the card title and make up the bulk of the card's
+                            content. -->
+                            </div>
+                    </div>
                 </div>
             </div>
-    
+            <!-- pour la pagination -->
+            <div class="d-flex justify-content-center my-5">
+                <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+                    Précédent
+                </button>
+                <button class="btn btnColor ms-2" *ngFor="let page of pages" (click)="pageActuelle = page">
+                    {{ page }}
+                </button>
+                <button class="btn btnColore ms-2" [disabled]="pageActuelle === totalPages"
+                    (click)="pageActuelle = pageActuelle + 1">
+                    Suivant
+                </button>
+            </div>
         <div class="container-corbeille" *ngIf="!listChoice">
             <!-- Button trigger modal pour ajouter un annonce-->
             <!-- <button type="button" class="btn btn-primary me-5" (click)="viderCorbeille()"> Vider la corbeille </button> -->
@@ -60,4 +59,6 @@
         </div>
     <!-- </div> -->
 </section> 
+
+<!-- --------Modal Modification---------- -->
 

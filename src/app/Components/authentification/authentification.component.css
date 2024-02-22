@@ -5,28 +5,29 @@
     grid-template-columns: 50% 50%;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-left: 150px;
-    box-shadow: 4px 4px 6px #BA0D19;
+    /* box-shadow: 4px 4px 6px #BA0D19; */
 }
 .logo{
-width: 100%;
-    height: fit-content;
+/* width: 100%; */
+    /* height: fit-content; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    padding: 50px 40px 20px 40px;
+    margin-top: -30px;
+    /* gap: 15px; */
+    /* padding: 50px 40px 20px 40px; */
     background-color: #ffffff;
     border-radius: 11px;
     border: 1px #BA0D19;
     border-right:2px #BA0D19;
 }
 .form_container {
-    width: 100%;
+    /* width: 100%; */
     border-left: 2px #BA0D19;
-    height: fit-content;
+    /* height: fit-content; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,12 +39,13 @@ width: 100%;
     font-family: "Inter", sans-serif;
     color: #BA0D19;
     font-size: 18px;
+
 }
 
 .logo_container {
     box-sizing: border-box;
-    width: 80px;
-    height: 80px;
+    /* width: 80px; */
+    /* height: 80px; */
     background: linear-gradient(180deg, rgba(248, 248, 248, 0) 50%, #F8F8F888 100%);
     border: 1px solid #F7F7F8;
     filter: drop-shadow(0px 0.5px 0.5px #EFEFEF) drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
@@ -60,7 +62,6 @@ width: 100%;
 }
 
 .title {
-    margin: 0;
     font-size: 2.25rem;
     font-weight: 700;
     color: #BA0D19;
@@ -68,7 +69,7 @@ width: 100%;
 
 .subtitle {
     font-size: 0.725rem;
-    max-width: 80%;
+    /* max-width: 80%; */
     text-align: center;
     line-height: 1.1rem;
     color: #BA0D19
@@ -80,7 +81,7 @@ width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    /* gap: 5px; */
 }
 
 .icon {
@@ -92,15 +93,15 @@ width: 100%;
 }
 
 .input_label {
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: #BA0D19;
     font-weight: 600;
 }
 
 .input_field, select {
     width: auto;
-    height: 40px;
-    padding: 0 0 0 40px;
+    /* height: 40px; */
+    /* padding: 0 0 0 40px; */
     border-radius: 7px;
     outline: none;
     border: 1px solid #e5e5e5;
@@ -141,6 +142,7 @@ width: 100%;
     cursor: pointer;
 }
 
+
 .sign-in_apl {
     width: 100%;
     height: 40px;
@@ -178,4 +180,21 @@ width: 100%;
     font-size: 0.75rem;
     color: #BA0D19;
     text-decoration: underline;
+}
+.form{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 15%;
+    width: 100%;
+}
+#password_field{
+    width: 60vh;
+}
+.form-left{
+    margin-left: 55vh;
+}
+.modal-footer{
+    margin-top: -20px;
 }

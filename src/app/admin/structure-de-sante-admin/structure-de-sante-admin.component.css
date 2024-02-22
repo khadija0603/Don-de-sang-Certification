@@ -12,6 +12,24 @@
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.btnColore {
+    background-color: #BA0D19;
+    color: white;
+    margin: 2px;
+}
+
+.btnColor {
+    background-color: #0F2A3D;
+    color: white;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.blocked-card {
+  opacity: 0.7; /* ou toute autre propriété CSS pour griser la carte */
+  pointer-events: none; /* désactiver les événements de la carte */
+}
+
 .card:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);

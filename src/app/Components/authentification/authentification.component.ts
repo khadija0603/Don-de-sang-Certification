@@ -24,7 +24,127 @@ nom: any;
 authDonateur: any;
 
 email!: any;
-password!: any;
+  password!: any;
+  
+    verifEmailFonction(){
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
+    this.exactEmail = false;
+    
+    if(this.email == ""){
+      this.verifEmail = "";
+    }
+    else if (!this.email.match(emailPattern) || this.email.endsWith("@") || !this.email.includes('.')){
+      this.verifEmail = "Veuillez donner un email valide";
+    }
+    else {
+      this.verifEmail = "";
+      this.exactEmail = true;
+    }
+    }
+  
+    verifAllEmailFonction(email:any, verifEmail:any, exactEmail:any){
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
+    exactEmail = false;
+    
+    if(email == ""){
+      verifEmail = "";
+    }
+    else if (!email.match(emailPattern) ){
+      verifEmail = "Veuillez donner un email valide";
+    }
+    else {
+      verifEmail = "";
+      exactEmail = true;
+    }
+    }
+  
+   // Verification du nom
+  verifNomFonction() {
+    this.exactNom = false;
+    if(this.nom == ""){
+      this.verifNom = "";
+    }
+    else if (this.nom.length < 5 ){
+      this.verifNom = "Le nom est trop court";
+    }
+    else {
+      this.verifNom = "";
+      this.exactNom = true;
+    }
+  }
+    // Verification du prenom 
+  verifPrenomFonction() {
+    this.exactPrenom = false;
+    if(this.prenom == ""){
+      this.verifPrenom = "";
+    }
+    else if (this.prenom.length < 3 ){
+      this.verifPrenom = "Le prenom est trop court";
+      
+    }
+    else{
+      this.verifPrenom = "";
+      this.exactPrenom = true;
+    }
+  }
+
+
+  // Verification du mot de passe 
+  verifPasswordFonction(){
+    this.exactPassword = false;
+    if(this.password == ""){
+      this.verifPassword = "";
+    }
+    else if (this.password.length < 5 ){
+      this.verifPassword = "Mot de passe doit être supérieur ou égal à 5";
+    }
+    else{
+      this.verifPassword = "";
+      this.exactPassword = true;
+    }
+  }
+  // Verification de l'adresse 
+  verifAdresseFonction(){
+    this.exactAdresse = false;
+    if(this.adresse == ""){
+      this.verifAdresse = "";
+    }
+    else if (this.password.length < 4 ){
+      this.verifAdresse = "";
+    }
+    else{
+      this.verifAdresse = "";
+      this.exactAdresse = true;
+    }
+  }
+  // Verification de votre cni 
+  verifCniFonction(){
+    this.exactCni = false;
+    if(this.cni == ""){
+      this.verifCni = "";
+    }
+    else if (this.cni.length < 12 ){
+      this.verifCni = "le numero cni doit être supérieur ou égal à 13";
+    }
+    else{
+      this.verifCni = "";
+      this.exactCni = true;
+    }
+  }
+  // Verification de votre cni 
+  verifTelephoneFonction(){
+    this.exactTelephone = false;
+    if(this.telephone == ""){
+      this.verifTelephone = "";
+    }
+    else if (this.telephone.length < 8 ){
+      this.verifTelephone = "le numero cni doit être supérieur ou égal à 9";
+    }
+    else{
+      this.verifTelephone = "";
+      this.exactTelephone = true;
+    }
+  }
   
   constructor(private authservice: AuthServiceService, private route: Router, private http: HttpClient,
   private tS: TokenService) { }
@@ -38,13 +158,36 @@ password!: any;
   sexe:string="";
   image: File | undefined;
 
+   // Variables pour faire la vérifications
+  verifNom : String  =  "";
+  verifPrenom : String = "";
+  verifEmail : String = "";
+  verifPassword : String = "";
+  verifPasswordConf: String = "";
+  verifAdresse : String = "";
+  verifCni : String = "";
+  verifTelephone : String = "";
+
+  // Variables si les champs sont exacts
+  exactNom : boolean = false;
+  exactPrenom : boolean = false;
+  exactEmail : boolean = false;
+  exactPassword : boolean = false;
+  exactAdresse : boolean = false;
+  exactCni : boolean = false;
+  exactTelephone : boolean = false;
+  exactPasswordConf: boolean = false;
+  
+  // Pour vérifier les champs pour la connexion 
+  verifEmailCon : String = "";
+  verifPasswordCon: String = "";
+
  //méthodes
   afficherBloc1: boolean = true;
 
   basculerBlocs() {
     this.afficherBloc1 = !this.afficherBloc1;
   }
- 
 login() {
   let user = {
     email: this.email,
@@ -57,6 +200,7 @@ login() {
         console.log(response.token);
         this.authservice.isAuthenticated = true;
         localStorage.setItem('userOnline', JSON.stringify(response));
+        
         // localStorage.setItem('token', response.token);
         this.tS.saveToken(response.token);
         this.route.navigate(['/admin']);

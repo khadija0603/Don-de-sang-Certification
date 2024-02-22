@@ -5,4 +5,5 @@ export class structureSante {
     email?: string;
     password?: string;
     image?: string;
+    is_blocked?: boolean;
 }

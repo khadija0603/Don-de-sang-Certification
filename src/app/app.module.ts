@@ -21,10 +21,10 @@ import { InscritsAdminComponent } from './admin/inscrits-admin/inscrits-admin.co
 import { DonneursAdminComponent } from './admin/donneurs-admin/donneurs-admin.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthServiceService } from 'src/service/auth-service.service';
-// import { AuthInterceptor } from './interceptors/interceptors';
+import { AuthInterceptor } from './interceptors/interceptors';
 // import { AuthInterceptor } from './interceptors/interceptors';
 import { ProfilService } from 'src/service/profil.service';
-import { TokenInterceptorProvider } from 'src/service/token.interceptor';
+// import { TokenInterceptorProvider } from 'src/service/token.interceptor';
 import { MaintenanceComponent } from './Components/maintenance/maintenance.component';
 
 
@@ -56,7 +56,7 @@ import { MaintenanceComponent } from './Components/maintenance/maintenance.compo
   ],
   providers: [
     AuthServiceService,
-    TokenInterceptorProvider
+    // TokenInterceptorProvider
     // ProfilService,
     // {
       

@@ -2,13 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
+    /* margin: 0; */
+    /* padding: 0; */
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-.card {
+.btnColore {
+    background-color: #BA0D19;
+    color: white;
+    margin: 2px;
+}
+
+.btnColor {
+    background-color: #0F2A3D;
+    color: white;
+    font-weight: bold;
+    margin: 2px;
+}
+
+
+
+/* .card {
     position: relative;
     width: 250px;
     height: 250px;
@@ -25,7 +40,7 @@
     color: #f8f8f8;
     width: 300px;
     height: 300px;
-}
+} */
 
 .card_title {
     font-weight: bold;
@@ -82,15 +97,17 @@
     opacity: 1;
     transition-delay: .25s;
 }
-.annonce{
-    /* background-color: red; */
-    margin: 0 auto;
+.dashboard{
+  margin-top: 30px;
+  margin-left: 50px;
+ 
 }
 .annonces{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 10px;
-    /* background-color: yellow; */
+    margin-top: 30px;
+    padding-bottom: 10px !important;
 }
 .row{
     /* background-color: green; */
@@ -430,6 +447,9 @@ body.dark .switch:before {
 }
 
 @media (max-width: 1000px) {
+    
+    
+    
     nav {
         width: 73px;
     }

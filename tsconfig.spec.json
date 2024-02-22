@@ -7,8 +7,16 @@
       "jasmine"
     ]
   },
+  
   "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
-  ]
+    "**/*.spec.ts",
+    "**/*.d.ts",
+    "**/*."
+  ],
+  
+//   "include": [
+// "**/*.spec.ts",
+// "**/*.d.ts",
+// "**/*.
+// ]
 }

@@ -13,8 +13,7 @@ export class AnnonceAdminComponent implements OnInit {
   currentAnnonce: any;
 chargerInfosAnnonce(arg0: any[]) {
 }
-pages: any;
-totalPages: any;
+
   listeAnnonces: any;
   updateAnnonce() {
   }
@@ -34,7 +33,6 @@ totalPages: any;
     private annonceService: AnnonceService, private http: HttpClient) { }
 
   ngOnInit() {
-  
     this.updateAnnonce();
     const script = document.createElement('script');
     script.src = '../../../assets/script/sidebar.js';
@@ -185,7 +183,7 @@ totalPages: any;
     }
   }
 
-  // Methode supprimer contact 
+  // Methode supprimer  
   // supprimerAnnonce(id:number){
   //   Swal.fire({
   //     title: "Etes-vous sur???",
@@ -211,7 +209,7 @@ totalPages: any;
     
   // }
 
-  // Methode pour restaure le contact 
+  // Methode pour restaure
   restaurerAnnonce(paramAnnonce:any){
     Swal.fire({
       title: "Etes-vous sur???",
@@ -232,7 +230,7 @@ totalPages: any;
     });
   }
 
-  // Methode pour supprimer définitivement un contact 
+  // Methode pour supprimer définitivement 
   supprimerAnnonceDefinitif(paramAnnonce:any){
     Swal.fire({
       title: "Etes-vous sur???",
@@ -306,6 +304,29 @@ totalPages: any;
 
   listeChoiceFunction(){
     this.listChoice = !this.listChoice;
+  }
+  
+    // Attribut pour la pagination
+   annonceParPage = 6; // Nombre d'annonce par page
+  pageActuelle = 1; // Page actuelle
+  
+  // Méthode pour déterminer les articles à afficher sur la page actuelle
+    getArticlesPage(): any[] {
+      const indexDebut = (this.pageActuelle - 1) * this.annonceParPage;
+      const indexFin = indexDebut + this.annonceParPage;
+      return this.annonce.slice(indexDebut, indexFin);
+    }
+// Méthode pour générer la liste des pages
+  get pages(): number[] {
+    const totalPages = Math.ceil(this.annonce.length / this.  annonceParPage);
+    return Array(totalPages)
+      .fill(0)
+      .map((_, index) => index + 1);
+  }
+
+  // Méthode pour obtenir le nombre total de pages
+  get totalPages(): number {
+    return Math.ceil(this.annonce.length / this.  annonceParPage);
   }
 }
 

@@ -49,6 +49,15 @@ export class StructureSanteService {
 
   }
 
+  deleteAnnonce(id: number): Observable<any> {
+
+    const accessToken = localStorage.getItem('token');
+    return accessToken
+      ? this.http.delete<any>(`${url}/supprimerAnnonce/${id}`, {
+          headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
+        }): of(null);
+  }
+
 
 
 }

@@ -61,8 +61,8 @@ export class AuthServiceService {
    bloquerDonneur(id: number): Observable<any> {
     const accessToken = localStorage.getItem('token');
     return accessToken
-      ? this.http.put<any>(`${url}/bloquerDonateur/${id}`,{
-      headers: new HttpHeaders({ Authorization : `Bearer ${accessToken}`})
+      ? this.http.put<any>(`${url}/bloquerDonateur/${id}`,{},{
+      headers: new HttpHeaders({ 'Authorization' : `Bearer ${accessToken}`})
     }) : of(null)
 
   }

@@ -44,7 +44,9 @@
             <td>{{item.telephone}}</td>
             <td>{{item.adresse}}</td>
             <td>{{item.groupe_sanguin}}</td>
-            <button class=" btn-danger" (click)="bloquerDonneur(item.id)">Bloquer</button>
+            <td><button class=" btn-danger" (click)="bloquerStructure(item.id)">
+                {{ item.isBlocked ? 'Débloquer' : 'Bloquer' }}
+            </button></td>
         </tr>
         
     </tbody>

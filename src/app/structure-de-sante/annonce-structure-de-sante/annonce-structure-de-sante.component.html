@@ -1,8 +1,10 @@
 <!-- Modal ajout struture de sante -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Ajouter annonce
- 
-</button>
+<div class="bouton d-flex">
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Ajouter annonce
+    </button>
+    <!-- <button type="button" class="btn btn-danger" (click)="listeChoiceFunction()"> Corbeille </button> -->
+</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content modal-xl ">
@@ -52,32 +54,7 @@
         </div>
     </div>
 </div>
-
-<!-- -----Modal modifier--- -->
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button> -->
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div> -->
+<!-- Modal pour modifier -->
 <div class="modal fade" id="exampleModal-modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content  ">
@@ -131,39 +108,57 @@
 </div>
 <div >
 
-
+<!-- Lister les annonces -->
 
 <div class="container">
-    <div class="input-group ">
-        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
-            (input)="onSearch()">
-        <span class="input-group-text"><i class="bi bi-search"></i></span>
-    </div>
+    <!-- <div class="" > -->
+        <h2 class="fw-bold mt-5 text-center" ><strong>Liste des annonces</strong></h2>
+        <div class="annonces" *ngFor="let item of getArticlesPage() ">
+            <!-- <div class="card shadow-lg row" *ngFor="let item of getArticlesPage()"><h3>Annonces:</h3> -->
+            
+            <!-- <div class="annonces"> -->
+                <!-- <div class="card shadow-ms row"  *ngFor="let item of getArticlesPage() "> -->
+            
+                <div class="card" style="width: 18rem;" *ngFor="let item of getArticlesPage() ">
+                    <!-- <img src="https://img.freepik.com/photos-gratuite/portrait-jeune-femme-fond-rupture-dechiree-rose_155003-7011.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais" -->
+                        <!-- class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
+                            <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
+                            <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
+                            <div class="d-flex gap-5 justity-content-space-between">
+                                <button class="card-text btn btn-secondary" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal-liste" > Participants </button>
+                            
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"
+                                    (click)="chargerInfosAnnonce(item)">
+                                    Modifier
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
 
-    <div class="" *ngIf="listChoice">
-        <button type="button" class="btn btn-secondary" (click)="listeChoiceFunction()"> Corbeille </button>
-        <h4 class="fw-bold mt-5">Liste des annonces</h4>
-        <div class="annonces">
-            <div class="card shadow-lg row" *ngFor="let item of annonce">
-                <!-- <div class=" " style="width: 20px; height:20px ;">
-                        <img src="../../../assets/Image/sang.png" alt="">
-                    </div> -->
-                <article class="card">
+
+               
+                <!-- <article class="card">
                     <div class="temporary_text">
                         <img src="https://img.freepik.com/photos-premium/femme-afro-americaine-professionnelle-costume-affaires-pointant-joyeusement-vers-bas-vers-vide_116547-91719.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
                             alt="">
                     </div>
                     <div class="card_content">
-                        <span class="card_title">Annonce</span>
-                        <!-- <span class="card_subtitle">Thsi is a subtitle of this page. Let us see how it looks on the Web.</span> -->
+                        <span class="card_title">Annonce de don</span>
+                        
                         <div class="annonce">
                             <div class="card_description">
                                 <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
                                 <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
                                 <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
-                                <p class="card-text"> <strong class="text-black">Participant:</strong>  05</p>
                                 <div class="d-flex gap-5 justity-content-space-between">
-                                    <button class="btn btn-secondary" (click)="supprimerAnnonce(item.id)"> Supprimer</button>
+                                    <button class="card-text btn btn-secondary" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-liste"> Participants </button>
+                                    
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerInfosAnnonce(item)"> 
                                         Modifier
                                     </button>
@@ -175,35 +170,66 @@
 
                     </div>
                 </article>
-            </div>
+            </div> -->
         </div>
-    </div>
+        <!-- pour la pagination -->
+        <div class="d-flex justify-content-center my-5">
+            <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+                Précédent
+            </button>
+            <button class="btn btnColor ms-2" *ngFor="let page of pages" (click)="pageActuelle = page">
+                {{ page }}
+            </button>
+            <button class="btn btnColore ms-2" [disabled]="pageActuelle === totalPages"
+                (click)="pageActuelle = pageActuelle + 1">
+                Suivant
+            </button>
+        </div>
+    <!-- </div> -->
+</div>
 
-    <div class="container-corbeille" *ngIf="!listChoice">
-        <!-- Button trigger modal pour ajouter un annonce-->
-        <button type="button" class="btn btn-primary me-5" (click)="viderCorbeille()"> Vider la corbeille </button>
-        <button type="button" class="btn btn-secondary" (click)="listeChoiceFunction()"> Liste des annonces </button>
-        <h4 class="fw-bold mt-5">Liste des annonces de la corbeille</h4>
-        <!-- Liste des annonce  -->
-        <div class="liste-annonce mt-5" *ngFor=" let Annonce of filteredElement">
-            <div class="card mb-3">
-                <div class="row g-0" *ngFor="let item of annonce">
-                    <div class="col-md-6">
-                        <!-- <img [src]="" class="img-fluid rounded-start" alt="..."> -->
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <!-- <h5 class="card-title">Annonce</h5> -->
-                            <p class="card-text">Date: {{item.date}}</p>
-                            <p class="card-text">Lieu: {{item.lieu}}</p>
-                            <p class="card-text">Statut: {{item.statut}}</p>
-                            <button class="btn btn-primary me-5" (click)="restaurerAnnonce(annonce)"> Restaurer</button>
-                            <button class="btn btn-secondary" (click)="supprimerAnnonceDefinitif(annonce)"> Supprimer
-                                definitivement</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!------------------------------ Modal pour lister les participants ------------------------->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal-liste" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Les promesses de don</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Téléphone</th>
+                    <th scope="col">Adresse</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor="let item of donateurList" >
+                    <th scope="row">{{item.donateur.id}}</th>
+                    <th>{{item.donateur.name}}</th>
+                    <th>{{item.donateur.prenom}}</th>
+                    <th>{{item.donateur.email}}</th>
+                    <th>{{item.donateur.telephone}}</th>
+                    <th>{{item.donateur.adresse}}</th>
+                   
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
     </div>
+  </div>
 </div>
