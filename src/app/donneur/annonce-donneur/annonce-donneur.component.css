@@ -253,12 +253,13 @@ select {
 }
 
 .btnColore {
-    background-color: #FFA439;
+    background-color: #BA0D19;
     color: white;
+    justify-content: space-between;
 }
 
 .btnColor {
-    background-color: #0F2A3D;
+    background-color: black;
     color: white;
     font-weight: bold;
 }

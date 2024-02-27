@@ -24,7 +24,19 @@
                             </div>
                         </div>
                     </div>
-                   
+                    <!-- pour la pagination -->
+                    <div class="d-flex justify-content-center my-5">
+                        <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+                            Précédent
+                        </button>
+                        <button class="btn btnColor ms-2" *ngFor="let page of pages" (click)="pageActuelle = page">
+                            {{ page }}
+                        </button>
+                        <button class="btn btnColore ms-2" [disabled]="pageActuelle === totalPages"
+                            (click)="pageActuelle = pageActuelle + 1">
+                            Suivant
+                        </button>
+                    </div>
                 <!-- </div> -->
             </div>
         <!-- </div> -->

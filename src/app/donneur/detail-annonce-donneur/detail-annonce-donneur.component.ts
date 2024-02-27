@@ -56,48 +56,15 @@ export class DetailAnnonceDonneurComponent implements OnInit {
   }
 
     confirmerPromesse(idPromesse: any) {
-    console.warn(idPromesse);
-    this.annonceService.participerAnnonce(idPromesse).subscribe(
-      (response: any) => {
-        console.warn(response);
-        console.warn(response.details.promesse_don.id); //L'identifiant de la promesse qui a ete enregistré
-       
-        Swal.fire({
-          title: "Merci de vouloir faire ce don",
-          text: "Voulez-vous vraiment confirmer votre promesse de don",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Annuler",
-          confirmButtonText: "Confirmer"
-        }).then((result) => {
-          if (result.isConfirmed) {
-            let idDonAConf = response.details.promesse_don.id; 
-            this.annonceService.confirmer(idDonAConf).subscribe((response) => {
-              console.warn(response);
-              Swal.fire({
-                title: "👏",
-                text: "Participation confirmée avec succès, Merci d'etre un Heros❤",
-                icon: "success"
-              })
-            });
-          }
-        });
-      },
-      (erreur: any) => {
-        console.warn("L'erreur reçue");
-        console.warn(erreur);
-        Swal.fire({
-          title: "Impossible",
-          icon: "error",
-          text: erreur.error.message,
-        }
-
-        )
-        
-      }
-    )
+    this.annonceService.confirmer(idPromesse).subscribe((response) => {
+      console.warn(response);
+      this.getPromesseUser();
+      Swal.fire({
+        title: "👏",
+        text: "Participation confirmée avec succès, Merci d'etre un Heros❤",
+        icon: "success"
+      })
+    });
   }
 
    annonce: any[] = [];
