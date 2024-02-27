@@ -40,29 +40,63 @@ filteredElement: any;
   id: any = [];
   annonceList: any[] = [];
  
-  confirmerAnnonce(id: any) {
-    Swal.fire({
-      title: "Etes-vous sûr???",
-      text: "",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Oui!!!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.annonceService.confirmer(id).subscribe((response) => {
-          console.log(response);
-          // Après confirmation, mettez à jour la liste des participants
-          // this.getParticipants();
+  // Methode pour faire un don :
+  faireDon(idDon: any) {
+    console.warn(idDon);
+    
+    this.annonceService.participerAnnonce(idDon).subscribe(
+      (response: any) => {
+        console.warn(response);
+        console.warn(response.details.promesse_don.id); //L'identifiant de la promesse qui a ete enregistré
+        // Swal.fire({
+        //   title: "",
+        //   icon: "success",
+        //   text: response.message,
+        // })
+        Swal.fire({
+          title: "Merci de vous etes enregistré pour faire ce don",
+          text: "Veuillez confirmer votre promesse de don",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          cancelButtonText: "Annuler",
+          confirmButtonText: "Confirmer"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let idDonAConf = response.details.promesse_don.id; 
+            this.annonceService.confirmer(idDonAConf).subscribe((response) => {
+              console.warn(response);
+              Swal.fire({
+                title: "👏",
+                text: "Participation confirmée avec succès, Merci d'etre un Heros❤",
+                icon: "success"
+              })
+            });
+          }
         });
+      },
+      (erreur: any) => {
+        console.warn("L'erreur reçue");
+        console.warn(erreur);
+        Swal.fire({
+          title: "Impossible",
+          icon: "error",
+          text: erreur.error.message,
+        }
+
+        )
+        
       }
-    });
+    )
   }
 
+
+ 
+
   // Nouvelle méthode pour récupérer les participants
-  getParticipants(id: any) {
-    this.annonceService.getParticipants().subscribe(
+  getParticipants() {
+    this.annonceService.getParticipants(this.selectedAnnonce).subscribe(
       (response) => {
         console.log('Liste des participants :', response);
         // Mettez à jour votre variable de participants ici
@@ -73,12 +107,14 @@ filteredElement: any;
       }
     );
   }
+  selectedAnnonce(selectedAnnonce: any) {
+  }
   
 
   
 
     // Attribut pour la pagination
-   annonceParPage = 6; // Nombre d'annonce par page
+   annonceParPage = 3; // Nombre d'annonce par page
   pageActuelle = 1; // Page actuelle
   
   // Méthode pour déterminer les articles à afficher sur la page actuelle

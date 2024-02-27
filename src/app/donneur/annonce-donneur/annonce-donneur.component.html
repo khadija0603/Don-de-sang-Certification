@@ -1,69 +1,35 @@
 <div>
     <div class="container">
-        <div class="">
-            <div class="annonces">
-                <div class="card shadow-lg row" *ngFor="let item of getArticlesPage()">
-                  
-                    <article class="card">
-                        <div class="temporary_text">
-                            <img src="https://img.freepik.com/photos-premium/femme-afro-americaine-professionnelle-costume-affaires-pointant-joyeusement-vers-bas-vers-vide_116547-91719.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
-                                alt="">
-                        </div>
-                        <div class="card_content">
-                            <span class="card_title">Demande de don: </span>
-                            <div class="annonce">
-                                <div class="card_description">
+        <!-- <div class=""> -->
+            <h2 class="text-center"><strong>Annonces:</strong></h2>
+            <!-- <div class="annonces"> -->
+                <!-- <div class="card shadow-lg row" *ngFor="let item of getArticlesPage()"> -->
+                    
+                    <div class="annonces">
+                        <!-- <div class="card shadow-ms row"  *ngFor="let item of getArticlesPage() "> -->
+                        <div class="card" style="width: 18rem;" *ngFor="let item of getArticlesPage() ">
+                            <img src="https://img.freepik.com/photos-gratuite/portrait-jeune-femme-fond-rupture-dechiree-rose_155003-7011.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
+                                class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="card-text">
                                     <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
                                     <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
-                                    <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}}
-                                    </p>
-                                    <button type="button" class="btn btn-primary" (click)="confirmerAnnonce(item.id)">
-                                        Participer
-                                    </button>
+                                    <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
+                                    <div class="d-flex">
+                                        <button type="button" class="btn btn-danger " (click)="faireDon(item.id)">
+                                            Participer
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </article>
-                    <!-- pour la pagination -->
-                    <div class="d-flex justify-content-center my-5">
-                        <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
-                            Précédent
-                        </button>
-                        <button class="btn btnColor ms-2" *ngFor="let page of pages" (click)="pageActuelle = page">
-                            {{ page }}
-                        </button>
-                        <button class="btn btnColore ms-2" [disabled]="pageActuelle === totalPages"
-                            (click)="pageActuelle = pageActuelle + 1">
-                            Suivant
-                        </button>
                     </div>
-                </div>
+                   
+                <!-- </div> -->
             </div>
-        </div>
+        <!-- </div> -->
     </div>
-    <!-- ------Modal------ -->
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button> -->
-    <!-- Modal -->
-    <div class="modal fade test" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Voulez-vous faire un don pour cette annonce
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-primary">confirmer</button>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
     <!--  afficher les participants -->
     <div *ngIf="listeParticipants && listeParticipants.length > 0">

@@ -9,11 +9,31 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./profil-donneur.component.css']
 })
 export class ProfilDonneurComponent implements OnInit{
-  userProfile: any;
-  constructor(private profilService: ProfilService, private http: HttpClient) {}
-
+  name: string = '';
+  email: string = '';
+  telephone: string = '';
+  image: string = '';
+  adresse: string = '';
+  prenom: string = '';
+  cni: string = '';
+  groupe_sanguin: string = '';
+  sexe: string = '';
   ngOnInit(): void {
-    this.userProfile = this.profilService.getUserProfile();
+    const userString = JSON.parse(localStorage.getItem('userOnline')||'[]');
+    console.log('le user',userString.donateur);
+    if (userString) {
+      const user = userString;
+      this.name = userString.donateur.name;
+      this.email = userString.donateur.email;
+      this. telephone = userString.donateur.telephone;
+      // this. image = userString.donateur.image;
+      this. adresse = userString.donateur.adresse;
+      this. cni = userString.donateur.cni;
+      this. prenom = userString.donateur.prenom;
+      this. groupe_sanguin = userString.donateur.groupe_sanguin;
+      this. sexe = userString.donateur.sexe;
+    }
+    console.log(this.name);
   }
 }
 

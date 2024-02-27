@@ -24,8 +24,8 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
     lieu: "",
     stat: ""
   }
-
-  selectedAnnonce: any = [];
+  annonceChoisi: any;
+  selectedAnnonce: any ;
   annonceList: any[] = [];
   annonceData: any = {
   };
@@ -33,7 +33,7 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   ngOnInit(): void {
     this.loadAnnonces();
-    this.getParticipants();
+   
     // // On récupère le tableau d'objets dans le localstorage
     // this.tabUsers = JSON.parse(localStorage.getItem("Users") || "[]");
     // // On récupère l'objet qui s'est connecté 
@@ -74,7 +74,6 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
       (elt: any) => (elt?.dateAnnonce.toLowerCase().includes(this.filterValue.toLowerCase())) || elt?.jourAnnonce.toLowerCase().includes(this.filterValue.toLowerCase())
     );
   }
-
   // Méthode pour afficher un sweetalert2 apres vérification 
   verifierChamps(title: any, text: any, icon: any) {
     Swal.fire({
@@ -83,14 +82,12 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
       icon: icon
     });
   }
-
   // Methode pour vider les champs 
   viderChapmsAnnonce() {
     this.date = "",
       this.lieu = "",
       this.statut = ""
   }
-
   // Methode ajout annonce
   ajouterAnnonce() {
     const heurePattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
@@ -183,7 +180,6 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
         console.error('Erreur lors de l\'ajout de l\'annonce :', error);
       }
     );
-  
   }
 
   updateAnnonce() {
@@ -207,6 +203,7 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
     this.lieu = annonce.lieu;
     this.statut = annonce.statut;
     console.log('changer', this.date, this.lieu, this.statut);
+    console.warn(this.selectedAnnonce)
   }
 
   deleteAnnonce(id: number): void {
@@ -234,23 +231,25 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   }
 
   // Nouvelle méthode pour récupérer les participants
-  getParticipants() {
-     this.annonceService.getParticipants().subscribe(
+  getParticipants(annonce: any) {
+    this.annonceChoisi = annonce.id;
+    console.warn( 'hdv', this.selectedAnnonce)
+     this.annonceService.getParticipants(this.annonceChoisi).subscribe(
        (response) => {
-         console.error('Liste des participants :', response);
+         console.warn("La rep du back");
+         console.warn(response);
+         console.warn('Liste des participants :', response);
          this.donateurList = response;
-         console.warn("participants", this.donateurList);
-         
-        
+         console.warn("participants vvvvvvvv", this.donateurList);
       },
       (error) => {
-        // Traiter l'erreur
+       console.warn('Erreur de récupération des promesses', error);
       }
      );
   }
 
   // Attribut pour la pagination
-  annonceParPage = 6; // Nombre d'annonce par page
+  annonceParPage = 3; // Nombre d'annonce par page
   pageActuelle = 1; // Page actuelle
   // Méthode pour déterminer les articles à afficher sur la page actuelle
     getArticlesPage(): any[] {

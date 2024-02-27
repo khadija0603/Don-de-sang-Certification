@@ -17,7 +17,14 @@ chargerInfosAnnonce(arg0: any[]) {
   listeAnnonces: any;
   updateAnnonce() {
   }
+    [x: string]: any;
+  annonceChoisi: any;
+  selectedAnnonce: any ;
+  annonceData: any = {
+  };
   // annonce: any;
+  donateurList: any=[];
+  item: any;
   annonce: any[] = [];
   date: string = "";
   jour: string = "";
@@ -307,7 +314,7 @@ chargerInfosAnnonce(arg0: any[]) {
   }
   
     // Attribut pour la pagination
-   annonceParPage = 6; // Nombre d'annonce par page
+   annonceParPage = 3; // Nombre d'annonce par page
   pageActuelle = 1; // Page actuelle
   
   // Méthode pour déterminer les articles à afficher sur la page actuelle
@@ -327,6 +334,21 @@ chargerInfosAnnonce(arg0: any[]) {
   // Méthode pour obtenir le nombre total de pages
   get totalPages(): number {
     return Math.ceil(this.annonce.length / this.  annonceParPage);
+  }
+
+   getParticipants(annonce: any) {
+    this.annonceChoisi = annonce.id;
+    console.warn( 'hdv', this.selectedAnnonce)
+     this.annonceService.getParticipants(this.annonceChoisi).subscribe(
+       (response) => {
+         console.warn('Liste des participants :', response);
+         this.donateurList = response;
+         console.warn("participants vvvvvvvv", this.donateurList);
+      },
+      (error) => {
+       console.warn('Erreur de récupération des promesses', error);
+      }
+     );
   }
 }
 

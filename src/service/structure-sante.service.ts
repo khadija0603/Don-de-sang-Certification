@@ -40,10 +40,10 @@ export class StructureSanteService {
         headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
         }): of(null);
  }
-  bloquerStructure(id: number): Observable<any> {
+  bloquerStructure(id: any): Observable<any> {
     const accessToken = localStorage.getItem('token');
     return accessToken
-      ? this.http.put<any>(`${url}/bloquerStructure/${id}`,{
+      ? this.http.put<any>(`${url}/bloquerStructure/${id}`, {},{
       headers: new HttpHeaders({ Authorization : `Bearer ${accessToken}`})
     }) : of(null)
 

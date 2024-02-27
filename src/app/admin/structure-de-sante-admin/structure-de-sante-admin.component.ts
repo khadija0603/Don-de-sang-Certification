@@ -135,9 +135,6 @@ onChangeFile() {
                 this.viderChamp();
                 this.getAllStructure();
                 this.ngOnInit();
-                // const modalElement: HTMLElement | null =
-                //   document.getElementById('modifie');
-                // modalElement!.style.display = 'none';
               } else {
                 this.structureService.verifierChamp(
                   '!!!!',
@@ -145,10 +142,8 @@ onChangeFile() {
                   'success'
                 );
               }
-              // this.getAllAnnonce();
             });
             this.ngOnInit();
-            // window.location.reload();
       }
       console.log('je suis data', formData);
     });
@@ -157,47 +152,15 @@ onChangeFile() {
   }
   getAllStructure() {}
   viderChamp() { }
-  // bloquerStructure(id: number): void{
-  //   this.structureService.bloquerStructure(id).subscribe((respons) => {
-  //     console.log("bloquer  naa", respons);
-  //   })
-  // }
-
-//   bloquerStructure(id: number): void {
-//   this.structureService.bloquerStructure(id).subscribe(
-//     (response: any) => {
-//       console.log("bloquer naa", response);
-//       // Mettez à jour la propriété isBlocked si nécessaire
-
-//       // Afficher un message de succès
-//       Swal.fire({
-//         icon: 'success',
-//         title: 'Succès',
-//         text: 'La structure a été bloquée avec succès.',
-//       });
-//     },
-//     (error: any) => {
-//       // Gérer les erreurs du service ici
-//       console.error('Erreur lors du blocage de la structure :', error);
-//       Swal.fire({
-//         icon: 'error',
-//         title: 'Erreur',
-//         text: 'Une erreur s\'est produite lors du blocage de la structure.',
-//       });
-//     }
-//   );
-// }
-
-  
-  bloquerStructure(id: number): void {
+  bloquerStructure(id: any): void {
   this.structureService.bloquerStructure(id).subscribe(
     (response: any) => {
       console.log("bloquer naa", response);
 
       // Mettez à jour la propriété isBlocked de la structure
       const structureToUpdate = this.structureList.find(item => item.id === id);
-      if (structureToUpdate) {
-        structureToUpdate.isBlocked = !structureToUpdate.isBlocked; // Inverser l'état de blocage
+      if (structureToUpdate.is_blocked==1) {
+        structureToUpdate.isBlocked = true; // Inverser l'état de blocage
       }
 
       // Afficher un message de succès
@@ -222,7 +185,7 @@ onChangeFile() {
   
 
     // Attribut pour la pagination
-   structureParPage = 6; // Nombre d'structure par page
+   structureParPage = 3; // Nombre d'structure par page
   pageActuelle = 1; // Page actuelle
   
   // Méthode pour déterminer les articles à afficher sur la page actuelle

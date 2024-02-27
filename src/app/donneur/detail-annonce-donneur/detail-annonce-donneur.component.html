@@ -1,1 +1,57 @@
-<p>detail-annonce-donneur works!</p>
+<div class="container mt-4">
+    <!-- les boutons  -->
+    <button class="btn btn-danger" *ngIf="isPromesseAttente" (click)="showPromesseConfirme()">Mes promesse confirmées</button>
+    <button class="btn bg-danger" *ngIf="isPromesseConfirme" (click)="showPromesseAttente()">Mes promesse en attentes</button>
+   
+    <!-- Mes promesses confirmés  -->
+    <div class="promesseConfirme "  *ngIf="isPromesseConfirme">
+       
+        <div class=" annonces mt-4" *ngIf="tabPromesseConfirme.length">
+            <div class="card  " *ngFor="let promesse of tabPromesseConfirme">
+                <img src="https://img.freepik.com/photos-gratuite/portrait-jeune-femme-fond-rupture-dechiree-rose_155003-7011.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
+                    class="card-img-top" alt="...">
+                <div class="card-body ">
+                    <p class="card-text"><span>Campagne prévu le: </span>{{promesse.campagne_collecte.date}}</p>
+                    <p class="card-text"><span>Lieu de la campage: </span>{{promesse.campagne_collecte.lieu}}</p>
+                    <p class="card-text"><span>Le statut: </span>{{promesse.campagne_collecte.statut}}</p>
+                </div>
+            </div>
+        </div>
+        <p *ngIf="!tabPromesseConfirme.length">Aucune promesse confirmées/p>
+    </div>
+
+    <!-- Mes promesses en attentes  -->
+    <div class="promesseConfirme" *ngIf="isPromesseAttente">
+        <div class="annonces mt-4" *ngIf="tabPromesseAttente.length">
+            <div class="card-Attente" *ngFor="let promesse of tabPromesseAttente">
+                <img src="https://img.freepik.com/photos-gratuite/portrait-jeune-femme-fond-rupture-dechiree-rose_155003-7011.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p><span>Campagne prévu le: </span>{{promesse.campagne_collecte.date}}</p>
+                    <p><span>Lieu de la campage: </span>{{promesse.campagne_collecte.lieu}}</p>
+                    <p><span>Le statut: </span>{{promesse.campagne_collecte.statut}}</p>
+                </div>
+                <div class="bouton-attente">
+                    <button class="btn btn-danger" (click)="confirmerPromesse(promesse.idPromesse)">Confirmer</button>
+                    <button class="btn btn-danger">Annuler</button>
+                </div>
+            </div>
+        </div>
+        <p *ngIf="!tabPromesseAttente.length">Aucune promesse en attentes</p>
+    </div>
+
+    <!-- pour la pagination -->
+    <div class="d-flex justify-content-center my-5">
+        <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
+            Précédent
+        </button>
+        <button class="btn btnColor ms-2" *ngFor="let page of pages" (click)="pageActuelle = page">
+            {{ page }}
+        </button>
+        <button class="btn btnColore ms-2" [disabled]="pageActuelle === totalPages"
+            (click)="pageActuelle = pageActuelle + 1">
+            Suivant
+        </button>
+    </div>
+</div>
+

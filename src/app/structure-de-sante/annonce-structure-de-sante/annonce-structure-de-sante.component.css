@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
-    margin-left: 150px;
+    margin-left: 50px;
 }
 
 .logo {
@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    padding: 50px 40px 20px 40px;
+    /* padding: 50px 40px 20px 40px; */
     background-color: #ffffff;
     border-radius: 11px;
     border: 1px #BA0D19;
@@ -536,10 +536,10 @@ body.dark .switch:before {
 .card {
     position: relative;
     width: 250px;
-    height: 250px;
-    color: #2e2d31;
-    /* background: #131313; */
+    height: 400px;
+    color: black;
     overflow: hidden;
+    box-shadow: 2px 0px  0px 2px #BA0D19;
     border-radius: 20px;
 }
 
@@ -609,7 +609,7 @@ body.dark .switch:before {
 }
 .annonce{
     /* background-color: red; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 .annonces{
     display: grid;
@@ -981,7 +981,7 @@ body.dark .switch:before {
             align-items: center;
             justify-content: center;
             gap: 15px;
-            padding: 50px 40px 20px 40px;
+            /* padding: 50px 40px 20px 40px; */
             background-color: #ffffff;
             border-radius: 11px;
             border: 1px #BA0D19;

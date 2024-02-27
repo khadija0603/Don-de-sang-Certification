@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { AnnonceDonneurComponent } from '../donneur/annonce-donneur/annonce-donneur.component';
 import { ProfilDonneurComponent } from './profil-donneur/profil-donneur.component';
+import { DetailAnnonceDonneurComponent } from './detail-annonce-donneur/detail-annonce-donneur.component';
 
 const routes: Routes = [
   
   {path: '', component: MainComponent, children: [
     {path:'annonce-donneur', component: AnnonceDonneurComponent},
     { path: 'profil-donneur', component: ProfilDonneurComponent },
+    { path: 'detail-annonce-donneur', component: DetailAnnonceDonneurComponent },
     {path:'', redirectTo: 'annonce-donneur', pathMatch: 'full'},
   ]
 

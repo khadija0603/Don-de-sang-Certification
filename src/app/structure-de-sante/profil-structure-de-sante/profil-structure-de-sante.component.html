@@ -2,27 +2,63 @@
     <div class="dash-content">
         <div class="overview">
         </div>
-
         <div class="test"></div>
         <section id="section">
-            <div class="container conteneur mb-0" width="100" height="70">
-                <h4 class="text-center titre py-0 mt-2 pt-2 mb-0">Information du profil</h4>
+            <div class="container conteneur " width="100" height="70">
+                <h4 class="text-center titre py-0 mt-2 pt-2 mb-0"><strong>Information du profil</strong></h4>
                 <div class="contain-contenu mt-0 mb-1 pt-2">
-                    <div class="col-image">
+                    <div class="col-image mx-4">
                         <div class="cercle-image">
-                            <img src="https://img.freepik.com/photos-gratuite/incroyable-fille-europeenne-beret-rouge-rire-jeune-femme-francaise-positive-faisant-selfie_197531-11772.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=sph"
-                                alt="" width="100" height="90">
+                            <img src="https://img.freepik.com/vecteurs-libre/gens-qui-marchent-assis-au-batiment-hopital-exterieur-verre-clinique-ville-illustration-vectorielle-plane-pour-aide-medicale-urgence-architecture-concept-soins-sante_74855-10130.jpg?t=st=1708682075~exp=1708685675~hmac=055f7b42eefe4cd868f7710929e7d189a91f9840de5e26bf7755025f2c09e6ff&w=740"
+                                alt="" width="70" height="70">
                         </div>
                     </div>
                     <div class="col-info mt-5 ">
-                        <p class="text-black">Nom :{{name}}</p>
-                        <p class="text-black">Email :{{email}}</p>
-                        <p class="text-black">Telephone :{{telephone}}</p>
+                        <p class="text-black"><strong class="text-danger">Nom</strong>:  {{name}}</p>
+                        <p class="text-black"><strong class="text-danger">Email</strong> :  {{email}}</p>
+                        <p class="text-black"><strong class="text-danger">Telephone</strong>:  {{telephone}}</p>
+                        <div class="mt-5">
+                            <button class="btn btn-profil " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)=" chargerInfoStructure()">Modifier</button>
+                        </div>
                     </div>
-                </div>
-                <div class="contain-button">
-                    <button class="btn btn-profil fw-bold mb-5" routerLink="/modification-profil">Modifier</button>
                 </div>
             </div>
         </section>
+
+                     <!-- ----------------- MODAL POUR MODIFIER LE PROFIL --------------- -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal-modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="exampleModalLabel">Modifier structure</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        <div class="modal-body ">
+                          
+                            <div class="input_container">
+                                <label class="input_label" for="name">Nom:</label>
+                                <input placeholder="nom" type="text" name="name" class="form-control" id="name" [(ngModel)]="nameS">
+                            </div>
+                            <div class="input_container">
+                                <label class="input_label" for="email">Email:</label>
+                                <input placeholder="email" title="Inpit title" name="email" type="email" class="form-control" id="email" [(ngModel)]="emailS" />
+                            </div>
+
+                            <div class="input_container">
+                                <label class="input_label" for="telephone">Telephone:</label>
+                                <input placeholder="telephone" title="Inpit title" name="telephone" type="telephone" class="form-control" id="telephone" [(ngModel)]="telephoneS" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)=" updateStructure()">
+                            Modifier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
 

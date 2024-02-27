@@ -14,22 +14,22 @@ export class DetailAnnonceStructureSanteComponent implements OnInit {
    
  }
 
- participer(annonce: any): void {
-    // Appeler votre service pour ajouter l'utilisateur à la liste des participants
-    this.annonceService.participerAnnonce().subscribe(
-      (response: any) => {
-        console.log('Participation réussie :', response);
+//  participer(annonce: any): void {
+//     // Appeler votre service pour ajouter l'utilisateur à la liste des participants
+//     this.annonceService.participerAnnonce().subscribe(
+//       (response: any) => {
+//         console.log('Participation réussie :', response);
 
-        // Ajouter l'utilisateur à la liste locale des participants (si nécessaire)
-        annonce.participants.push(response.data);
-        alert('Vous avez participé avec succès à cette annonce!');
-      },
-      (error: any) => {
-        console.error('Erreur lors de la participation à l\'annonce :', error);
-        alert('Erreur lors de la participation à l\'annonce.');
-      }
-    );
-  }
+//         // Ajouter l'utilisateur à la liste locale des participants (si nécessaire)
+//         annonce.participants.push(response.data);
+//         alert('Vous avez participé avec succès à cette annonce!');
+//       },
+//       (error: any) => {
+//         console.error('Erreur lors de la participation à l\'annonce :', error);
+//         alert('Erreur lors de la participation à l\'annonce.');
+//       }
+//     );
+//   }
 
 
 }

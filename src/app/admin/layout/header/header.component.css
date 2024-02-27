@@ -261,6 +261,7 @@ nav.close~.dashboard {
 }
 
 .dashboard .top {
+   
     position: fixed;
     top: 0;
     left: 250px;
@@ -275,6 +276,7 @@ nav.close~.dashboard {
 }
 
 nav.close~.dashboard .top {
+    position: fixed;
     left: 73px;
     width: calc(100% - 73px);
 }
@@ -294,7 +296,7 @@ nav.close~.dashboard .top {
     margin: 0 30px;
 } */
 
-/* .top .search-box input {
+.top .search-box input {
     position: absolute;
     border: 1px solid grey;
     background-color: black;
@@ -308,7 +310,7 @@ nav.close~.dashboard .top {
     outline: none;
 } */
 
-/* .top .search-box i {
+/* /* .top .search-box i {
     position: absolute;
     left: 15px;
     font-size: 22px;

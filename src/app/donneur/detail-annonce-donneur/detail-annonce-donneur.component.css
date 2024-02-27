@@ -1,0 +1,42 @@
+.card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    color: black;
+    overflow: hidden;
+    box-shadow: 2px 0px 0px 2px #BA0D19;
+    border-radius: 20px;
+}
+.card-Attente {
+    position: relative;
+    width: 300px;
+    height: 450px;
+    color: black;
+    overflow: hidden;
+    box-shadow: 2px 0px 0px 2px #BA0D19;
+    border-radius: 20px;
+}
+
+.annonces {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 6px;
+}
+.bouton-attente{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    margin-top: -10px;
+    
+}
+
+.btnColore {
+    background-color: #BA0D19;
+    color: white;
+}
+
+.btnColor {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+}

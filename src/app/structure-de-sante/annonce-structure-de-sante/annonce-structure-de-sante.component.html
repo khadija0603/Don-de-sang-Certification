@@ -1,26 +1,23 @@
-<!-- Modal ajout struture de sante -->
+<!---------------------------------- Modal ajouter struture de sante ---------------------------->
 <div class="bouton d-flex">
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Ajouter annonce
     </button>
-    <!-- <button type="button" class="btn btn-danger" (click)="listeChoiceFunction()"> Corbeille </button> -->
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content modal-xl ">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content modal-lg ">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="connection">
-                <div class="logo ">
+                <div class="logo  ">
                     <img src="../../../assets/Image/logo-offi.png" alt="">
                 </div>
                 <form class="form_container"> -
-                    <!-- <div class="logo_container"></div> -->
                     <div class="title_container">
                         <p class="title">Ajouter annonce</p>
-                        <!-- <span class="subtitle">Get started with our app, just create an account and enjoy the experience.</span> -->
                     </div>
                     <br>
                     <div class="input_container">
@@ -30,21 +27,26 @@
                     </div>
                     <div class="input_container">
                         <label class="input_label" for="lieu">Lieu:</label>
-                        <svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg" class="icon">
+                        <!-- <svg fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg" class="icon">
                             <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#141B34"
                                 d="M7 8.5L9.94202 10.2394C11.6572 11.2535 12.3428 11.2535 14.058 10.2394L17 8.5">
                             </path>
                             <path stroke-linejoin="round" stroke-width="1.5" stroke="#141B34"
                                 d="M2.01577 13.4756C2.08114 16.5412 2.11383 18.0739 3.24496 19.2094C4.37608 20.3448 5.95033 20.3843 9.09883 20.4634C11.0393 20.5122 12.9607 20.5122 14.9012 20.4634C18.0497 20.3843 19.6239 20.3448 20.7551 19.2094C21.8862 18.0739 21.9189 16.5412 21.9842 13.4756C22.0053 12.4899 22.0053 11.5101 21.9842 10.5244C21.9189 7.45886 21.8862 5.92609 20.7551 4.79066C19.6239 3.65523 18.0497 3.61568 14.9012 3.53657C12.9607 3.48781 11.0393 3.48781 9.09882 3.53656C5.95033 3.61566 4.37608 3.65521 3.24495 4.79065C2.11382 5.92608 2.08114 7.45885 2.01576 10.5244C1.99474 11.5101 1.99475 12.4899 2.01577 13.4756Z">
                             </path>
-                        </svg>
+                        </svg> -->
                         <input placeholder="lieu" title="Inpit title" name="lieu" type="lieu" class="input_field" id="lieu"
                             [(ngModel)]="lieu" />
                     </div>
                    <div class="input_container">
                     <label class="input_label" for="statut">Statut:</label>
-                    <input placeholder="statut" title="Inpit title" name="statut" type="statut" class="input_field" id="statut"
-                        [(ngModel)]="statut" />
+                    <!-- <input placeholder="statut" title="Inpit title" name="statut" type="statut" class="input_field" id="statut"
+                        [(ngModel)]="statut" /> -->
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected></option>
+                            <option value="1">ouverte</option>
+                            <option value="2">complete</option>
+                        </select>
                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="addAnnonce()"> Ajouter </button>
@@ -54,22 +56,20 @@
         </div>
     </div>
 </div>
-<!-- Modal pour modifier -->
+
+<!------------------------------------- MODAL POUR MODIFIER ------------------------------------->
+
 <div class="modal fade" id="exampleModal-modifier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content  ">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="connection">
-                    <!-- <div class="logo ">
-                        <img src="../../../assets/Image/logo-offi.png" alt="" routerLink="/accueil">
-                    </div> -->
                     <form class="form_container">
                         <div class="title_container">
-                            <h5 class="title">Modifier annonce</h5>
+                            <h6 class="title">Modifier annonce</h6>
                         </div>
                         <div class="input_container">
                             <label class="input_label" for="date">Date:</label>
@@ -78,15 +78,7 @@
                         </div>
                         <div class="input_container">
                             <label class="input_label" for="lieu">Lieu:</label>
-                            <svg fill="none" viewBox="0 0 24 24" height="24" width="24"
-                                xmlns="http://www.w3.org/2000/svg" class="icon">
-                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#141B34"
-                                    d="M7 8.5L9.94202 10.2394C11.6572 11.2535 12.3428 11.2535 14.058 10.2394L17 8.5">
-                                </path>
-                                <path stroke-linejoin="round" stroke-width="1.5" stroke="#141B34"
-                                    d="M2.01577 13.4756C2.08114 16.5412 2.11383 18.0739 3.24496 19.2094C4.37608 20.3448 5.95033 20.3843 9.09883 20.4634C11.0393 20.5122 12.9607 20.5122 14.9012 20.4634C18.0497 20.3843 19.6239 20.3448 20.7551 19.2094C21.8862 18.0739 21.9189 16.5412 21.9842 13.4756C22.0053 12.4899 22.0053 11.5101 21.9842 10.5244C21.9189 7.45886 21.8862 5.92609 20.7551 4.79066C19.6239 3.65523 18.0497 3.61568 14.9012 3.53657C12.9607 3.48781 11.0393 3.48781 9.09882 3.53656C5.95033 3.61566 4.37608 3.65521 3.24495 4.79065C2.11382 5.92608 2.08114 7.45885 2.01576 10.5244C1.99474 11.5101 1.99475 12.4899 2.01577 13.4756Z">
-                                </path>
-                            </svg>
+                           
                             <input placeholder="lieu" title="Inpit title" name="lieu" type="lieu"
                                 class="input_field" id="lieu" [(ngModel)]="lieu" />
                         </div>
@@ -96,82 +88,53 @@
                                 class="input_field" id="statut" [(ngModel)]="statut" />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" (click)=" updateAnnonce()"> 
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)=" updateAnnonce()"> 
                                 Modifier
                             </button>
                         </div>
                     </form>
-                </div>
-            </div>
+               </div>
         </div>
     </div>
 </div>
 <div >
 
-<!-- Lister les annonces -->
+   <!---------------------------------- LISTER LES ANNONCES ----------------------------------->
 
 <div class="container">
     <!-- <div class="" > -->
-        <h2 class="fw-bold mt-5 text-center" ><strong>Liste des annonces</strong></h2>
-        <div class="annonces" *ngFor="let item of getArticlesPage() ">
-            <!-- <div class="card shadow-lg row" *ngFor="let item of getArticlesPage()"><h3>Annonces:</h3> -->
-            
-            <!-- <div class="annonces"> -->
-                <!-- <div class="card shadow-ms row"  *ngFor="let item of getArticlesPage() "> -->
-            
-                <div class="card" style="width: 18rem;" *ngFor="let item of getArticlesPage() ">
-                    <!-- <img src="https://img.freepik.com/photos-gratuite/portrait-jeune-femme-fond-rupture-dechiree-rose_155003-7011.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais" -->
-                        <!-- class="card-img-top" alt="..."> -->
-                    <div class="card-body">
-                        <div class="card-text">
-                            <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
-                            <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
-                            <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
-                            <div class="d-flex gap-5 justity-content-space-between">
-                                <button class="card-text btn btn-secondary" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal-liste" > Participants </button>
-                            
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"
-                                    (click)="chargerInfosAnnonce(item)">
-                                    Modifier
-                                </button>
-                            </div>
+        <h2 class="text-center"><strong>Annonces:</strong></h2>
+        
+        <div class="annonces ">
+            <!-- <div class="card shadow-ms row"  *ngFor="let item of getArticlesPage() "> -->
+            <div class="card" style="width: 18rem;" *ngFor="let item of getArticlesPage() ">
+                <img src="https://img.freepik.com/photos-gratuite/portrait-jeune-femme-fond-rupture-dechiree-rose_155003-7011.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="card-text">
+                        <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
+                        <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
+                        <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
+                        <div class="d-flex">
+                            <button class="card-text btn  " type="button" class="btn btn-white " data-bs-toggle="modal"
+                                data-bs-target="#exampleModal-liste"  (click)="getParticipants(item)"><i class="bi bi-card-list"  style="color: #BA0D19;"></i>
+                            </button>
+                            <button class="btn btn-white mx-4" data-bs-toggle="modal" (click)="deleteAnnonce(item)">
+                                <i class="bi bi-trash3-fill" style="color: #BA0D19;"></i>
+                            </button>
+                            <button class="btn btn-white mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal-modifier"
+                                (click)="chargerInfosAnnonce(item)">
+                            <i class="bi bi-pencil-square" style="color: #BA0D19;"></i>
+                            </button>
+                            <button class="btn btn-white mx-3 " data-bs-toggle="modal" data-bs-target="#exampleModal-delete" (click)="chargerInfosAnnonce(item)">
+                            <i class="bi bi-x-octagon-fill" style="color: #BA0D19;"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            <!-- </div> -->
-
-
-               
-                <!-- <article class="card">
-                    <div class="temporary_text">
-                        <img src="https://img.freepik.com/photos-premium/femme-afro-americaine-professionnelle-costume-affaires-pointant-joyeusement-vers-bas-vers-vide_116547-91719.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=ais"
-                            alt="">
-                    </div>
-                    <div class="card_content">
-                        <span class="card_title">Annonce de don</span>
-                        
-                        <div class="annonce">
-                            <div class="card_description">
-                                <p class="card-text"> <strong class="text-black">DATE:</strong> {{item.date}} </p>
-                                <p class="card-text"> <strong class="text-black">LIEU:</strong> {{item.lieu}} </p>
-                                <p class="card-text"> <strong class="text-black">STATUT:</strong> {{item.statut}} </p>
-                                <div class="d-flex gap-5 justity-content-space-between">
-                                    <button class="card-text btn btn-secondary" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-liste"> Participants </button>
-                                    
-                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal-modifier" (click)="chargerInfosAnnonce(item)"> 
-                                        Modifier
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                </article>
-            </div> -->
+            </div>
         </div>
+     
         <!-- pour la pagination -->
         <div class="d-flex justify-content-center my-5">
             <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
@@ -188,11 +151,8 @@
     <!-- </div> -->
 </div>
 
-<!------------------------------ Modal pour lister les participants ------------------------->
-<!-- Button trigger modal -->
+    <!------------------------------  MODAL POUR LISTE DES PROMESSES  ------------------------->
 
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal-liste" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
     <div class="modal-content">
@@ -215,12 +175,12 @@
             </thead>
             <tbody >
                 <tr *ngFor="let item of donateurList" >
-                    <th scope="row">{{item.donateur.id}}</th>
-                    <th>{{item.donateur.name}}</th>
-                    <th>{{item.donateur.prenom}}</th>
-                    <th>{{item.donateur.email}}</th>
-                    <th>{{item.donateur.telephone}}</th>
-                    <th>{{item.donateur.adresse}}</th>
+                    <th scope="row">{{item.id}}</th>
+                    <th>{{item.name}}</th>
+                    <th>{{item.prenom}}</th>
+                    <th>{{item.email}}</th>
+                    <th>{{item.telephone}}</th>
+                    <th>{{item.adresse}}</th>
                    
                 </tr>
             </tbody>
