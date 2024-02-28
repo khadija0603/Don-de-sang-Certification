@@ -15,6 +15,7 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   item: any;
   constructor(private annonceService: AnnonceService, private authservice: AuthServiceService, private http: HttpClient, private route: Router) { }
   [x: string]: any;
+   tabPromesseAnnuler: any[] = []
   annonce: any[] = [];
   date: string = "";
   lieu: string = ""; 
@@ -34,21 +35,6 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   ngOnInit(): void {
     this.loadAnnonces();
    
-    // // On récupère le tableau d'objets dans le localstorage
-    // this.tabUsers = JSON.parse(localStorage.getItem("Users") || "[]");
-    // // On récupère l'objet qui s'est connecté 
-    // this.userConnect = this.tabUsers.find((element: any) => element.idUser == this['idUserConnect']);
-    // console.log(this.userConnect);
-    // //  alert('test');
-    //  this.annonceService.getParticipants().subscribe(
-    //    (response) => {
-    //     //  alert('test1');
-         
-    //     console.error('Liste des participants :', response);
-        
-    //    })
-    
-  
     
   }
 
@@ -147,6 +133,8 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   }
 
   // lister annonces
+  // variable pour stocker annonce actif
+  annonceValid: any;
   loadAnnonces(): void {
        this.annonceService.getAnnonces().subscribe(
       (response) => {
@@ -154,7 +142,11 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
         // Vérifiez si response.data est un tableau
         // if (Array.isArray(response.data.data)) {
         this.annonce = response.data;
-        console.log('la liste des annonces', this.annonce);
+           console.log('la liste des annonces', this.annonce);
+           this.annonceValid = this.annonce.filter((element: { is_deleted: number }) =>
+             element.is_deleted == 0
+             
+           )
         // } else {
         // }
       },
@@ -163,6 +155,13 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
       }
     );
   }
+
+  // methode pour cloture annonce
+  cloturerAnnone(id : any): void{
+    this.annonceService.closeAnnonce(id).subscribe((Response) => {
+       console.warn("voir cloture", Response);
+     })
+   }
   
   addAnnonce(): void {
     this.newAnnonce = {
@@ -206,7 +205,9 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
     console.warn(this.selectedAnnonce)
   }
 
-  deleteAnnonce(id: number): void {
+
+
+  deleteAnnonce(id: any): void {
     this.annonceService.deleteAnnonce(id).subscribe(
       (response: any) => {
         console.log('Annonce supprimée avec succès :', response);
@@ -255,12 +256,12 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
     getArticlesPage(): any[] {
       const indexDebut = (this.pageActuelle - 1) * this.annonceParPage;
       const indexFin = indexDebut + this.annonceParPage;
-      return this.annonce.slice(indexDebut, indexFin);
+      return this.annonceValid.slice(indexDebut, indexFin);
     }
   
 // Méthode pour générer la liste des pages
   get pages(): number[] {
-    const totalPages = Math.ceil(this.annonce.length / this.  annonceParPage);
+    const totalPages = Math.ceil(this.annonceValid.length / this.  annonceParPage);
     return Array(totalPages)
       .fill(0)
       .map((_, index) => index + 1);
@@ -268,7 +269,7 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
 
   // Méthode pour obtenir le nombre total de pages
   get totalPages(): number {
-    return Math.ceil(this.annonce.length / this.  annonceParPage);
+    return Math.ceil(this.annonceValid.length / this.  annonceParPage);
   }
 
 }

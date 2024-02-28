@@ -53,6 +53,18 @@ export class AnnonceService {
   
   }
 
+   // Supprimer une annonce
+  // Dans votre service
+  deleteAnnonce(id: number): Observable<any> {
+    const accessToken = localStorage.getItem('token');
+    const userOnline = JSON.parse(localStorage.getItem('userOnline') || '{}');
+    const token = userOnline.token;
+    
+    return token
+      ? this.http.delete<any>(`${url}/supprimerAnnonce/${id}`, {headers: new HttpHeaders({ Authorization: `Bearer ${token}` }),})
+      : of(null);
+  }
+
   // Recuperer la liste des participants
   getParticipants(id:any): Observable<any> {
     // Ajoutez le jeton d'authentification à l'en-tête
@@ -103,16 +115,7 @@ export class AnnonceService {
     return this.http.get<any>(`${this.apiUrl}/listeAnnonces`, { headers });
   }
 
-  // Mettre à jour une annonce
-  // updateAnnonce(id: number, annonce : any): Observable<any> {
-   
-  //   const accessToken = localStorage.getItem('token');
-  //   return accessToken
-  //     ? this.http.post<any>(`${url}/modifierAnnonce/${id}`, annonce,{
-  //         headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
-  //       }): of(null);
   
-  // }
 
   updateAnnonce(id: number, annonce: any): Observable<any> {
     const userOnline = localStorage.getItem('userOnline');
@@ -124,18 +127,22 @@ export class AnnonceService {
         })
       : of(null);
   }
+  closeAnnonce(id: any): Observable<any>{
 
-
-  // Supprimer une annonce
-  // Dans votre service
-  deleteAnnonce(id: number): Observable<any> {
     const accessToken = localStorage.getItem('token');
+    const userOnline = JSON.parse(localStorage.getItem('userOnline') || '{}');
+    const token = userOnline.token
     return accessToken
-      ? this.http.delete<any>(`${url}/supprimerAnnonce/${id}`, {
+      ? this.http.get<any>(`${url}/CloturerAnnonce/${id}`, {
           headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
         })
       : of(null);
   }
+
+  
+
+
+ 
 
 }
 

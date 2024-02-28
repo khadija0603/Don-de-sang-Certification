@@ -66,7 +66,7 @@ export class AuthServiceService {
     }) : of(null)
 
   }
-  debloque(id: number): Observable<any> {
+  debloqueDonneur(id: number): Observable<any> {
     const accessToken = localStorage.getItem('access_token');
     return accessToken ? this.http.put<any>('${api}/{id}', {}, {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })

@@ -237,57 +237,6 @@ login() {
   }
 }
 
-
-//   login(){
-//   const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
-
-//   if (this.email == "" || this.password == "") {
-//     this.verifierChamps("Desole", "Veuillez remplir tous les champs", "error");
-//   } else if (!this.email.match(emailPattern)) {
-//     this.verifierChamps("desole", "l'email n'est pas valide", "error");
-//   } else if (this.password.length < 5) {
-//     this.verifierChamps("desole", "Le mot de passe doit être supérieur ou égal à 5", "error");
-//   } else {
-//     // console.log(this.email),
-//     //   console.log(this.password);
- 
-//     const user = new FormData();
-//     user.append('email', this.email);
-//     user.append('password', this.password);
-
-//     this.authservice.login(user).subscribe(
-//       (response:any) => {
-//         // Stockez le token dans un service ou dans le stockage local (localStorage).
-//         console.log("la reponse est ",response)
-//         console.log("user est ",response.user)
-//         console.log("ma reponse", response);
-//         console.log(response.user.role_id)
-//         localStorage.setItem('token', response.token)
-//         localStorage.setItem('userOnline', JSON.stringify(response.user));
-//         if(response.token){
-          
-//           this.verifierChamps("success", "", `${response.message}`);
-          
-//           if (response.user.role_id ==1) {
-            
-//             this.route.navigate(['/admin']);
-            
-//           }else if(this.email === 'structure-sante@gmail.com' ){
-//             this.route.navigate(['/structure-de-sante'])
-//           }
-//           else if (response.user.role_id==2) {
-//                this.route.navigate(['/donneur/annonce-donneur']);
-//             }
-//           else{
-//             this.verifierChamps('error','Oops', 'Ce compte n\'existe pas')
-//           }
-//           }
-//         // this.route.navigate(['/accueil'])
-//       },
-     
-//     );
-//   }
-// }
   
   verifierChamps(title: any, text: any, icon: any) {
     Swal.fire({
@@ -355,12 +304,7 @@ this.authservice.register(formData).subscribe(
     });
   }
   );
-  // alertMessage(icon: any, title: any, text: any) {
-  //   Swal.fire({
-  //     icon: icon,
-  //     title: title,
-  //     text: text,
-  //   });
+ 
   }
   }
  getFile(event: any) {

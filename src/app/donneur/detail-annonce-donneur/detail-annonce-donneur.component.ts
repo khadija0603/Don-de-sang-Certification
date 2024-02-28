@@ -14,6 +14,7 @@ export class DetailAnnonceDonneurComponent implements OnInit {
   tabPromesse: any[] = [];
   tabPromesseConfirme: any[] = [];
   tabPromesseAttente: any[] = [];
+  tabPromesseAnnuler: any[] = [];
 
   isPromesseConfirme: boolean = true;
   isPromesseAttente: boolean = false;
@@ -48,11 +49,15 @@ export class DetailAnnonceDonneurComponent implements OnInit {
          //  Les promesses en attente
          this.tabPromesseAttente = this.tabPromesse.filter((promesse: any) => promesse.statut == "en attente")
          console.warn("Les promesses en attentente: ", this.tabPromesseAttente);
+
+         
       },
       (error) => {
        console.warn('Erreur de récupération des promesses', error);
       }
      );
+    
+    
   }
 
     confirmerPromesse(idPromesse: any) {
@@ -64,6 +69,22 @@ export class DetailAnnonceDonneurComponent implements OnInit {
         text: "Participation confirmée avec succès, Merci d'etre un Heros❤",
         icon: "success"
       })
+    });
+    }
+  
+  deletePromesseUser() {
+  }
+  
+    annulerPromesse(idPromesse: any) {
+    this.annonceService.annuler(idPromesse).subscribe((response) => {
+      console.warn(response);
+      this.deletePromesseUser();
+      Swal.fire({
+        title: "😢",
+        text: "Prommesse de don annulée",
+        icon: "success"
+      })
+      this.getPromesseUser();
     });
   }
 

@@ -1,8 +1,7 @@
-<div class="container mt-4">
+<div class="container mt-4 mx-4">
     <!-- les boutons  -->
     <button class="btn btn-danger" *ngIf="isPromesseAttente" (click)="showPromesseConfirme()">Mes promesse confirmées</button>
     <button class="btn bg-danger" *ngIf="isPromesseConfirme" (click)="showPromesseAttente()">Mes promesse en attentes</button>
-   
     <!-- Mes promesses confirmés  -->
     <div class="promesseConfirme "  *ngIf="isPromesseConfirme">
        
@@ -19,7 +18,6 @@
         </div>
         <p *ngIf="!tabPromesseConfirme.length">Aucune promesse confirmées/p>
     </div>
-
     <!-- Mes promesses en attentes  -->
     <div class="promesseConfirme" *ngIf="isPromesseAttente">
         <div class="annonces mt-4" *ngIf="tabPromesseAttente.length">
@@ -33,7 +31,7 @@
                 </div>
                 <div class="bouton-attente">
                     <button class="btn btn-danger" (click)="confirmerPromesse(promesse.id)">Confirmer</button>
-                    <button class="btn btn-danger">Annuler</button>
+                    <button class="btn btn-danger" (click)="annulerPromesse(promesse.id)">Annuler</button>
                 </div>
             </div>
         </div>
@@ -41,7 +39,7 @@
     </div>
 
     <!-- pour la pagination -->
-    <div class="d-flex justify-content-center my-5">
+    <div class="d-flex justify-content-center my-5 mb-5">
         <button class="btn btnColore me-2" [disabled]="pageActuelle === 1" (click)="pageActuelle = pageActuelle - 1">
             Précédent
         </button>
