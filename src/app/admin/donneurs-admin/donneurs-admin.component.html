@@ -1,26 +1,26 @@
-<div class="dash-content">
+<!-- <div class="dash-content">
     <div class="overview">
 
         <div class="boxes">
             <div class="box box1">
                 <span class="text">Annonces</span>
-                <span class="number">20</span>
+                <span class="number">{{annonce.length}}</span>
             </div>
             <div class="box box1">
                 <span class="text">Donneurs</span>
-                <span class="number">18</span>
+                <span class="number">{{donateurList.length}}</span>
             </div>
             <div class="box box2">
                 <span class="text">Structure de santé</span>
-                <span class="number">05</span>
+                <span class="number">{{structureList.length}}</span>
             </div>
             <div class="box box3">
                 <span class="text">Total inscrits</span>
-                <span class="number">23</span>
+                <span class="number">{{donateurList.length + structureList.length}} </span>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table table-responsive" *ngIf="donateurList.length > 0">
     <thead>
         <tr>

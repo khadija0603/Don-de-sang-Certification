@@ -16,7 +16,7 @@ export class AccueilAdminComponent implements OnInit{
   structureList:any [] =[]
   item: any;
 annonce: any;
-constructor(private authservice: AuthServiceService, private route: Router,private http:HttpClient,private annonceService: AnnonceService,private structureService : StructureSanteService){}
+constructor(private authservice: AuthServiceService, private route: Router,private http:HttpClient,private annonceService: AnnonceService,private structureService : StructureSanteService, ){}
    ngOnInit(): void {
     const script = document.createElement('script');
     script.src = '../../../assets/script/sidebar.js';
@@ -36,10 +36,7 @@ constructor(private authservice: AuthServiceService, private route: Router,priva
      this.listeAnnonce();
      this.getStructure();
     }
-     
-  
-  
-  
+    
   listDonateur() {
      // liste annonce
     this.authservice.listerdonateur().subscribe(

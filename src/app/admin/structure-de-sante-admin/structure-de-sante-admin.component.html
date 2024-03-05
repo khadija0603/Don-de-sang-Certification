@@ -4,7 +4,7 @@
             <!-- Card structure de sante -->
             <div class="hopital ">
                 <div class="card" *ngFor="let item of getArticlesPage()">
-                    <img src="https://img.freepik.com/photos-gratuite/mise-plat-mains-tenant-forme-coeur-stethoscope_23-2148635205.jpg?size=626&ext=jpg&ga=GA1.2.1260035116.1690285154&semt=sph" alt="">
+                    <img src="http://127.0.0.1:8000/{{item.image}}" alt="test">
                     <div class="card__content mx-3" [ngClass]="{ 'blocked-card': item.isBlocked }">
                         <div class="card__description" >
                             <p><strong class="text-danger">Nom:</strong>    {{item.name}}</p>
@@ -13,10 +13,13 @@
                             <p><strong class="text-danger">Email:</strong>   {{item.email}}</p>
                         </div>
                         <div class="d-flex mx-4 mb-3">
-                            <button class="btn btn-danger" (click)="bloquerStructure(item.id)">
-                                {{ item.is_blocked==1 ? 'Débloquer' : 'Bloquer' }}
+
+                            <button *ngIf="item.is_blocked==0" class="btn btn-danger" (click)="bloquerStructure(item.id)">
+                                Bloquer
                             </button>
-                          <!-- <button class="btn btn-danger"  (click)="bloquerStructure(item.id)">Bloquer</button> -->
+                            <button *ngIf="item.is_blocked==1" class="btn btn-danger" (click)="debloquerStructure(item.id)">
+                                Debloquer
+                            </button>
                           <button class="btn btn-primary mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal-modif" (click)="chargerInfosTest(item)" >Modifier</button>
                         </div>
                     </div>

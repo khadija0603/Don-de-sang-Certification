@@ -9,6 +9,7 @@
 }
 
 :root {
+    
     /* ===== Colors ===== */
     --primary-color: #0E4BF1;
     --panel-color: #FFF;
@@ -34,9 +35,13 @@ body {
 
 .sidebare{
 
- margin-top: 50px!important;
- height: 85%;
+ margin-top: 20px!important;
+ height: 710px !important;
  /* border-right: 4px #BA0D19 solid; */
+ padding-right: 10px !important;
+ margin-right: 400px !important;
+/* padding-left: -20px !important; */
+ /* width: auto; */
 
 }
 
@@ -79,10 +84,9 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover {
 
 nav {
     position: fixed;
-    top: -90px;
-    left: 0;
+    /* top: -90px; */
     height: 100%;
-    margin-bottom: 200px !important;
+    /* margin-bottom: 200px !important; */
     width: 250px;
     padding: 14px;
     background-color: white;
@@ -190,13 +194,15 @@ nav.close li a .link-name {
 .nav-links li a:hover i,
 .nav-links li a:hover .link-name {
     color: var(--primary-color);
+    margin-left: -30px;
 }
 
 .nav-links li a:hover .link-name {
     color: white;
     background-color: #BA0D19;
-    padding: 7px 15px;
+    padding: 7px 5px;
     border-radius: 10px;
+    margin-left:-10px;
 }
 
 body.dark .nav-links li a:hover i,
@@ -205,8 +211,8 @@ body.dark .nav-links li a:hover .link-name {
 }
 
 .menu-items .logout-mode {
-    padding-top: 10px;
-    border-top: 1px solid var(--border-color);
+    margin-bottom: 100px;
+    width: 100%;
 }
 
 .menu-items .mode {
@@ -249,7 +255,7 @@ body.dark .nav-links li a:hover .link-name {
 }
 
 body.dark .switch:before {
-    left: 20px;
+    /* left: 20px; */
 }
 
 .dashboard {
@@ -453,6 +459,34 @@ nav.close~.dashboard .top {
 }
 
 @media (max-width: 1000px) {
+
+    nav .logo-image {
+            display: flex;
+            justify-content: center;
+            min-width: 115px;
+        }
+    
+        nav .logo-image img {
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 30px;
+            margin-bottom: -100px;
+        }
+   
+nav .logo-name {
+        display: flex;
+        align-items: center;
+    }
+
+nav .logo-name .logo_name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 14px;
+    transition: var(--tran-05);
+}
+
     nav {
         width: 73px;
     }
@@ -507,6 +541,34 @@ nav.close~.dashboard .top {
 }
 
 @media (max-width: 780px) {
+
+nav .logo-image {
+        display: flex;
+        justify-content: center;
+        min-width: 55px;
+    }
+
+    nav .logo-image img {
+        width: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-bottom: -60px;
+    }
+
+    nav .logo-name {
+        display: flex;
+        align-items: center;
+    }
+
+    nav .logo-name .logo_name {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--text-color);
+        margin-left: 11px;
+        transition: var(--tran-05);
+    }
+
     .dash-content .boxes .box {
         width: calc(100% / 2 - 15px);
         margin-top: 15px;
@@ -514,14 +576,69 @@ nav.close~.dashboard .top {
 }
 
 @media (max-width: 560px) {
+    nav .logo-image {
+            display: flex;
+            justify-content: center;
+            min-width: 40px;
+        }
+    
+        nav .logo-image img {
+            width: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 10px;
+            margin-bottom: -20px;
+        }
+    
+        nav .logo-name {
+            display: flex;
+            align-items: center;
+        }
+    
+        nav .logo-name .logo_name {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--text-color);
+            /* margin-left: 11px; */
+            transition: var(--tran-05);
+        }
+    
     .dash-content .boxes .box {
         width: 100%;
     }
 }
 
 @media (max-width: 400px) {
+
+    nav .logo-image {
+            display: flex;
+            justify-content: center;
+            min-width: 35px;
+        }
+    
+        nav .logo-image img {
+            width: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-top: 30px;
+            margin-bottom: -100px;
+        }
+    
+        nav .logo-name {
+            display: flex;
+            align-items: center;
+        }
+    
+        nav .logo-name .logo_name {
+            font-size: 9px;
+            font-weight: 100;
+            color: var(--text-color);
+            margin-left: 9px;
+            transition: var(--tran-05);
+        }
+
     nav {
-        width: 0px;
+        width: 10px;
     }
 
     nav.close {
@@ -554,7 +671,7 @@ nav.close~.dashboard .top {
     }
 
     nav.close~.dashboard {
-        left: 73px;
+        /* left: 73px; */
         width: calc(100% - 73px);
     }
 

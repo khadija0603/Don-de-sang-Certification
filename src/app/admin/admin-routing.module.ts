@@ -10,13 +10,13 @@ import { AnnonceAdminComponent } from './annonce-admin/annonce-admin.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent, children: [
-    {path:'accueil-admin', component: AccueilAdminComponent},
+    {path:'accueil-admin', component: AccueilAdminComponent, },
     {path:'annonce-admin', component: AnnonceAdminComponent},
     {path:'donneurs-admin', component: DonneursAdminComponent},
     {path:'inscrits-admin', component: InscritsAdminComponent},
     {path:'profil-admin', component: ProfilAdminComponent},
     { path: 'structure-de-sante-admin', component: StructureDeSanteAdminComponent },
-    {path:'', redirectTo: 'accueil-admin', pathMatch: 'full'},
+    {path:'', redirectTo: 'accueil-admin', pathMatch: 'full',  },
   ]
 
   },

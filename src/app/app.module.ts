@@ -26,6 +26,7 @@ import { AuthInterceptor } from './interceptors/interceptors';
 import { ProfilService } from 'src/service/profil.service';
 // import { TokenInterceptorProvider } from 'src/service/token.interceptor';
 import { MaintenanceComponent } from './Components/maintenance/maintenance.component';
+// import { authGuard, DonnateurGuard, StructureGuard } from './guard/auth.guard';
 
 
 @NgModule({
@@ -50,15 +51,13 @@ import { MaintenanceComponent } from './Components/maintenance/maintenance.compo
   imports: [FormsModule,
     BrowserModule,
     AppRoutingModule,
-    
     DataTablesModule,
     HttpClientModule
   ],
   providers: [
     AuthServiceService,
-    // TokenInterceptorProvider
-    // ProfilService,
-    // {
+    //  authGuard, StructureGuard, DonnateurGuard,
+    
       
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: AuthInterceptor,

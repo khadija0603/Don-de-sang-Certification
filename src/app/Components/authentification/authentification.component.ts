@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router, RouterLink } from '@angular/router';
 import { AuthServiceService } from 'src/service/auth-service.service';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { url } from 'src/app/models/apiUrl';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenService } from 'src/service/token.service';
@@ -13,10 +13,20 @@ import { TokenService } from 'src/service/token.service';
 })
   
 export class AuthentificationComponent implements OnInit{
+
+   constructor(private authservice: AuthServiceService, private route: Router, private http: HttpClient,
+  private tS: TokenService, ) { }
    ngOnInit(): void {
   }
 onChangeFile() {
 }
+  
+  isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+setAuthenticationStatus(isAuthenticated: boolean) {
+    this.isAuthenticatedSubject.next(isAuthenticated);
+    // console.log('tesrr',this.setAuthenticationStatus)
+  }
 passwordCon: any;
 emailCon: any;
 passwordConf: any;
@@ -146,8 +156,7 @@ email!: any;
     }
   }
   
-  constructor(private authservice: AuthServiceService, private route: Router, private http: HttpClient,
-  private tS: TokenService) { }
+ 
   //variable
   name:string="";
   telephone: string = '';
@@ -213,8 +222,10 @@ login() {
     if (this.email === 'structureS@gmail.com' && this.password === user.password) {
       this.authservice.loginStructureDeSante(user).subscribe(
         (response) => {
-          console.log(response);
+          console.log(response.token);
+          this.authservice.isAuthenticated = true;
           localStorage.setItem('userOnline', JSON.stringify(response));
+           this.tS.saveToken(response.token);
           this.route.navigate(['/structure-de-sante']);
         },
         (err: any) => {
@@ -224,9 +235,10 @@ login() {
     } else if (this.email === user.email && this.password === user.password) { // Utilisez "else if" ici
       this.authservice.loginDonateur(user).subscribe(
         (response: any) => {
-          console.log(response);
+          console.log(response.token);
           this.authservice.isAuthenticated = true;
           localStorage.setItem('userOnline', JSON.stringify(response));
+           this.tS.saveToken(response.token);
           this.route.navigate(['/donneur/annonce-donneur']);
         },
         (err: any) => {
@@ -311,10 +323,24 @@ this.authservice.register(formData).subscribe(
   console.warn(event.target.files[0]);
   this.image = event.target.files[0] as File;
  }
-}
+  
+    Envoyeremail(email: string) {
+    this.authservice.Envoyeremail(email).subscribe(
+      (response:any) => {
+        console.log("Email envoyé avec succès!", response);
 
-class Login {
-  constructor(
-    email: any, password: any
-  ) {}
+        Swal.fire({
+          icon: 'success',
+          title: 'Email Envoyé!',
+          text: 'Un e-mail de récupération de mot de passe a été envoyé à votre adresse e-mail.',
+        });
+      },
+      (error:any) => {
+        console.error("Une erreur s'est produite lors de l'envoi de l'e-mail de récupération", error);
+
+      
+      }
+    );
+  }
+
 }

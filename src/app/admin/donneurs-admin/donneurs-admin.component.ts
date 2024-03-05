@@ -16,6 +16,8 @@ export class DonneursAdminComponent implements OnInit {
    donateurList:any [] =[]
   item: any;
   user: any;
+  structureList:any [] =[]
+annonce: any;
 constructor(private authservice: AuthServiceService, private route: Router,private http:HttpClient){}
    ngOnInit(): void {
     const script = document.createElement('script');

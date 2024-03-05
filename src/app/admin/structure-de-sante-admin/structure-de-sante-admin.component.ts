@@ -56,7 +56,7 @@ onChangeFile() {
     getStructure(): void {
     this.structureService.listerstructures().subscribe((data :any)=>{
         this.structureList = data.data;
-        console.log("les structures sont là :", this.structureList);
+      console.warn("les structures sont là :", this.structureList);
     });
     }
   getFile(event: any) {
@@ -86,10 +86,15 @@ onChangeFile() {
       formData.append("password", this.password);
       console.log(formData);
       this.structureService.ajoutStructureSante(formData).subscribe((response:any) => {
-        console.log(response);
+        console.warn(response);
+        Swal.fire({
+              title: "",
+              // icon: "",
+              text: response.message,
+            })
+        
       });
-    
-    
+     this.getStructure()
    }
 
 
@@ -152,6 +157,9 @@ onChangeFile() {
   }
   getAllStructure() {}
   viderChamp() { }
+
+
+  // Bloquer structure de sante
   bloquerStructure(id: any): void {
   this.structureService.bloquerStructure(id).subscribe(
     (response: any) => {
@@ -180,9 +188,38 @@ onChangeFile() {
       });
     }
   );
+     this.getStructure()
+}
+
+  // Debloquer structure de sante
+
+debloquerStructure(id: any): void {
+  this.structureService.debloquerStructure(id).subscribe(
+    (response: any) => {
+      console.warn("débloquer naa", response);
+      const structureToUpdate = this.structureList.find(item => item.id === id);
+      if (structureToUpdate) {
+      }
+      Swal.fire({
+        icon: 'success',
+        title: 'Succès',
+        text: 'La structure a été débloquée avec succès.',
+      });
+    },
+    (error: any) => {
+      console.error('Erreur lors du déblocage de la structure :', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Une erreur s\'est produite lors du déblocage de la structure.',
+      });
+    }
+  );
+   this.getStructure()
 }
 
   
+
 
     // Attribut pour la pagination
    structureParPage = 3; // Nombre d'structure par page

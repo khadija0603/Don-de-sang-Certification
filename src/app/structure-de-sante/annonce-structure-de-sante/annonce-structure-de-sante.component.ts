@@ -20,6 +20,7 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   date: string = "";
   lieu: string = ""; 
   statut: string = '';
+  image: string = '';
   newAnnonce: any = {
     date: "",
     lieu: "",
@@ -138,11 +139,11 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   loadAnnonces(): void {
        this.annonceService.getAnnonces().subscribe(
       (response) => {
-        // console.log('la réponse est :', response);
+        console.warn('la réponse est :', response);
         // Vérifiez si response.data est un tableau
         // if (Array.isArray(response.data.data)) {
         this.annonce = response.data;
-           console.log('la liste des annonces', this.annonce);
+           console.warn('la liste des annonces', this.annonce);
            this.annonceValid = this.annonce.filter((element: { is_deleted: number }) =>
              element.is_deleted == 0
              
@@ -152,6 +153,7 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
       },
       (error) => {
         // Traiter l'erreur de liste
+        console.warn('horreurrrr')
       }
     );
   }
@@ -170,14 +172,27 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
       date: this.date
 
     }
+    console.warn(this.newAnnonce)
 
     this.annonceService.createAnnonce(this.newAnnonce).subscribe((response: any) => {
-      console.log('Annonce ajoutée avec succès :', response);
+      console.warn('Annonce ajoutée avec succès :', response);
       this.loadAnnonces(); // Rechargez la liste après l'ajout
+      Swal.fire({
+              title: "",
+              // icon: "",
+              text: response.message,
+            })
     },
+      
       (error: any) => {
         console.error('Erreur lors de l\'ajout de l\'annonce :', error);
+        Swal.fire({
+              title: "",
+              // icon: "",
+              text: error.message,
+            })
       }
+      
     );
   }
 
@@ -199,9 +214,10 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
     this.selectedAnnonce = annonce.id;
     // console.warn('lid de vv', this.id);
     this.date = annonce.date;
+    this.image = annonce.image;
     this.lieu = annonce.lieu;
     this.statut = annonce.statut;
-    console.log('changer', this.date, this.lieu, this.statut);
+    console.log('changer', this.date,this.image, this.lieu, this.statut);
     console.warn(this.selectedAnnonce)
   }
 
@@ -234,7 +250,7 @@ export class AnnonceStructureDeSanteComponent implements OnInit {
   // Nouvelle méthode pour récupérer les participants
   getParticipants(annonce: any) {
     this.annonceChoisi = annonce.id;
-    console.warn( 'hdv', this.selectedAnnonce)
+    console.warn( 'xol annonce', this.selectedAnnonce)
      this.annonceService.getParticipants(this.annonceChoisi).subscribe(
        (response) => {
          console.warn("La rep du back");

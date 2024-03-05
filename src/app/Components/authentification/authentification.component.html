@@ -40,7 +40,7 @@
                 id="password" [(ngModel)] = "password" (input)="verifPasswordFonction()">
                 <p class="text-danger" *ngIf="!exactPassword">{{verifPassword}}</p>
                 <p class="text-success" *ngIf="exactPassword"><i class="bi bi-check2-all"></i> Exact !</p>
-               
+                                <a class="para text-black-50" data-bs-toggle="modal" data-bs-target="#ajoutRole">Mot de pass oublier?</a>
         </div>
         <button title="Sign In" type="submit" class="sign-in_btn " (click)="login()">
             Se connecter
@@ -185,4 +185,36 @@
         </div>
     </div>
 </div>
+
+<!-- The Modal Mot de Passe Oublier-->
+<div class="modal fade" id="ajoutRole" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 " id="exampleModalLabel ">Veuillez renseigner votre Email </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="exampleInputnom" class="form-label">Email <span class="span_validate"
+                                id="validationEmail"></span></label>
+                        <input type="email" name="email" class="form-control" (input)="email()"
+                            [(ngModel)]="email">
+                        <div id="nomHelp" class="form-text"></div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button> -->
+                <button type="button" class="typebutton btn btn-warning text-white" data-bs-dismiss="modal"
+                    (click)="Envoyeremail(email)">Envoyer</button>
+                <!-- [disabled]="truthyTab.length<1" -->
+            </div>
+        </div>
+    </div>
+</div>  <br>
 

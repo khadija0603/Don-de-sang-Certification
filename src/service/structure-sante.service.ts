@@ -15,8 +15,13 @@ export class StructureSanteService {
   private apiUrl = 'http://127.0.0.1:8000/api';  // Remplacez cela par l'URL réelle de votre API
   constructor(private http: HttpClient) { }
   ajoutStructureSante(formData: FormData): Observable<any> {
-    // Assurez-vous que l'URL est correcte et que la méthode HTTP appropriée est utilisée
-    return this.http.post<any>(`${this.apiUrl}/ajouterStructureSante`, formData);
+
+     const accessToken = localStorage.getItem('token');
+    return accessToken
+      ? this.http.post<any>(`${url}/ajouterStructureSante`, formData,{
+          headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}`, })
+        }): of(null);
+    // return this.http.post<any>(`${this.apiUrl}/ajouterStructureSante`, formData);
   }
 
    getFile(event: any) {
@@ -38,7 +43,8 @@ export class StructureSanteService {
      return accessToken
       ? this.http.post<any>(`${url}/modifierComptestructure/${id}`, structure, {
         headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
-        }): of(null);
+      }) : of(null);
+   
  }
   bloquerStructure(id: any): Observable<any> {
     const accessToken = localStorage.getItem('token');
@@ -48,6 +54,16 @@ export class StructureSanteService {
     }) : of(null)
 
   }
+
+  debloquerStructure(id: any): Observable<any> {
+  const accessToken = localStorage.getItem('token');
+  return accessToken
+    ? this.http.put<any>(`${url}/debloquerStructure/${id}`, {}, {
+      headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` })
+    })
+    : of(null);
+}
+
 
   deleteAnnonce(id: number): Observable<any> {
 

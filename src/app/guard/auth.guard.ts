@@ -1,73 +1,21 @@
-import { CanActivateFn, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthServiceService } from 'src/service/auth-service.service';
 
-export const authGuard: CanActivateFn = (route, state) => {
- 
-  const router = new Router();
-  
-  const accessToken = localStorage.getItem('token');
-  
-  // Vérifier si le token d'authentification est présent dans le local storage
-  if (!accessToken) {
-    // Si le token n'existe pas, rediriger l'utilisateur vers la page de connexion
-    router.navigate(['auth']);
-    return false;
-  }
-  const userConnect = JSON.parse(localStorage.getItem('userOnline') || '');
-  if (userConnect.role_id == 1) {
-    return true;
-  }
-  else {
-    router.navigate(['auth']);
-    return false;
-  }
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthServiceService, private router: Router) {}
 
-  
-};
-
-export const structureGuard: CanActivateFn = (route, state) => {
- 
-  const router = new Router();
-  
-  const accessToken = localStorage.getItem('token');
-  
-  // Vérifier si le token d'authentification est présent dans le local storage
-  if (!accessToken) {
-    // Si le token n'existe pas, rediriger l'utilisateur vers la page de connexion
-    router.navigate(['auth']);
-    return false;
+canActivate(): boolean {
+    if (this.authService.isAuthenticatedSubject.value) {
+      // L'utilisateur est connecté, autorise l'accès à la route
+      return true;
+    } else {
+      // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
+      this.router.navigate(['/auth']);
+      return false;
+    }
   }
-  const userConnect = JSON.parse(localStorage.getItem('userOnline') || '');
-  if (userConnect.role_id == 3) {
-    return true;
-  }
-  else {
-    router.navigate(['auth']);
-    return false;
-  }
-
-  
-};
-
-export const donnateurGuard: CanActivateFn = (route, state) => {
- 
-  const router = new Router();
-  
-  const accessToken = localStorage.getItem('token');
-  
-  // Vérifier si le token d'authentification est présent dans le local storage
-  if (!accessToken) {
-    // Si le token n'existe pas, rediriger l'utilisateur vers la page de connexion
-    router.navigate(['auth']);
-    return false;
-  }
-  const userConnect = JSON.parse(localStorage.getItem('userOnline') || '');
-  if (userConnect.role_id == 2) {
-    return true;
-  }
-  else {
-    router.navigate(['auth']);
-    return false;
-  }
-
-  
-};
+}

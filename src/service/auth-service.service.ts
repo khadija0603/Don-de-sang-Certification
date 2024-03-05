@@ -4,21 +4,24 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { url } from 'src/app/models/apiUrl';
 import { register } from './modeles/models/inscriptionDonateur';
+import { user } from 'src/app/models/users';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
+  
+  Envoyeremail(email_utilisateur: string) {
+    return this.http.post(`${url}/motpasseoubliere`, user);
+  }
   getUserInfo(): any {
   }
   image: File | undefined;
   loginAdmin(user: { email: string; password: string; }) {
   }
-
   isAdmin$ = new BehaviorSubject<boolean>(false);
-  private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+   isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
-
   constructor(private http: HttpClient, private router: Router ) { }
  register(user: any) {
     return this.http.post(`${url}/InscriptionDonneur`, user);
@@ -26,15 +29,33 @@ export class AuthServiceService {
  }
   login(user: any) {
     
-    return this.http.post(`${url}/loginAdmin`, user);
+    return this.http.post(`${url}/loginAdmin`, user).pipe(
+      tap((response: any) =>
+      {
+        this.isAuthenticatedSubject.next(true)
+      }
+      )
+    );
     // return this.http.post(${url}/login, user).subscribe((reponse:any) => onSuccess(reponse))
   }
 
   loginDonateur(user: any) {
-    return this.http.post(`${url}/loginDonateur`, user);
+    return this.http.post(`${url}/loginDonateur`, user).pipe(
+      tap((response: any) =>
+      {
+        this.isAuthenticatedSubject.next(true)
+      }
+      )
+    );
   }
   loginStructureDeSante(user: any) {
-    return this.http.post(`${url}/loginStructure`, user);
+    return this.http.post(`${url}/loginStructure`, user).pipe(
+      tap((response: any) =>
+      {
+        this.isAuthenticatedSubject.next(true)
+      }
+      )
+    );
   }
   isAuthenticated: boolean = false;
 

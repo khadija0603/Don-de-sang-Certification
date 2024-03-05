@@ -42,10 +42,10 @@
                     <label class="input_label" for="statut">Statut:</label>
                     <!-- <input placeholder="statut" title="Inpit title" name="statut" type="statut" class="input_field" id="statut"
                         [(ngModel)]="statut" /> -->
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected></option>
-                            <option value="1">ouverte</option>
-                            <option value="2">complete</option>
+                        <select class="form-select"  [(ngModel)]="statut" name="statut" aria-label="Default select example">
+                            
+                            <option value="ouverte"> ouverte </option>
+                            <option value="complete"> complete </option>
                         </select>
                    </div>
                     <div class="modal-footer">

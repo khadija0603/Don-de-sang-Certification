@@ -104,7 +104,7 @@ export class AnnonceService {
 
     const token = JSON.parse(userOnline).token;
     const headers = { 'Authorization': `Bearer ${token}` };
-    console.log('azerty',token);
+    console.warn('azerty',token);
     return this.http.post<any>(`${this.apiUrl}/publier`, annonce, { headers });
   }
 
