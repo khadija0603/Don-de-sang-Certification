@@ -1,3 +1,5 @@
+
+
 .card {
   position: relative;
   width: 200px;
@@ -64,7 +66,8 @@
 }
 
  .apropos{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
  }
 
  .apropos img{
@@ -78,6 +81,7 @@
     height: 800px;
   }
   
+  
  /* debut section conseil agricole  */
  .grid-conseil-2 {
      display: grid;
@@ -88,6 +92,8 @@
      box-shadow: 4px;
      border: 1px solid;
  }
+
+
  
  .col-conseil-2 {
      border: 2px solid #ffffff;
@@ -116,7 +122,8 @@
 
 
 
- .grid-conseil {
+
+ /* .grid-conseil {
      display: grid;
      grid-template-columns: 1fr 1fr 1fr;
      gap: 4vh;
@@ -125,13 +132,13 @@
  }
 
  .col-conseil {
-     /* border: 2px solid #ffffff; */
+     border: 2px solid #ffffff;
      padding: 10px;
      z-index: -1;
      border-radius: 10px;
      box-shadow: 1px 1px 6px 0px #bfbfbf;
     margin-bottom: 50px;
- }
+ } */
  .col-conseil-2{
      /* border: 2px solid #ffffff; */
      padding: 10px;
@@ -166,7 +173,7 @@
      border-radius: 50%;
      background-color: #BA0D19;
      /* border: 1px solid !important; */
-     /* margin: 0 auto; */
+     margin: 0 auto;
      position: relative;
      top: -42px;
      z-index: -1;
@@ -759,21 +766,26 @@ pre code {
     
 }
 
+
+
 @media (min-width: 576px) {
     .container {
         max-width: 540px;
     }
 
+    
+
         /* debut section conseil agricole  */
-        .grid-conseil-2 {
-            display: grid;
+        .grid-conseil {
+            display: block;
             grid-template-columns: 1fr 1fr ;
             gap: 14px;
             margin-left: 15px;
             margin-right: 15px;
-            box-shadow: 2px;
-            border: 1px solid;
+            /* box-shadow: 2px; */
+            /* border: 1px solid; */
         }
+           
     
         .col-conseil-2 {
             border: 2px solid #ffffff;
@@ -855,7 +867,7 @@ pre code {
             border-radius: 50%;
             background-color: #BA0D19;
             /* border: 1px solid !important; */
-            /* margin: 0 auto; */
+            margin: 0 auto;
             position: relative;
             top: -42px;
             z-index: -1;
@@ -865,7 +877,7 @@ pre code {
         }
     
         .card-text {
-            font-size: 15px;
+            /* font-size: 15px; */
         }
 
                 .grid-conseil-2 {
@@ -876,13 +888,24 @@ pre code {
                     margin-right: 30px;
                     box-shadow: 4px;
                     border: 1px solid;
+                    color: black;
                 }
-}
+
+                   .apropos {
+                       display: grid;
+                       grid-template-columns: 1fr ;
+                   }
+            }
 
 @media (min-width: 768px) {
     .container {
         max-width: 720px;
     }
+
+        .apropos {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
 
         .grid-conseil-2 {
             display: grid;
@@ -893,12 +916,21 @@ pre code {
             box-shadow: 4px;
             border: 1px solid;
         }
+               
+                .grid-conseil p {
+                    font-size: 10px;
+                }
 }
 
 @media (min-width: 992px) {
     .container {
         max-width: 960px;
     }
+
+        .apropos {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
 }
 
 @media (min-width: 1200px) {
@@ -1257,6 +1289,11 @@ pre code {
         max-width: 100%;
     }
 
+        .apropos {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
     .col-sm-auto {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
@@ -1498,6 +1535,11 @@ pre code {
         max-width: 100%;
     }
 
+        .apropos {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
     .col-md-auto {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
@@ -1738,6 +1780,10 @@ pre code {
         flex-grow: 1;
         max-width: 100%;
     }
+        .apropos {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
 
     .col-lg-auto {
         -webkit-box-flex: 0;
@@ -2469,7 +2515,7 @@ pre code {
 }
 
 .table .thead-light th {
-    color: #495057;
+    color:black;
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
@@ -2748,7 +2794,7 @@ textarea.form-control {
 }
 
 .form-check-input:disabled~.form-check-label {
-    color: #6c757d;
+    color: black;
 }
 
 .form-check-label {
@@ -12933,12 +12979,14 @@ textarea.form-control {
 .ftco-section {
     padding: 7em 0;
     margin-bottom: 0px;
-    /* position: relative; */
+    position: relative;
 }
 
 @media (max-width: 767.98px) {
     .ftco-section {
         padding: 6em 0;
+    margin-bottom: 0px;
+    float: none;
     }
 }
 
@@ -12963,22 +13011,22 @@ textarea.form-control {
     background: #ffff;
     padding: 7em 0;
     z-index: 0;
-    margin-bottom: -20px;
+    /* margin-bottom: -20px; */
     margin-left: 10px;
     margin-right: 15px;
-    /* position: relative; */
-    height: 500px;
+    position: relative;
+    /* height: 500px; */
     border: 1px red;
-    /* margin-bottom: -100px   ; */
-    /* padding-top: -50px; */
-    box-shadow: 4px 6px 6px 6px #BA0D19;
+    /* margin-bottom: -200px !important   ; */
+    margin-top: 50px;
+    box-shadow: 2px 4px 4px 4px #BA0D19;
 }
 
 
 .logo-nav img{
     width: 150px !important;
     height: 90px !important;
-    /* border: 1px solid; */
+    border: 1px solid;
     /* margin-top: -30px; */
 }
 
@@ -13111,9 +13159,9 @@ margin-left: -70px;
 }
 
 @media (max-width: 767.98px) {
-    #map {
+    /* #map {
         height: 300px;
-    }
+    } */
 }
 
 @-webkit-keyframes pulse {
@@ -13152,7 +13200,7 @@ margin-left: -70px;
 
 .heading-section .subheading {
     font-size: 12px;
-    /* display: block; */
+    display: block;
     /* margin-bottom: 5px; */
     text-transform: uppercase;
     color: rgba(0, 0, 0, 0.3);

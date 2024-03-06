@@ -18,6 +18,7 @@ export class DonneursAdminComponent implements OnInit {
   user: any;
   structureList:any [] =[]
 annonce: any;
+  structureService: any;
 constructor(private authservice: AuthServiceService, private route: Router,private http:HttpClient){}
    ngOnInit(): void {
     const script = document.createElement('script');
@@ -55,7 +56,7 @@ constructor(private authservice: AuthServiceService, private route: Router,priva
 
   bloquerStructure(id: number): void {  this.authservice.bloquerDonneur(id).subscribe(
     (response: any) => {
-      console.log("bloquer naa", response);
+      console.warn("bloquer naa", response);
       // Mettez à jour la propriété isBlocked de la structure
       const structureToUpdate = this.donateurList.find(item => item.id === id);
       console.log(structureToUpdate)
@@ -80,7 +81,40 @@ constructor(private authservice: AuthServiceService, private route: Router,priva
       });
     }
   );
-}
+     this.listDonateur();
+  }
+  debloquerStructure(id: number): void {  this.authservice.debloqueDonneur(id).subscribe(
+    (response: any) => {
+      console.warn("débloquer naa", response);
+      // Mettez à jour la propriété isBlocked de la structure
+      const structureToUpdate = this.donateurList.find(item => item.id === id);
+      console.log(structureToUpdate)
+      if (structureToUpdate) {
+        structureToUpdate.isBlocked = structureToUpdate.isBlocked; // Inverser l'état de blocage
+      }
+
+      // Afficher un message de succès
+      Swal.fire({
+        icon: 'success',
+        title: 'Succès',
+        text: 'Débloqué avec succès.',
+      });
+    },
+    (error: any) => {
+      // Gérer les erreurs du service ici
+      console.error('Erreur lors du blocage', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Une erreur s\'est produite lors du blocage',
+      });
+    }
+  );
+     this.listDonateur();
+  }
+  
+ 
+ 
 
   
 //  bloquerDonneur(id: number): void{

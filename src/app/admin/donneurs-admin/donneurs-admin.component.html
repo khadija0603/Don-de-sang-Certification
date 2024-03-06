@@ -21,7 +21,7 @@
         </div>
     </div>
 </div> -->
-<table datatable [dtOptions]="dtOptions" class="row-border hover w-100 table table-responsive" *ngIf="donateurList.length > 0">
+<table datatable [dtOptions]="dtOptions" class="row-border text-black hover w-100 table table-responsive" *ngIf="donateurList.length > 0">
     <thead>
         <tr>
             <!-- <th>id</th> -->
@@ -44,11 +44,15 @@
             <td>{{item.telephone}}</td>
             <td>{{item.adresse}}</td>
             <td>{{item.groupe_sanguin}}</td>
-            <td><button class=" btn-danger" (click)="bloquerStructure(item.id)">
-                {{ item.is_blocked==1 ? 'Débloquer' : 'Bloquer' }}
-            </button></td>
+            <td>
+                <button *ngIf="item.is_blocked==0" class="btn btn-danger" (click)="bloquerStructure(item.id)">
+                    Bloquer
+                </button>
+                <button *ngIf="item.is_blocked==1" class="btn btn-danger" (click)="debloquerStructure(item.id)">
+                    Debloquer
+                </button>
+             </td>
         </tr>
-        
     </tbody>
 </table>
 

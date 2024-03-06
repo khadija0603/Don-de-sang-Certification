@@ -10,6 +10,10 @@ import { user } from 'src/app/models/users';
   providedIn: 'root'
 })
 export class AuthServiceService {
+
+  // isAdmin$ = new BehaviorSubject<boolean>(false);
+  //  isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  // isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
   
   Envoyeremail(email_utilisateur: string) {
     return this.http.post(`${url}/motpasseoubliere`, user);
@@ -19,20 +23,16 @@ export class AuthServiceService {
   image: File | undefined;
   loginAdmin(user: { email: string; password: string; }) {
   }
-  isAdmin$ = new BehaviorSubject<boolean>(false);
-   isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
   constructor(private http: HttpClient, private router: Router ) { }
  register(user: any) {
     return this.http.post(`${url}/InscriptionDonneur`, user);
     // return this.http.post(${url}/login, user).subscribe((reponse:any) => onSuccess(reponse))
  }
   login(user: any) {
-    
     return this.http.post(`${url}/loginAdmin`, user).pipe(
       tap((response: any) =>
       {
-        this.isAuthenticatedSubject.next(true)
+        // this.isAuthenticatedSubject.next(true)
       }
       )
     );
@@ -43,7 +43,7 @@ export class AuthServiceService {
     return this.http.post(`${url}/loginDonateur`, user).pipe(
       tap((response: any) =>
       {
-        this.isAuthenticatedSubject.next(true)
+        // this.isAuthenticatedSubject.next(true)
       }
       )
     );
@@ -52,7 +52,7 @@ export class AuthServiceService {
     return this.http.post(`${url}/loginStructure`, user).pipe(
       tap((response: any) =>
       {
-        this.isAuthenticatedSubject.next(true)
+        // this.isAuthenticatedSubject.next(true)
       }
       )
     );
@@ -88,9 +88,16 @@ export class AuthServiceService {
 
   }
   debloqueDonneur(id: number): Observable<any> {
-    const accessToken = localStorage.getItem('access_token');
-    return accessToken ? this.http.put<any>('${api}/{id}', {}, {
+    const accessToken = localStorage.getItem('token');
+    return accessToken ? this.http.put<any>(`${url}/debloquerDonateur/${id}`, {}, {
       headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}` })
+    }) : of(null);
+  }
+
+  Logout(): Observable<any>{
+    const accessToken = localStorage.getItem('token');
+    return accessToken ? this.http.get<any>(`${url}/logoutAdmin`,{
+      headers: new HttpHeaders({ 'Authorization': `Bearer ${accessToken}`})
     }) : of(null);
   }
   

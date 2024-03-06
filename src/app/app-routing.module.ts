@@ -10,12 +10,13 @@ import { DetailProfilUserComponent } from './Components/detail-profil-user/detai
 import { DetailAnnonceComponent } from './Components/detail-annonce/detail-annonce.component';
 import { DonneurComponent } from './Components/donneur/donneur.component';
 import { MaintenanceComponent } from './Components/maintenance/maintenance.component';
-import { AuthGuard } from './guard/auth.guard';
+import { AdminGuard, DonateurGuard, StructureGuard } from './guard/auth.guard';
+// import { AuthGuard } from './guard/auth.guard';
+// import {AuthGuard} from './guard/auth.guard';
 // import { DonnateurGuard, StructureGuard, authGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
-  
   {path:'auth', component:AuthentificationComponent},
   {path:'accueil', component:AccueilComponent},
   { path: 'profil', component: ProfilComponent },
@@ -26,12 +27,10 @@ const routes: Routes = [
   { path: 'detail-profil-user', component: DetailProfilUserComponent },
   { path: 'detail-annonce', component: DetailAnnonceComponent },
     {path:'', redirectTo: 'accueil', pathMatch: 'full'},
-  { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule), canActivate:[AuthGuard]},
-  { path: 'donneur',loadChildren:()=>import('./donneur/donneur.module').then(m=>m.DonneurModule), canActivate:[AuthGuard]},
-  { path: 'structure-de-sante',loadChildren:()=>import('./structure-de-sante/structure-de-sante.module').then(m=>m.StructureDeSanteModule), canActivate:[AuthGuard]},
+  { path: 'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule), canActivate:[AdminGuard]},
+  { path: 'donneur',loadChildren:()=>import('./donneur/donneur.module').then(m=>m.DonneurModule), canActivate:[DonateurGuard]},
+  { path: 'structure-de-sante',loadChildren:()=>import('./structure-de-sante/structure-de-sante.module').then(m=>m.StructureDeSanteModule), canActivate:[StructureGuard]},
   { path: '**', component: MaintenanceComponent },
-  
-  
   
 ];
 

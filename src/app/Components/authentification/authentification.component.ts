@@ -16,7 +16,24 @@ export class AuthentificationComponent implements OnInit{
 
    constructor(private authservice: AuthServiceService, private route: Router, private http: HttpClient,
   private tS: TokenService, ) { }
-   ngOnInit(): void {
+  ngOnInit(): void {
+     
+    
+    if (!localStorage.getItem("isAdmin")) {
+      localStorage.setItem("isAdmin", JSON.stringify(false))
+    }
+
+    if (!localStorage.getItem("isStructure")) {
+      localStorage.setItem("isStructure", JSON.stringify(false))
+    }
+
+    if (!localStorage.getItem("isDonateur")) {
+      localStorage.setItem("isDonateur", JSON.stringify(false))
+    }
+
+    if (!localStorage.getItem("userOnline")) {
+      localStorage.setItem("userOnline", JSON.stringify(""))
+    }
   }
 onChangeFile() {
 }
@@ -206,12 +223,18 @@ login() {
   if (this.email === 'khadijambengue96@gmail.com' && this.password === 'password') {
     this.authservice.login(user).subscribe(
       (response: any) => {
-        console.log(response.token);
+        console.log(response);
         this.authservice.isAuthenticated = true;
+        console.warn("dddd auth",this.isAuthenticated$);
         localStorage.setItem('userOnline', JSON.stringify(response));
+        localStorage.setItem("isAdmin", JSON.stringify(true))
+        localStorage.setItem("isStructure", JSON.stringify(false))
+        localStorage.setItem("isDonateur", JSON.stringify(false))
+        
         
         // localStorage.setItem('token', response.token);
         this.tS.saveToken(response.token);
+
         this.route.navigate(['/admin']);
       },
       (err: any) => {
@@ -222,10 +245,13 @@ login() {
     if (this.email === 'structureS@gmail.com' && this.password === user.password) {
       this.authservice.loginStructureDeSante(user).subscribe(
         (response) => {
-          console.log(response.token);
+          console.log(response);
           this.authservice.isAuthenticated = true;
           localStorage.setItem('userOnline', JSON.stringify(response));
-           this.tS.saveToken(response.token);
+          this.tS.saveToken(response.token);
+          localStorage.setItem("isAdmin", JSON.stringify(false))
+        localStorage.setItem("isStructure", JSON.stringify(true))
+        localStorage.setItem("isDonateur", JSON.stringify(false))
           this.route.navigate(['/structure-de-sante']);
         },
         (err: any) => {
@@ -235,10 +261,13 @@ login() {
     } else if (this.email === user.email && this.password === user.password) { // Utilisez "else if" ici
       this.authservice.loginDonateur(user).subscribe(
         (response: any) => {
-          console.log(response.token);
+          console.log(response);
           this.authservice.isAuthenticated = true;
           localStorage.setItem('userOnline', JSON.stringify(response));
-           this.tS.saveToken(response.token);
+          this.tS.saveToken(response.token);
+          localStorage.setItem("isAdmin", JSON.stringify(false))
+        localStorage.setItem("isStructure", JSON.stringify(false))
+        localStorage.setItem("isDonateur", JSON.stringify(true))
           this.route.navigate(['/donneur/annonce-donneur']);
         },
         (err: any) => {

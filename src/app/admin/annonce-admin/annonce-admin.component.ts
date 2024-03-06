@@ -132,7 +132,7 @@ chargerInfosAnnonce(arg0: any[]) {
     this.statut = ""
   }
 
-  // Methode ajout contact
+  // Methode ajout 
   ajouterAnnonce(){
     const heurePattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/;
     // Premiere vérification avec sweetalert 

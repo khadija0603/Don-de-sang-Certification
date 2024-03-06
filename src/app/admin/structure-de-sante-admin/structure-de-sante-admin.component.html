@@ -2,9 +2,10 @@
                 Ajouter structure de santé
             </button>
             <!-- Card structure de sante -->
-            <div class="hopital ">
+            <div class="hopital text-black ">
                 <div class="card" *ngFor="let item of getArticlesPage()">
-                    <img src="http://127.0.0.1:8000/{{item.image}}" alt="test">
+                    <!-- <img src="https://img.freepik.com/vecteurs-libre/soins-medicaux_24877-49075.jpg?t=st=1709649311~exp=1709652911~hmac=b46650ce5f2f0b2f16369bba7eeee3ba86db32098c8461afaa11b2d95d0c119c&w=740" alt=""> -->
+                    <img src="http://127.0.0.1:8000/{{item.image}}" alt="">
                     <div class="card__content mx-3" [ngClass]="{ 'blocked-card': item.isBlocked }">
                         <div class="card__description" >
                             <p><strong class="text-danger">Nom:</strong>    {{item.name}}</p>
